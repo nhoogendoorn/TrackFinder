@@ -8,7 +8,41 @@
 
 import UIKit
 
-class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+class SceneDelegate: UIResponder, UIWindowSceneDelegate, SPTAppRemoteDelegate, SPTAppRemotePlayerStateDelegate {
+    
+    let SpotifyClientID = "ad5a0ea0dbd042c080662e6cf9444b5a"
+    let SpotifyRedirectURL = URL(string: "spotify-ios-quick-start://spotify-login-callback")!
+
+    lazy var configuration = SPTConfiguration(
+      clientID: SpotifyClientID,
+      redirectURL: SpotifyRedirectURL
+    )
+
+    lazy var appRemote: SPTAppRemote = {
+      let appRemote = SPTAppRemote(configuration: self.configuration, logLevel: .debug)
+      appRemote.connectionParameters.accessToken = self.accessToken
+      appRemote.delegate = self
+      return appRemote
+    }()
+    
+    var accessToken = ""
+    
+    func appRemoteDidEstablishConnection(_ appRemote: SPTAppRemote) {
+        print("Connected")
+    }
+    
+    func appRemote(_ appRemote: SPTAppRemote, didFailConnectionAttemptWithError error: Error?) {
+        print("Failed")
+    }
+    
+    func appRemote(_ appRemote: SPTAppRemote, didDisconnectWithError error: Error?) {
+        print("Disconnected")
+    }
+    
+    func playerStateDidChange(_ playerState: SPTAppRemotePlayerState) {
+        print("player state changed")
+    }
+    
 
     var window: UIWindow?
 
@@ -24,6 +58,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
         window?.makeKeyAndVisible()
 
+//        appRemote.authorizeAndPlayURI("spotify:track:20I6sIOMTCkB6w7ryavxtO")
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -36,11 +71,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidBecomeActive(_ scene: UIScene) {
         // Called when the scene has moved from an inactive state to an active state.
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
+        if let _ = self.appRemote.connectionParameters.accessToken {
+          self.appRemote.connect()
+        }
     }
 
     func sceneWillResignActive(_ scene: UIScene) {
         // Called when the scene will move from an active state to an inactive state.
         // This may occur due to temporary interruptions (ex. an incoming phone call).
+        if self.appRemote.isConnected {
+          self.appRemote.disconnect()
+        }
     }
 
     func sceneWillEnterForeground(_ scene: UIScene) {
@@ -53,7 +94,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
+    
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        guard let url = URLContexts.first?.url else {
+            return
+        }
 
+        let parameters = appRemote.authorizationParameters(from: url);
+
+        if let access_token = parameters?[SPTAppRemoteAccessTokenKey] {
+            appRemote.connectionParameters.accessToken = access_token
+            self.accessToken = access_token
+        } else if let error_description = parameters?[SPTAppRemoteErrorDescriptionKey] {
+            // Show the error
+            print(error_description)
+        }
+    }
 
 }
 

@@ -18,6 +18,7 @@
 		A6345F2224994FAD0070D2C2 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6345F2124994FAD0070D2C2 /* ApiManager.swift */; };
 		A6345F2424994FDF0070D2C2 /* WebApiProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6345F2324994FDF0070D2C2 /* WebApiProtocol.swift */; };
 		A6345F2624994FE70070D2C2 /* SpotifyApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6345F2524994FE70070D2C2 /* SpotifyApi.swift */; };
+		A6345F45249959E00070D2C2 /* SpotifyiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6345F44249959E00070D2C2 /* SpotifyiOS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,8 @@
 		A6345F2124994FAD0070D2C2 /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		A6345F2324994FDF0070D2C2 /* WebApiProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebApiProtocol.swift; sourceTree = "<group>"; };
 		A6345F2524994FE70070D2C2 /* SpotifyApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyApi.swift; sourceTree = "<group>"; };
+		A6345F44249959E00070D2C2 /* SpotifyiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyiOS.framework; sourceTree = "<group>"; };
+		A6345F4624995A5B0070D2C2 /* TrackFinder-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TrackFinder-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +56,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A6345F1D249948840070D2C2 /* SnapKit in Frameworks */,
+				A6345F45249959E00070D2C2 /* SpotifyiOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +76,8 @@
 				A6345EF5249947250070D2C2 /* TrackFinder */,
 				A6345F0C249947280070D2C2 /* TrackFinderTests */,
 				A6345EF4249947250070D2C2 /* Products */,
+				A6345F44249959E00070D2C2 /* SpotifyiOS.framework */,
+				A6345F4624995A5B0070D2C2 /* TrackFinder-Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -219,6 +225,7 @@
 				TargetAttributes = {
 					A6345EF2249947250070D2C2 = {
 						CreatedOnToolsVersion = 11.5;
+						LastSwiftMigration = 1150;
 					};
 					A6345F08249947280070D2C2 = {
 						CreatedOnToolsVersion = 11.5;
@@ -430,15 +437,23 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2G429TK35T;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = TrackFinder/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_LDFLAGS = "-Objc";
 				PRODUCT_BUNDLE_IDENTIFIER = nihoo.TrackFinder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "TrackFinder-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -448,15 +463,22 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2G429TK35T;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = TrackFinder/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_LDFLAGS = "-Objc";
 				PRODUCT_BUNDLE_IDENTIFIER = nihoo.TrackFinder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "TrackFinder-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
