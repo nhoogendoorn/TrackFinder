@@ -3,17 +3,21 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		A6345EF7249947250070D2C2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6345EF6249947250070D2C2 /* AppDelegate.swift */; };
 		A6345EF9249947250070D2C2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6345EF8249947250070D2C2 /* SceneDelegate.swift */; };
-		A6345EFB249947250070D2C2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6345EFA249947250070D2C2 /* ViewController.swift */; };
-		A6345EFE249947250070D2C2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6345EFC249947250070D2C2 /* Main.storyboard */; };
 		A6345F00249947280070D2C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6345EFF249947280070D2C2 /* Assets.xcassets */; };
 		A6345F03249947280070D2C2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6345F01249947280070D2C2 /* LaunchScreen.storyboard */; };
 		A6345F0E249947280070D2C2 /* TrackFinderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6345F0D249947280070D2C2 /* TrackFinderTests.swift */; };
+		A6345F1A2499481F0070D2C2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6345F192499481F0070D2C2 /* LoginViewController.swift */; };
+		A6345F1D249948840070D2C2 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = A6345F1C249948840070D2C2 /* SnapKit */; };
+		A6345F2024994FA60070D2C2 /* ApiProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6345F1F24994FA60070D2C2 /* ApiProtocol.swift */; };
+		A6345F2224994FAD0070D2C2 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6345F2124994FAD0070D2C2 /* ApiManager.swift */; };
+		A6345F2424994FDF0070D2C2 /* WebApiProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6345F2324994FDF0070D2C2 /* WebApiProtocol.swift */; };
+		A6345F2624994FE70070D2C2 /* SpotifyApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6345F2524994FE70070D2C2 /* SpotifyApi.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,14 +34,17 @@
 		A6345EF3249947250070D2C2 /* TrackFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrackFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6345EF6249947250070D2C2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A6345EF8249947250070D2C2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A6345EFA249947250070D2C2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		A6345EFD249947250070D2C2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A6345EFF249947280070D2C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A6345F02249947280070D2C2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A6345F04249947280070D2C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A6345F09249947280070D2C2 /* TrackFinderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrackFinderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6345F0D249947280070D2C2 /* TrackFinderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackFinderTests.swift; sourceTree = "<group>"; };
 		A6345F0F249947280070D2C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A6345F192499481F0070D2C2 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		A6345F1F24994FA60070D2C2 /* ApiProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiProtocol.swift; sourceTree = "<group>"; };
+		A6345F2124994FAD0070D2C2 /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
+		A6345F2324994FDF0070D2C2 /* WebApiProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebApiProtocol.swift; sourceTree = "<group>"; };
+		A6345F2524994FE70070D2C2 /* SpotifyApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyApi.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6345F1D249948840070D2C2 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,10 +87,13 @@
 		A6345EF5249947250070D2C2 /* TrackFinder */ = {
 			isa = PBXGroup;
 			children = (
-				A6345EF6249947250070D2C2 /* AppDelegate.swift */,
-				A6345EF8249947250070D2C2 /* SceneDelegate.swift */,
-				A6345EFA249947250070D2C2 /* ViewController.swift */,
-				A6345EFC249947250070D2C2 /* Main.storyboard */,
+				A6345F2824994FF50070D2C2 /* Services */,
+				A6345F2724994FEB0070D2C2 /* Extensions */,
+				A6345F1E24994F990070D2C2 /* Networking */,
+				A6345F182499480F0070D2C2 /* ViewControllers */,
+				A6345F29249950000070D2C2 /* ModelControllers */,
+				A6345F2A2499500A0070D2C2 /* Views */,
+				A6345F2B249950520070D2C2 /* AppDelegate */,
 				A6345EFF249947280070D2C2 /* Assets.xcassets */,
 				A6345F01249947280070D2C2 /* LaunchScreen.storyboard */,
 				A6345F04249947280070D2C2 /* Info.plist */,
@@ -97,6 +108,62 @@
 				A6345F0F249947280070D2C2 /* Info.plist */,
 			);
 			path = TrackFinderTests;
+			sourceTree = "<group>";
+		};
+		A6345F182499480F0070D2C2 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				A6345F192499481F0070D2C2 /* LoginViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		A6345F1E24994F990070D2C2 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				A6345F1F24994FA60070D2C2 /* ApiProtocol.swift */,
+				A6345F2124994FAD0070D2C2 /* ApiManager.swift */,
+				A6345F2324994FDF0070D2C2 /* WebApiProtocol.swift */,
+				A6345F2524994FE70070D2C2 /* SpotifyApi.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		A6345F2724994FEB0070D2C2 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A6345F2824994FF50070D2C2 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		A6345F29249950000070D2C2 /* ModelControllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ModelControllers;
+			sourceTree = "<group>";
+		};
+		A6345F2A2499500A0070D2C2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A6345F2B249950520070D2C2 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				A6345EF6249947250070D2C2 /* AppDelegate.swift */,
+				A6345EF8249947250070D2C2 /* SceneDelegate.swift */,
+			);
+			path = AppDelegate;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -115,6 +182,9 @@
 			dependencies = (
 			);
 			name = TrackFinder;
+			packageProductDependencies = (
+				A6345F1C249948840070D2C2 /* SnapKit */,
+			);
 			productName = TrackFinder;
 			productReference = A6345EF3249947250070D2C2 /* TrackFinder.app */;
 			productType = "com.apple.product-type.application";
@@ -165,6 +235,9 @@
 				Base,
 			);
 			mainGroup = A6345EEA249947240070D2C2;
+			packageReferences = (
+				A6345F1B249948840070D2C2 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = A6345EF4249947250070D2C2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -182,7 +255,6 @@
 			files = (
 				A6345F03249947280070D2C2 /* LaunchScreen.storyboard in Resources */,
 				A6345F00249947280070D2C2 /* Assets.xcassets in Resources */,
-				A6345EFE249947250070D2C2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,7 +272,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A6345EFB249947250070D2C2 /* ViewController.swift in Sources */,
+				A6345F2624994FE70070D2C2 /* SpotifyApi.swift in Sources */,
+				A6345F2024994FA60070D2C2 /* ApiProtocol.swift in Sources */,
+				A6345F1A2499481F0070D2C2 /* LoginViewController.swift in Sources */,
+				A6345F2224994FAD0070D2C2 /* ApiManager.swift in Sources */,
+				A6345F2424994FDF0070D2C2 /* WebApiProtocol.swift in Sources */,
 				A6345EF7249947250070D2C2 /* AppDelegate.swift in Sources */,
 				A6345EF9249947250070D2C2 /* SceneDelegate.swift in Sources */,
 			);
@@ -225,14 +301,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		A6345EFC249947250070D2C2 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A6345EFD249947250070D2C2 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		A6345F01249947280070D2C2 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -469,6 +537,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A6345F1B249948840070D2C2 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A6345F1C249948840070D2C2 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A6345F1B249948840070D2C2 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A6345EEB249947240070D2C2 /* Project object */;
 }
