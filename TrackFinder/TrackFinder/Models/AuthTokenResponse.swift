@@ -13,7 +13,8 @@ struct AuthTokenResponse: Codable {
     let accessToken, tokenType, scope: String
     let expiresIn: Int
     let refreshToken: String
-
+    let authTokens: AuthTokens
+    
     enum CodingKeys: String, CodingKey {
         case accessToken = "access_token"
         case tokenType = "token_type"
@@ -26,6 +27,23 @@ struct AuthTokenResponse: Codable {
 // MARK: AuthTokenResponse convenience initializers and mutators
 
 extension AuthTokenResponse {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        let accessTokenResponse = try container.decode(String.self, forKey: .accessToken)
+        accessToken = accessTokenResponse
+        
+        tokenType = try container.decode(String.self, forKey: .tokenType)
+        scope = try container.decode(String.self, forKey: .scope)
+        expiresIn = try container.decode(Int.self, forKey: .expiresIn)
+        
+        let refreshTokenResponse = try container.decode(String.self, forKey: .refreshToken)
+        self.refreshToken = refreshTokenResponse
+        
+        authTokens = AuthTokens(accessToken: accessTokenResponse,
+                                refreshToken: refreshTokenResponse)        
+    }
+
     init(data: Data) throws {
         self = try newJSONDecoder().decode(AuthTokenResponse.self, from: data)
     }
@@ -53,7 +71,9 @@ extension AuthTokenResponse {
             tokenType: tokenType ?? self.tokenType,
             scope: scope ?? self.scope,
             expiresIn: expiresIn ?? self.expiresIn,
-            refreshToken: refreshToken ?? self.refreshToken
+            refreshToken: refreshToken ?? self.refreshToken,
+            authTokens: AuthTokens(accessToken: accessToken ?? self.accessToken,
+                                   refreshToken: refreshToken ?? self.refreshToken)
         )
     }
 

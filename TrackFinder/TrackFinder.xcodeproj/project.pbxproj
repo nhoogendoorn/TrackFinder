@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A61B3849249C091B00286F61 /* AuthTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61B3848249C091B00286F61 /* AuthTokens.swift */; };
+		A61B384D249C0E5900286F61 /* RefreshTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61B384C249C0E5900286F61 /* RefreshTokenResponse.swift */; };
 		A6345EF7249947250070D2C2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6345EF6249947250070D2C2 /* AppDelegate.swift */; };
 		A6345EF9249947250070D2C2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6345EF8249947250070D2C2 /* SceneDelegate.swift */; };
 		A6345F00249947280070D2C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6345EFF249947280070D2C2 /* Assets.xcassets */; };
@@ -33,6 +35,7 @@
 		A6345FA0249C04030070D2C2 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6345F9F249C04030070D2C2 /* Environment.swift */; };
 		A6345FA2249C05080070D2C2 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6345FA1249C05080070D2C2 /* String+Extension.swift */; };
 		A6345FA4249C053C0070D2C2 /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6345FA3249C053C0070D2C2 /* String+Localization.swift */; };
+		A6345FA6249C06F70070D2C2 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6345FA5249C06F70070D2C2 /* UserPreferences.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +49,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A61B3848249C091B00286F61 /* AuthTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTokens.swift; sourceTree = "<group>"; };
+		A61B384C249C0E5900286F61 /* RefreshTokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTokenResponse.swift; sourceTree = "<group>"; };
 		A6345EF3249947250070D2C2 /* TrackFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrackFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6345EF6249947250070D2C2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A6345EF8249947250070D2C2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -74,6 +79,7 @@
 		A6345F9F249C04030070D2C2 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		A6345FA1249C05080070D2C2 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		A6345FA3249C053C0070D2C2 /* String+Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localization.swift"; sourceTree = "<group>"; };
+		A6345FA5249C06F70070D2C2 /* UserPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,6 +221,8 @@
 			isa = PBXGroup;
 			children = (
 				A6345F89249A98F20070D2C2 /* AuthTokenResponse.swift */,
+				A61B384C249C0E5900286F61 /* RefreshTokenResponse.swift */,
+				A61B3848249C091B00286F61 /* AuthTokens.swift */,
 				A6345F99249BC23C0070D2C2 /* ErrorResponse.swift */,
 			);
 			path = Models;
@@ -224,6 +232,7 @@
 			isa = PBXGroup;
 			children = (
 				A6345F9F249C04030070D2C2 /* Environment.swift */,
+				A6345FA5249C06F70070D2C2 /* UserPreferences.swift */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -364,15 +373,18 @@
 				A6345F2624994FE70070D2C2 /* SpotifyApi.swift in Sources */,
 				A6345F2024994FA60070D2C2 /* ApiProtocol.swift in Sources */,
 				A6345F88249A802A0070D2C2 /* SearchScreenViewController.swift in Sources */,
+				A61B3849249C091B00286F61 /* AuthTokens.swift in Sources */,
 				A6345F98249BB7DE0070D2C2 /* UIViewController+Extension.swift in Sources */,
 				A6345F8E249B89710070D2C2 /* AuthenticationService.swift in Sources */,
 				A6345F8A249A98F20070D2C2 /* AuthTokenResponse.swift in Sources */,
 				A6345F1A2499481F0070D2C2 /* LoginViewController.swift in Sources */,
+				A6345FA6249C06F70070D2C2 /* UserPreferences.swift in Sources */,
 				A6345F9A249BC23C0070D2C2 /* ErrorResponse.swift in Sources */,
 				A6345F4F249973C30070D2C2 /* ViewController.swift in Sources */,
 				A6345F2224994FAD0070D2C2 /* ApiManager.swift in Sources */,
 				A6345FA2249C05080070D2C2 /* String+Extension.swift in Sources */,
 				A6345F2424994FDF0070D2C2 /* WebApiProtocol.swift in Sources */,
+				A61B384D249C0E5900286F61 /* RefreshTokenResponse.swift in Sources */,
 				A6345F96249BB7830070D2C2 /* SceneDelegate+SpotifyCallback.swift in Sources */,
 				A6345EF7249947250070D2C2 /* AppDelegate.swift in Sources */,
 				A6345EF9249947250070D2C2 /* SceneDelegate.swift in Sources */,

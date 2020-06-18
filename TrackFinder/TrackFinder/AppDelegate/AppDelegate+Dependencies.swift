@@ -13,5 +13,9 @@ extension AppDelegate {
         container.register(AuthenticationService.self) { _ in
             AuthenticationService()
         }.inObjectScope(.container)
+        
+        container.register(UserPreferencesProtocol.self) { _ in
+            UserPreferences()
+        }.inObjectScope(.container)
     }
 }

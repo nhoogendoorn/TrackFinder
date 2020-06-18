@@ -41,7 +41,8 @@ class LoginViewController: UIViewController, SPTAppRemoteDelegate, SPTSessionMan
     }()
     
     let button = UIButton()
-        
+    let refreshButton = UIButton()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setButton()
@@ -56,10 +57,31 @@ class LoginViewController: UIViewController, SPTAppRemoteDelegate, SPTSessionMan
         
         button.setTitle(.loginAction, for: .normal)
         button.addTarget(self, action: #selector(loginButtonPressed), for: .touchUpInside)
+        
+        view.addSubview(refreshButton)
+        refreshButton.snp.makeConstraints {
+            $0.top.equalTo(button.snp.bottom).offset(16)
+            $0.centerX.equalToSuperview()
+        }
+        
+        refreshButton.setTitle("Refresh", for: .normal)
+        refreshButton.addTarget(self, action: #selector(refreshButtonPressed), for: .touchUpInside)
+
     }
     
     @objc func loginButtonPressed() {
         authService?.startSpotifyAuthorization()
+    }
+    
+    @objc func refreshButtonPressed() {
+        authService?.requestNewToken(completion: { (result) in
+            switch result {
+            case .failure:
+                log.error("Failed to refresh Tokens")
+            case .success(let response):
+                log.debug("New token: \(response.accessToken)")
+            }
+        })
     }
     
     func sessionManager(manager: SPTSessionManager, didInitiate session: SPTSession) {
