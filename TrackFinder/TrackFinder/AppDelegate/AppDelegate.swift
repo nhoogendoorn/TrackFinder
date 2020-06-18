@@ -7,14 +7,20 @@
 //
 
 import UIKit
+import Swinject
+import SwiftyBeaver
+
+let log = SwiftyBeaver.self
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    let container = Container()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        registerDependencies()
+        configureSwifyBeaver()
         return true
     }
 
@@ -32,6 +38,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
 
-
+    fileprivate func configureSwifyBeaver() {
+        let console = ConsoleDestination()
+        log.addDestination(console)
+    }
 }
 

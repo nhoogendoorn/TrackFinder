@@ -67,7 +67,7 @@
         <string>nihoo.TrackFinder</string>
         <key>CFBundleURLSchemes</key>
         <array>
-          <string>spotify-ios-quick-start</string>
+          <string>trackfinder</string>
         </array>
       </dict>
     </array>

@@ -19,6 +19,18 @@
 		A6345F2424994FDF0070D2C2 /* WebApiProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6345F2324994FDF0070D2C2 /* WebApiProtocol.swift */; };
 		A6345F2624994FE70070D2C2 /* SpotifyApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6345F2524994FE70070D2C2 /* SpotifyApi.swift */; };
 		A6345F45249959E00070D2C2 /* SpotifyiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6345F44249959E00070D2C2 /* SpotifyiOS.framework */; };
+		A6345F4D249964AE0070D2C2 /* BaseRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6345F4C249964AE0070D2C2 /* BaseRouter.swift */; };
+		A6345F4F249973C30070D2C2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6345F4E249973C30070D2C2 /* ViewController.swift */; };
+		A6345F86249A72A90070D2C2 /* SwiftyBeaver in Frameworks */ = {isa = PBXBuildFile; productRef = A6345F85249A72A90070D2C2 /* SwiftyBeaver */; };
+		A6345F88249A802A0070D2C2 /* SearchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6345F87249A802A0070D2C2 /* SearchScreenViewController.swift */; };
+		A6345F8A249A98F20070D2C2 /* AuthTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6345F89249A98F20070D2C2 /* AuthTokenResponse.swift */; };
+		A6345F8C249AC9F80070D2C2 /* spotify_token_swap.rb in Resources */ = {isa = PBXBuildFile; fileRef = A6345F8B249AC9F80070D2C2 /* spotify_token_swap.rb */; };
+		A6345F8E249B89710070D2C2 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6345F8D249B89710070D2C2 /* AuthenticationService.swift */; };
+		A6345F91249BB7410070D2C2 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = A6345F90249BB7400070D2C2 /* Swinject */; };
+		A6345F94249BB7760070D2C2 /* AppDelegate+Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6345F93249BB7760070D2C2 /* AppDelegate+Dependencies.swift */; };
+		A6345F96249BB7830070D2C2 /* SceneDelegate+SpotifyCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6345F95249BB7830070D2C2 /* SceneDelegate+SpotifyCallback.swift */; };
+		A6345F98249BB7DE0070D2C2 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6345F97249BB7DE0070D2C2 /* UIViewController+Extension.swift */; };
+		A6345F9A249BC23C0070D2C2 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6345F99249BC23C0070D2C2 /* ErrorResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +60,16 @@
 		A6345F2524994FE70070D2C2 /* SpotifyApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyApi.swift; sourceTree = "<group>"; };
 		A6345F44249959E00070D2C2 /* SpotifyiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyiOS.framework; sourceTree = "<group>"; };
 		A6345F4624995A5B0070D2C2 /* TrackFinder-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TrackFinder-Bridging-Header.h"; sourceTree = "<group>"; };
+		A6345F4C249964AE0070D2C2 /* BaseRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRouter.swift; sourceTree = "<group>"; };
+		A6345F4E249973C30070D2C2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A6345F87249A802A0070D2C2 /* SearchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchScreenViewController.swift; sourceTree = "<group>"; };
+		A6345F89249A98F20070D2C2 /* AuthTokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTokenResponse.swift; sourceTree = "<group>"; };
+		A6345F8B249AC9F80070D2C2 /* spotify_token_swap.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = spotify_token_swap.rb; sourceTree = "<group>"; };
+		A6345F8D249B89710070D2C2 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
+		A6345F93249BB7760070D2C2 /* AppDelegate+Dependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Dependencies.swift"; sourceTree = "<group>"; };
+		A6345F95249BB7830070D2C2 /* SceneDelegate+SpotifyCallback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SceneDelegate+SpotifyCallback.swift"; sourceTree = "<group>"; };
+		A6345F97249BB7DE0070D2C2 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		A6345F99249BC23C0070D2C2 /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +79,8 @@
 			files = (
 				A6345F1D249948840070D2C2 /* SnapKit in Frameworks */,
 				A6345F45249959E00070D2C2 /* SpotifyiOS.framework in Frameworks */,
+				A6345F86249A72A90070D2C2 /* SwiftyBeaver in Frameworks */,
+				A6345F91249BB7410070D2C2 /* Swinject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,6 +117,8 @@
 		A6345EF5249947250070D2C2 /* TrackFinder */ = {
 			isa = PBXGroup;
 			children = (
+				A6345F92249BB7580070D2C2 /* Models */,
+				A6345F8B249AC9F80070D2C2 /* spotify_token_swap.rb */,
 				A6345F2824994FF50070D2C2 /* Services */,
 				A6345F2724994FEB0070D2C2 /* Extensions */,
 				A6345F1E24994F990070D2C2 /* Networking */,
@@ -120,6 +146,8 @@
 			isa = PBXGroup;
 			children = (
 				A6345F192499481F0070D2C2 /* LoginViewController.swift */,
+				A6345F4E249973C30070D2C2 /* ViewController.swift */,
+				A6345F87249A802A0070D2C2 /* SearchScreenViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -131,6 +159,7 @@
 				A6345F2124994FAD0070D2C2 /* ApiManager.swift */,
 				A6345F2324994FDF0070D2C2 /* WebApiProtocol.swift */,
 				A6345F2524994FE70070D2C2 /* SpotifyApi.swift */,
+				A6345F4C249964AE0070D2C2 /* BaseRouter.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -138,6 +167,7 @@
 		A6345F2724994FEB0070D2C2 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				A6345F97249BB7DE0070D2C2 /* UIViewController+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -145,6 +175,7 @@
 		A6345F2824994FF50070D2C2 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				A6345F8D249B89710070D2C2 /* AuthenticationService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -167,9 +198,20 @@
 			isa = PBXGroup;
 			children = (
 				A6345EF6249947250070D2C2 /* AppDelegate.swift */,
+				A6345F93249BB7760070D2C2 /* AppDelegate+Dependencies.swift */,
 				A6345EF8249947250070D2C2 /* SceneDelegate.swift */,
+				A6345F95249BB7830070D2C2 /* SceneDelegate+SpotifyCallback.swift */,
 			);
 			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		A6345F92249BB7580070D2C2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A6345F89249A98F20070D2C2 /* AuthTokenResponse.swift */,
+				A6345F99249BC23C0070D2C2 /* ErrorResponse.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -190,6 +232,8 @@
 			name = TrackFinder;
 			packageProductDependencies = (
 				A6345F1C249948840070D2C2 /* SnapKit */,
+				A6345F85249A72A90070D2C2 /* SwiftyBeaver */,
+				A6345F90249BB7400070D2C2 /* Swinject */,
 			);
 			productName = TrackFinder;
 			productReference = A6345EF3249947250070D2C2 /* TrackFinder.app */;
@@ -244,6 +288,8 @@
 			mainGroup = A6345EEA249947240070D2C2;
 			packageReferences = (
 				A6345F1B249948840070D2C2 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				A6345F84249A72A90070D2C2 /* XCRemoteSwiftPackageReference "SwiftyBeaver" */,
+				A6345F8F249BB7400070D2C2 /* XCRemoteSwiftPackageReference "Swinject" */,
 			);
 			productRefGroup = A6345EF4249947250070D2C2 /* Products */;
 			projectDirPath = "";
@@ -260,6 +306,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6345F8C249AC9F80070D2C2 /* spotify_token_swap.rb in Resources */,
 				A6345F03249947280070D2C2 /* LaunchScreen.storyboard in Resources */,
 				A6345F00249947280070D2C2 /* Assets.xcassets in Resources */,
 			);
@@ -281,11 +328,20 @@
 			files = (
 				A6345F2624994FE70070D2C2 /* SpotifyApi.swift in Sources */,
 				A6345F2024994FA60070D2C2 /* ApiProtocol.swift in Sources */,
+				A6345F88249A802A0070D2C2 /* SearchScreenViewController.swift in Sources */,
+				A6345F98249BB7DE0070D2C2 /* UIViewController+Extension.swift in Sources */,
+				A6345F8E249B89710070D2C2 /* AuthenticationService.swift in Sources */,
+				A6345F8A249A98F20070D2C2 /* AuthTokenResponse.swift in Sources */,
 				A6345F1A2499481F0070D2C2 /* LoginViewController.swift in Sources */,
+				A6345F9A249BC23C0070D2C2 /* ErrorResponse.swift in Sources */,
+				A6345F4F249973C30070D2C2 /* ViewController.swift in Sources */,
 				A6345F2224994FAD0070D2C2 /* ApiManager.swift in Sources */,
 				A6345F2424994FDF0070D2C2 /* WebApiProtocol.swift in Sources */,
+				A6345F96249BB7830070D2C2 /* SceneDelegate+SpotifyCallback.swift in Sources */,
 				A6345EF7249947250070D2C2 /* AppDelegate.swift in Sources */,
 				A6345EF9249947250070D2C2 /* SceneDelegate.swift in Sources */,
+				A6345F4D249964AE0070D2C2 /* BaseRouter.swift in Sources */,
+				A6345F94249BB7760070D2C2 /* AppDelegate+Dependencies.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -569,6 +625,22 @@
 				minimumVersion = 5.0.1;
 			};
 		};
+		A6345F84249A72A90070D2C2 /* XCRemoteSwiftPackageReference "SwiftyBeaver" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyBeaver/SwiftyBeaver";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.9.1;
+			};
+		};
+		A6345F8F249BB7400070D2C2 /* XCRemoteSwiftPackageReference "Swinject" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Swinject/Swinject";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.7.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -576,6 +648,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A6345F1B249948840070D2C2 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		A6345F85249A72A90070D2C2 /* SwiftyBeaver */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A6345F84249A72A90070D2C2 /* XCRemoteSwiftPackageReference "SwiftyBeaver" */;
+			productName = SwiftyBeaver;
+		};
+		A6345F90249BB7400070D2C2 /* Swinject */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A6345F8F249BB7400070D2C2 /* XCRemoteSwiftPackageReference "Swinject" */;
+			productName = Swinject;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
