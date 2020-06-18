@@ -14,7 +14,6 @@ class ViewController: UIViewController, SPTSessionManagerDelegate, SPTAppRemoteD
     private let SpotifyRedirectURI = URL(string: "trackfinder://spotify-login-callback")!
     let spotifySecret = "e1b079d5f1ee450094926dcda77800c7"
 
-
     lazy var sessionManager: SPTSessionManager = {
         let manager = SPTSessionManager(configuration: configuration, delegate: self)
         return manager
@@ -138,7 +137,7 @@ class ViewController: UIViewController, SPTSessionManagerDelegate, SPTAppRemoteD
     }
 
     func updateViewBasedOnConnected() {
-        if (appRemote.isConnected) {
+        if appRemote.isConnected {
             connectButton.isHidden = true
             disconnectButton.isHidden = false
             connectLabel.isHidden = true
@@ -155,7 +154,7 @@ class ViewController: UIViewController, SPTSessionManagerDelegate, SPTAppRemoteD
         }
     }
 
-    func fetchArtwork(for track:SPTAppRemoteTrack) {
+    func fetchArtwork(for track: SPTAppRemoteTrack) {
         appRemote.imageAPI?.fetchImage(forItem: track, with: CGSize.zero, callback: { [weak self] (image, error) in
             if let error = error {
                 print("Error fetching track image: " + error.localizedDescription)
@@ -186,7 +185,7 @@ class ViewController: UIViewController, SPTSessionManagerDelegate, SPTAppRemoteD
     }
 
     @objc func didTapDisconnect(_ button: UIButton) {
-        if (appRemote.isConnected) {
+        if appRemote.isConnected {
             appRemote.disconnect()
         }
     }
@@ -203,40 +202,11 @@ class ViewController: UIViewController, SPTSessionManagerDelegate, SPTAppRemoteD
          permissions the user is asked to grant.
          For more information, see https://developer.spotify.com/web-api/using-scopes/.
          */
-//        getToken { (_) in
-//        log.debug(configuration.clientID)
         log.debug("Has session: " + "\(self.sessionManager.session != nil)")
         let scope: SPTScope = [.userReadEmail, .appRemoteControl]
         self.sessionManager.initiateSession(with: scope, options: .clientOnly)
-//        }
-        
-        
-
-//        if #available(iOS 11, *) {
-//            // Use this on iOS 11 and above to take advantage of SFAuthenticationSession
-            
-//        } else {
-//            // Use this on iOS versions < 11 to use SFSafariViewController
-//            sessionManager.initiateSession(with: scope, options: .clientOnly, presenting: self)
-//        }
     }
-
-//    func authorize() {
-//
-//    }
     
-//    func getToken(completion: @escaping (Result<String, NetworkError>) -> Void) {
-//        let session = URLSession.shared
-//        let request = URLRequest(url: URL(string: "https://accounts.spotify.com/authorize?client_id=\(SpotifyClientID)&response_type=code&redirect_uri=\(SpotifyRedirectURI)&scope=user-read-private%20user-read-email&state=34fFs29kd09")!)
-//        session.dataTask(with: request) { (data, response, error) in
-//            log.debug(response?.url)
-//            completion(.success(""))
-////            completion(.success("check"))
-//        }.resume()
-//
-//    }
-    
-
     // MARK: - SPTSessionManagerDelegate
 
     func sessionManager(manager: SPTSessionManager, didFailWith error: Error) {
@@ -257,7 +227,7 @@ class ViewController: UIViewController, SPTSessionManagerDelegate, SPTAppRemoteD
     func appRemoteDidEstablishConnection(_ appRemote: SPTAppRemote) {
         updateViewBasedOnConnected()
         appRemote.playerAPI?.delegate = self
-        appRemote.playerAPI?.subscribe(toPlayerState: { (success, error) in
+        appRemote.playerAPI?.subscribe(toPlayerState: { (_, error) in
             if let error = error {
                 print("Error subscribing to player state:" + error.localizedDescription)
             }
@@ -296,7 +266,7 @@ class ViewController: UIViewController, SPTSessionManagerDelegate, SPTAppRemoteD
 class ConnectButton: UIButton {
 
     fileprivate let buttonBackgroundColor =
-        UIColor(red:(29.0 / 255.0), green:(185.0 / 255.0), blue:(84.0 / 255.0), alpha:1.0)
+        UIColor(red: (29.0 / 255.0), green: (185.0 / 255.0), blue: (84.0 / 255.0), alpha: 1.0)
     fileprivate let titleAttributes: [NSAttributedString.Key: Any] = [
         .font: UIFont.systemFont(ofSize: UIFont.systemFontSize, weight: .heavy),
         .foregroundColor: UIColor.white,

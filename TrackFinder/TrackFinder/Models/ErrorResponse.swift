@@ -47,4 +47,3 @@ extension ErrorResponse {
         return String(data: try self.jsonData(), encoding: encoding)
     }
 }
-

@@ -23,17 +23,11 @@ enum Environment {
     static let baseUrl: String = "https://accounts.spotify.com/"
 }
 
-
-
 class LoginViewController: UIViewController, SPTAppRemoteDelegate, SPTSessionManagerDelegate {
-    
     
     lazy var authService: AuthenticationService? = {
         self.container?.resolve(AuthenticationService.self)
     }()
-    
-    
-    
     
         lazy var configuration: SPTConfiguration = {
             let configuration = SPTConfiguration(clientID: SpotifyClientID, redirectURL: SpotifyRedirectURI)
@@ -71,7 +65,6 @@ class LoginViewController: UIViewController, SPTAppRemoteDelegate, SPTSessionMan
         log.debug("didDisconnectWithError")
     }
     
-    
     private let SpotifyClientID = "ad5a0ea0dbd042c080662e6cf9444b5a"
     private let SpotifyRedirectURI = URL(string: "trackfinder://spotify-login-callback")!
     let spotifySecret = "e1b079d5f1ee450094926dcda77800c7"
@@ -82,9 +75,6 @@ class LoginViewController: UIViewController, SPTAppRemoteDelegate, SPTSessionMan
     
     let api: ApiProtocol = ApiManager()
     
-//    var auth = SPTAuth.defaultInstance()!
-//    var session:SPTSession!
-//    var player: SPTAudioStreamingController?
     var loginUrl: URL?
     
     override func viewDidLoad() {
@@ -106,58 +96,8 @@ class LoginViewController: UIViewController, SPTAppRemoteDelegate, SPTSessionMan
     }
     
     @objc func loginButtonPressed() {
-//        if UIApplication.shared.openURL(loginUrl!) {
-//            
-//            if auth.canHandle(auth.redirectURL) {
-//                // To do - build in error handling
-//            }
-//        }
-//        getToken { (result) in
-//
-//        }
-//        let scope: SPTScope = [.userReadEmail]
-//        self.sessionManager.initiateSession(with: scope, options: .clientOnly)
         authService?.startSpotifyAuthorization()
-        
-//        let authenticationRouter = SpotifyRouter()
-//        api.authenticate(router: authenticationRouter) { (result) in
-//            switch result {
-//            case .success:
-//                print("Success")
-//            case .failure:
-//                print("Failed")
-//            }
-//        }
     }
-    
-        func getToken(completion: @escaping (Result<String, NetworkError>) -> Void) {
-            _ = URLSession.shared
-            let url = URL(string: "https://accounts.spotify.com/authorize?client_id=\(SpotifyClientID)&response_type=code&redirect_uri=\(SpotifyRedirectURI)&scope=user-read-private%20user-read-email&state=34fFs29kd09")!
-            let request = URLRequest(url: url)
-            
-//            guard let url =  else { return }
-            UIApplication.shared.open(url)
-
-//            DispatchQueue.main.async {
-//                self.webView.load(request)
-//            }
-//            session.dataTask(with: request) { (data, response, error) in
-//                if let data = data {
-//                    log.debug("Data: \(String(data: data, encoding: .utf8))")
-//                    guard let html = String(data: data, encoding: .utf8) else { return }
-//                    DispatchQueue.main.async {
-//                        self.webView.loadHTMLString(html, baseURL: nil)
-//                    }
-//                    
-//                    
-//                }
-//                
-//                log.debug(response)
-//                completion(.success(""))
-//    //            completion(.success("check"))
-//            }.resume()
-
-        }
     
     func sessionManager(manager: SPTSessionManager, didInitiate session: SPTSession) {
         log.debug("didInitiate")

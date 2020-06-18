@@ -43,4 +43,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         log.addDestination(console)
     }
 }
-

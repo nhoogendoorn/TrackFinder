@@ -57,7 +57,7 @@ class AuthenticationService {
         urlBodyComponents.queryItems = [
             URLQueryItem(name: "grant_type", value: "authorization_code"),
             URLQueryItem(name: "code", value: code),
-            URLQueryItem(name: "redirect_uri", value: "trackfinder://spotify-login-callback"),
+            URLQueryItem(name: "redirect_uri", value: "trackfinder://spotify-login-callback")
         ]
         
         var request = URLRequest(routingPath: .getToken)
@@ -67,7 +67,7 @@ class AuthenticationService {
         let body = urlBodyComponents.query?.data(using: .utf8)
         request.httpBody = body
         
-        URLSession.shared.dataTask(with: request) { (data, response, error) in
+        URLSession.shared.dataTask(with: request) { (data, _, _) in
             guard let data = data else {
                 completion(.failure(.postingError))
                 return

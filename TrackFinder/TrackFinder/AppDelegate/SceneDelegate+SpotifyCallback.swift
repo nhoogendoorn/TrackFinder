@@ -15,7 +15,7 @@ extension SceneDelegate {
         }
         
         let parameters = rootViewController.appRemote.authorizationParameters(from: url)
-        log.debug("Received parametse: \(parameters)")
+        log.debug("Received parametse: \(String(describing: parameters))")
         let code = parameters?["code"]
         
         let appDelegate = UIApplication.shared.delegate as? AppDelegate

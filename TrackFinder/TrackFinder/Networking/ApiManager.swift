@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 struct ApiManager: ApiProtocol {    
     let webApi: WebApiProtocol = SpotifyApi()
     
@@ -40,7 +39,7 @@ extension Data {
     func getNetworkResult<T: Decodable>(_ type: T.Type) -> Result<T, NetworkError> {
         if let correctData = self.toObject(T.self) {
             return .success(correctData)
-        } else if let _ = self.toObject(ErrorResponse.self) {
+        } else if self.toObject(ErrorResponse.self) != nil {
             return .failure(.fetchingError)
         } else {
             return .failure(.decodingError)
