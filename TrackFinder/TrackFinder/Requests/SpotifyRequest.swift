@@ -9,10 +9,11 @@
 import Foundation
 
 protocol SpotifyRequest {
+    associatedtype ResponseType
     typealias Headers = [String: String]
     
     var routingPath: RoutingPath { get }
-    var headers: Headers { get }
+    var headers: Headers { get set }
     var queryItems: [URLQueryItem] { get }
     var method: HTTPMethod { get }
 }
@@ -24,5 +25,9 @@ extension SpotifyRequest {
         request.addQuery(query: queryItems)
         request.httpMethod = method.rawValue
         return request
+    }
+    
+    mutating func addNewAccessToken(token: String) {
+        headers["Authorization"] = token        
     }
 }

@@ -9,6 +9,10 @@
 import Foundation
 
 struct AuthorizationRequest: SpotifyRequest {
+    // This request does not actually have to have a response type as it will
+    // only be used to create a URL to be opened in Safari.
+    typealias ResponseType = Bool
+    
     static let userScope = "user-read-private%20user-read-email"
     static let state = "34fFs29kd09"
     static let responseType = "code"

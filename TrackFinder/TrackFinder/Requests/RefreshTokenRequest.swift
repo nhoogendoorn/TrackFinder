@@ -9,6 +9,8 @@
 import Foundation
 
 struct RefreshTokenRequest: SpotifyRequest {
+    typealias ResponseType = RefreshTokenResponse
+    
     var routingPath: RoutingPath = .getToken
     
     var headers: Headers = .basicAuthorizationHeader

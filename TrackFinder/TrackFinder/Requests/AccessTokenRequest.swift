@@ -9,6 +9,8 @@
 import Foundation
 
 struct AccessTokenRequest: SpotifyRequest {
+    typealias ResponseType = AuthTokenResponse
+    
     var routingPath: RoutingPath = .getToken
     var headers: Headers = .basicAuthorizationHeader
     var queryItems: [URLQueryItem]
