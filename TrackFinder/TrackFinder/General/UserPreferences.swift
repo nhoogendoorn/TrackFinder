@@ -16,25 +16,25 @@ protocol UserPreferencesProtocol {
 
 class UserPreferences: UserPreferencesProtocol {
     private let userDefaults = UserDefaults.standard
-    
+
     enum CodingKeys: String, CodingKey {
         case accessToken, refreshToken
     }
-    
+
     func saveTokens(_ authTokens: AuthTokens) {
         userDefaults.set(authTokens.accessToken, forKey: CodingKeys.accessToken.rawValue)
         userDefaults.set(authTokens.refreshToken, forKey: CodingKeys.refreshToken.rawValue)
     }
-    
+
     func getTokens() -> AuthTokens? {
         guard
             let accessToken = userDefaults.string(forKey: CodingKeys.accessToken.rawValue),
             let refreshToken = userDefaults.string(forKey: CodingKeys.refreshToken.rawValue)
         else { return nil }
-        
+
         return AuthTokens(accessToken: accessToken, refreshToken: refreshToken)
     }
-    
+
     func deleteTokens() {
         userDefaults.removeObject(forKey: CodingKeys.accessToken.rawValue)
         userDefaults.removeObject(forKey: CodingKeys.refreshToken.rawValue)

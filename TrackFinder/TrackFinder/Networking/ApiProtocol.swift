@@ -9,5 +9,5 @@
 import Foundation
 
 protocol ApiProtocol {
-    func authenticate(router: BaseRouter, completion: @escaping (Result<Data, NetworkError>) -> Void)
+//    func authenticate(router: BaseRouter, completion: @escaping (Result<Data, NetworkError>) -> Void)
 }

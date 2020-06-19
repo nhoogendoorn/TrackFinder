@@ -14,7 +14,7 @@ struct AuthTokenResponse: Codable {
     let expiresIn: Int
     let refreshToken: String
     let authTokens: AuthTokens
-    
+
     enum CodingKeys: String, CodingKey {
         case accessToken = "access_token"
         case tokenType = "token_type"
@@ -29,17 +29,17 @@ struct AuthTokenResponse: Codable {
 extension AuthTokenResponse {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        
+    
         let accessTokenResponse = try container.decode(String.self, forKey: .accessToken)
         accessToken = accessTokenResponse
-        
+
         tokenType = try container.decode(String.self, forKey: .tokenType)
         scope = try container.decode(String.self, forKey: .scope)
         expiresIn = try container.decode(Int.self, forKey: .expiresIn)
-        
+
         let refreshTokenResponse = try container.decode(String.self, forKey: .refreshToken)
         self.refreshToken = refreshTokenResponse
-        
+
         authTokens = AuthTokens(accessToken: accessTokenResponse,
                                 refreshToken: refreshTokenResponse)        
     }

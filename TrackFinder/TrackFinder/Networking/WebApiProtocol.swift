@@ -9,5 +9,5 @@
 import Foundation
 
 protocol WebApiProtocol {
-    func doRequest(router: BaseRouter, with newToken: String?, completion: @escaping (Swift.Result<Data, NetworkError>) -> Void)
+//    func doRequest(router: BaseRouter, with newToken: String?, completion: @escaping (Swift.Result<Data, NetworkError>) -> Void)
 }

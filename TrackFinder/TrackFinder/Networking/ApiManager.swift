@@ -8,12 +8,11 @@
 
 import Foundation
 
-struct ApiManager: ApiProtocol {    
+struct ApiManager: ApiProtocol {
     let webApi: WebApiProtocol = SpotifyApi()
-    
-    func authenticate(router: BaseRouter, completion: @escaping (Result<Data, NetworkError>) -> Void) {
-        webApi.doRequest(router: router, with: nil, completion: completion)
-    }
+//    func authenticate(router: BaseRouter, completion: @escaping (Result<Data, NetworkError>) -> Void) {
+//        webApi.doRequest(router: router, with: nil, completion: completion)
+//    }
 }
 
 extension Data {
@@ -25,7 +24,7 @@ extension Data {
             log.error("Failed to decode as Json")
         }
     }
-    
+
     private func toObject<T: Decodable>(_ type: T.Type) -> T? {
         let decoder = JSONDecoder()
         do {
@@ -35,7 +34,7 @@ extension Data {
             return nil
         }
     }
-        
+
     func getNetworkResult<T: Decodable>(_ type: T.Type) -> Result<T, NetworkError> {
         if let correctData = self.toObject(T.self) {
             return .success(correctData)

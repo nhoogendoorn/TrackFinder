@@ -13,14 +13,14 @@ enum NetworkError: Error {
 }
 
 class SpotifyApi: WebApiProtocol {
-    
-    private var session: URLSession = URLSession.shared
-    
-    let operationQueue = OperationQueue()
-    
-    var dataTask: URLSessionDataTask?
-    
-    func doRequest(router: BaseRouter, with newToken: String? = nil, completion: @escaping (Swift.Result<Data, NetworkError>) -> Void) {
 
-    }
+    private var session: URLSession = URLSession.shared
+
+    let operationQueue = OperationQueue()
+
+    var dataTask: URLSessionDataTask?
+
+//    func doRequest(router: BaseRouter, with newToken: String? = nil, completion: @escaping (Swift.Result<Data, NetworkError>) -> Void) {
+//
+//    }
 }
