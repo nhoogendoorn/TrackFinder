@@ -41,7 +41,8 @@ extension AuthTokenResponse {
         self.refreshToken = refreshTokenResponse
 
         authTokens = AuthTokens(accessToken: accessTokenResponse,
-                                refreshToken: refreshTokenResponse)        
+                                refreshToken: refreshTokenResponse,
+                                expirationDate: Date.now(.second, offset: expiresIn))
     }
 
     init(data: Data) throws {
@@ -73,7 +74,9 @@ extension AuthTokenResponse {
             expiresIn: expiresIn ?? self.expiresIn,
             refreshToken: refreshToken ?? self.refreshToken,
             authTokens: AuthTokens(accessToken: accessToken ?? self.accessToken,
-                                   refreshToken: refreshToken ?? self.refreshToken)
+                                   refreshToken: refreshToken ?? self.refreshToken,
+                                   expirationDate: Date.now(.second,
+                                                            offset: expiresIn ?? self.expiresIn))
         )
     }
 

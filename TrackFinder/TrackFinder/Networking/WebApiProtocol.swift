@@ -9,5 +9,5 @@
 import Foundation
 
 protocol WebApiProtocol {
-    func doRequest<T: SpotifyRequest>(request: T, with newToken: String?, completion: @escaping (Swift.Result<T.ResponseType, NetworkError>) -> Void)
+    func doRequest(request: SpotifyRequest, completion: @escaping (Result<Data, NetworkError>) -> Void)
 }

@@ -8,18 +8,14 @@
 
 import Foundation
 
-struct AuthorizationRequest: SpotifyRequest {
-    // This request does not actually have to have a response type as it will
-    // only be used to create a URL to be opened in Safari.
-    typealias ResponseType = Bool
-    
+struct AuthorizationRequest: SpotifyRequest {    
     static let userScope = "user-read-private%20user-read-email"
     static let state = "34fFs29kd09"
     static let responseType = "code"
     
     var routingPath: RoutingPath = .startAuthorization
     var method: HTTPMethod = .get
-    var headers: Headers = .basicAuthorizationHeader
+    var headers: Headers = [:]
     var queryItems: [URLQueryItem] = [
         SpotifyQueryItem.clientId.create(),
         SpotifyQueryItem.responseType(type: Self.responseType).create(),
@@ -29,7 +25,7 @@ struct AuthorizationRequest: SpotifyRequest {
     ]
 
     func getCompleteUrl() -> URL? {
-        guard let urlString = request.url?.absoluteString else { return nil }
+        guard let urlString = generateRequest().url?.absoluteString else { return nil }
         var bodyComponents = URLComponents(string: urlString)
         bodyComponents?.queryItems = queryItems
         return bodyComponents?.url

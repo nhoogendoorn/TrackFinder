@@ -23,9 +23,9 @@ class AuthenticationService: DependencyResolver {
     
     func getAccessToken(code: String?, completion: @escaping (Result<AuthTokenResponse, NetworkError>) -> Void) {
         guard let code = code else { completion(.failure(.postingError)); return }
-        let request = AccessTokenRequest(code: code)
+        let request = AccessTokenRequest(code: code).generateRequest()
         
-        URLSession.shared.dataTask(with: request.request) { (data, _, _) in
+        URLSession.shared.dataTask(with: request) { (data, _, _) in
             guard let data = data else {
                 completion(.failure(.postingError))
                 return
@@ -54,9 +54,9 @@ class AuthenticationService: DependencyResolver {
             return
         }
             
-        let request = RefreshTokenRequest(refreshToken: refreshToken)
+        let request = RefreshTokenRequest(refreshToken: refreshToken).generateRequest()
         
-        URLSession.shared.dataTask(with: request.request) { (data, _, _) in
+        URLSession.shared.dataTask(with: request) { (data, _, _) in
             guard let data = data else {
                 completion(.failure(.postingError))
                 return
@@ -68,7 +68,8 @@ class AuthenticationService: DependencyResolver {
                 completion(.failure(.fetchingError))
             case .success(let refreshTokenResponse):
                 let tokens = AuthTokens(accessToken: refreshTokenResponse.accessToken,
-                                        refreshToken: refreshToken)
+                                        refreshToken: refreshToken,
+                                        expirationDate: Date.now(.second, offset: refreshTokenResponse.expiresIn))
                 DispatchQueue.main.async {
                     self.userPrefs?.saveTokens(tokens)
                 }

@@ -10,4 +10,9 @@ import Foundation
 
 struct AuthTokens {
     let accessToken, refreshToken: String
+    let expirationDate: Date
+    
+    var isExpired: Bool {
+        Date() > expirationDate
+    }
 }

@@ -10,6 +10,10 @@
 		A60F5687249CF6CF00156178 /* DependencyResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60F5686249CF6CF00156178 /* DependencyResolver.swift */; };
 		A60F5689249CF74900156178 /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60F5688249CF74900156178 /* Data+Extension.swift */; };
 		A60F568B249CF7CC00156178 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60F568A249CF7CC00156178 /* NetworkError.swift */; };
+		A60F568D249E0DDB00156178 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60F568C249E0DDB00156178 /* Date+Extension.swift */; };
+		A60F568F249E1ED300156178 /* ApiRequestOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60F568E249E1ED300156178 /* ApiRequestOperation.swift */; };
+		A60F5691249E1EE100156178 /* ApiOperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60F5690249E1EE100156178 /* ApiOperationQueue.swift */; };
+		A60F5693249E233A00156178 /* StandardDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60F5692249E233A00156178 /* StandardDateFormatter.swift */; };
 		A61B3849249C091B00286F61 /* AuthTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61B3848249C091B00286F61 /* AuthTokens.swift */; };
 		A61B384D249C0E5900286F61 /* RefreshTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61B384C249C0E5900286F61 /* RefreshTokenResponse.swift */; };
 		A61B3852249CE6E200286F61 /* SpotifyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61B3851249CE6E200286F61 /* SpotifyRequest.swift */; };
@@ -19,7 +23,7 @@
 		A61B385A249CE94900286F61 /* AccessTokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61B3859249CE94900286F61 /* AccessTokenRequest.swift */; };
 		A61B385D249CF28400286F61 /* RoutingPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61B385C249CF28400286F61 /* RoutingPath.swift */; };
 		A61B385F249CF28D00286F61 /* SpotifyQueryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61B385E249CF28D00286F61 /* SpotifyQueryItem.swift */; };
-		A61B3861249CF2A200286F61 /* BasicAuthorizationHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61B3860249CF2A200286F61 /* BasicAuthorizationHeader.swift */; };
+		A61B3861249CF2A200286F61 /* Headers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61B3860249CF2A200286F61 /* Headers.swift */; };
 		A6345EF7249947250070D2C2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6345EF6249947250070D2C2 /* AppDelegate.swift */; };
 		A6345EF9249947250070D2C2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6345EF8249947250070D2C2 /* SceneDelegate.swift */; };
 		A6345F00249947280070D2C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6345EFF249947280070D2C2 /* Assets.xcassets */; };
@@ -62,6 +66,10 @@
 		A60F5686249CF6CF00156178 /* DependencyResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyResolver.swift; sourceTree = "<group>"; };
 		A60F5688249CF74900156178 /* Data+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extension.swift"; sourceTree = "<group>"; };
 		A60F568A249CF7CC00156178 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		A60F568C249E0DDB00156178 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		A60F568E249E1ED300156178 /* ApiRequestOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRequestOperation.swift; sourceTree = "<group>"; };
+		A60F5690249E1EE100156178 /* ApiOperationQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiOperationQueue.swift; sourceTree = "<group>"; };
+		A60F5692249E233A00156178 /* StandardDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardDateFormatter.swift; sourceTree = "<group>"; };
 		A61B3848249C091B00286F61 /* AuthTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTokens.swift; sourceTree = "<group>"; };
 		A61B384C249C0E5900286F61 /* RefreshTokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTokenResponse.swift; sourceTree = "<group>"; };
 		A61B3851249CE6E200286F61 /* SpotifyRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyRequest.swift; sourceTree = "<group>"; };
@@ -71,7 +79,7 @@
 		A61B3859249CE94900286F61 /* AccessTokenRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessTokenRequest.swift; sourceTree = "<group>"; };
 		A61B385C249CF28400286F61 /* RoutingPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutingPath.swift; sourceTree = "<group>"; };
 		A61B385E249CF28D00286F61 /* SpotifyQueryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyQueryItem.swift; sourceTree = "<group>"; };
-		A61B3860249CF2A200286F61 /* BasicAuthorizationHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicAuthorizationHeader.swift; sourceTree = "<group>"; };
+		A61B3860249CF2A200286F61 /* Headers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Headers.swift; sourceTree = "<group>"; };
 		A6345EF3249947250070D2C2 /* TrackFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrackFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6345EF6249947250070D2C2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A6345EF8249947250070D2C2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -129,6 +137,7 @@
 			children = (
 				A60F5686249CF6CF00156178 /* DependencyResolver.swift */,
 				A60F568A249CF7CC00156178 /* NetworkError.swift */,
+				A60F5692249E233A00156178 /* StandardDateFormatter.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -150,7 +159,7 @@
 			children = (
 				A61B385C249CF28400286F61 /* RoutingPath.swift */,
 				A61B385E249CF28D00286F61 /* SpotifyQueryItem.swift */,
-				A61B3860249CF2A200286F61 /* BasicAuthorizationHeader.swift */,
+				A61B3860249CF2A200286F61 /* Headers.swift */,
 			);
 			path = RequestUtils;
 			sourceTree = "<group>";
@@ -222,6 +231,8 @@
 				A6345F2124994FAD0070D2C2 /* ApiManager.swift */,
 				A6345F2324994FDF0070D2C2 /* WebApiProtocol.swift */,
 				A6345F2524994FE70070D2C2 /* SpotifyApi.swift */,
+				A60F568E249E1ED300156178 /* ApiRequestOperation.swift */,
+				A60F5690249E1EE100156178 /* ApiOperationQueue.swift */,
 				A6345F4C249964AE0070D2C2 /* BaseRouter.swift */,
 			);
 			path = Networking;
@@ -234,6 +245,7 @@
 				A6345FA3249C053C0070D2C2 /* String+Localization.swift */,
 				A61B3853249CE89C00286F61 /* URLRequest+Extension.swift */,
 				A60F5688249CF74900156178 /* Data+Extension.swift */,
+				A60F568C249E0DDB00156178 /* Date+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -428,11 +440,12 @@
 				A60F568B249CF7CC00156178 /* NetworkError.swift in Sources */,
 				A61B3854249CE89C00286F61 /* URLRequest+Extension.swift in Sources */,
 				A6345F2024994FA60070D2C2 /* ApiProtocol.swift in Sources */,
-				A61B3861249CF2A200286F61 /* BasicAuthorizationHeader.swift in Sources */,
+				A61B3861249CF2A200286F61 /* Headers.swift in Sources */,
 				A61B3852249CE6E200286F61 /* SpotifyRequest.swift in Sources */,
 				A60F5689249CF74900156178 /* Data+Extension.swift in Sources */,
 				A6345F88249A802A0070D2C2 /* SearchScreenViewController.swift in Sources */,
 				A61B385D249CF28400286F61 /* RoutingPath.swift in Sources */,
+				A60F5693249E233A00156178 /* StandardDateFormatter.swift in Sources */,
 				A61B3858249CE93700286F61 /* AuthorizationRequest.swift in Sources */,
 				A61B3849249C091B00286F61 /* AuthTokens.swift in Sources */,
 				A6345F8E249B89710070D2C2 /* AuthenticationService.swift in Sources */,
@@ -442,11 +455,14 @@
 				A6345FA6249C06F70070D2C2 /* UserPreferences.swift in Sources */,
 				A6345F9A249BC23C0070D2C2 /* ErrorResponse.swift in Sources */,
 				A60F5687249CF6CF00156178 /* DependencyResolver.swift in Sources */,
+				A60F568F249E1ED300156178 /* ApiRequestOperation.swift in Sources */,
+				A60F5691249E1EE100156178 /* ApiOperationQueue.swift in Sources */,
 				A6345F4F249973C30070D2C2 /* ViewController.swift in Sources */,
 				A6345F2224994FAD0070D2C2 /* ApiManager.swift in Sources */,
 				A6345FA2249C05080070D2C2 /* String+Extension.swift in Sources */,
 				A6345F2424994FDF0070D2C2 /* WebApiProtocol.swift in Sources */,
 				A61B384D249C0E5900286F61 /* RefreshTokenResponse.swift in Sources */,
+				A60F568D249E0DDB00156178 /* Date+Extension.swift in Sources */,
 				A6345F96249BB7830070D2C2 /* SceneDelegate+SpotifyCallback.swift in Sources */,
 				A6345EF7249947250070D2C2 /* AppDelegate.swift in Sources */,
 				A61B385F249CF28D00286F61 /* SpotifyQueryItem.swift in Sources */,
