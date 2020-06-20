@@ -9,6 +9,9 @@
 import Foundation
 
 extension String {
+    // MARK: - General Texts
+    static let search = NSLocalizedString("Search", comment: "")
+    
     // MARK: - Button Texts
     static let loginAction = NSLocalizedString("Connect to Spotify", comment: "")
 }

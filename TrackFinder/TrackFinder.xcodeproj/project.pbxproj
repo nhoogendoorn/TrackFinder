@@ -14,6 +14,9 @@
 		A60F568F249E1ED300156178 /* ApiRequestOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60F568E249E1ED300156178 /* ApiRequestOperation.swift */; };
 		A60F5691249E1EE100156178 /* ApiOperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60F5690249E1EE100156178 /* ApiOperationQueue.swift */; };
 		A60F5693249E233A00156178 /* StandardDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60F5692249E233A00156178 /* StandardDateFormatter.swift */; };
+		A60F5695249E31D500156178 /* SearchModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60F5694249E31D500156178 /* SearchModelController.swift */; };
+		A60F5697249E36BD00156178 /* SearchItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60F5696249E36BD00156178 /* SearchItemCell.swift */; };
+		A60F5699249E38EF00156178 /* SearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60F5698249E38EF00156178 /* SearchService.swift */; };
 		A61B3849249C091B00286F61 /* AuthTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61B3848249C091B00286F61 /* AuthTokens.swift */; };
 		A61B384D249C0E5900286F61 /* RefreshTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61B384C249C0E5900286F61 /* RefreshTokenResponse.swift */; };
 		A61B3852249CE6E200286F61 /* SpotifyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61B3851249CE6E200286F61 /* SpotifyRequest.swift */; };
@@ -69,6 +72,9 @@
 		A60F568E249E1ED300156178 /* ApiRequestOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRequestOperation.swift; sourceTree = "<group>"; };
 		A60F5690249E1EE100156178 /* ApiOperationQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiOperationQueue.swift; sourceTree = "<group>"; };
 		A60F5692249E233A00156178 /* StandardDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardDateFormatter.swift; sourceTree = "<group>"; };
+		A60F5694249E31D500156178 /* SearchModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModelController.swift; sourceTree = "<group>"; };
+		A60F5696249E36BD00156178 /* SearchItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchItemCell.swift; sourceTree = "<group>"; };
+		A60F5698249E38EF00156178 /* SearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchService.swift; sourceTree = "<group>"; };
 		A61B3848249C091B00286F61 /* AuthTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTokens.swift; sourceTree = "<group>"; };
 		A61B384C249C0E5900286F61 /* RefreshTokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTokenResponse.swift; sourceTree = "<group>"; };
 		A61B3851249CE6E200286F61 /* SpotifyRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyRequest.swift; sourceTree = "<group>"; };
@@ -251,6 +257,7 @@
 			isa = PBXGroup;
 			children = (
 				A6345F8D249B89710070D2C2 /* AuthenticationService.swift */,
+				A60F5698249E38EF00156178 /* SearchService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -258,6 +265,7 @@
 		A6345F29249950000070D2C2 /* ModelControllers */ = {
 			isa = PBXGroup;
 			children = (
+				A60F5694249E31D500156178 /* SearchModelController.swift */,
 			);
 			path = ModelControllers;
 			sourceTree = "<group>";
@@ -265,6 +273,7 @@
 		A6345F2A2499500A0070D2C2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A60F5696249E36BD00156178 /* SearchItemCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -439,12 +448,14 @@
 				A6345F2024994FA60070D2C2 /* ApiProtocol.swift in Sources */,
 				A61B3861249CF2A200286F61 /* Headers.swift in Sources */,
 				A61B3852249CE6E200286F61 /* SpotifyRequest.swift in Sources */,
+				A60F5697249E36BD00156178 /* SearchItemCell.swift in Sources */,
 				A60F5689249CF74900156178 /* Data+Extension.swift in Sources */,
 				A6345F88249A802A0070D2C2 /* SearchScreenViewController.swift in Sources */,
 				A61B385D249CF28400286F61 /* RoutingPath.swift in Sources */,
 				A60F5693249E233A00156178 /* StandardDateFormatter.swift in Sources */,
 				A61B3858249CE93700286F61 /* AuthorizationRequest.swift in Sources */,
 				A61B3849249C091B00286F61 /* AuthTokens.swift in Sources */,
+				A60F5699249E38EF00156178 /* SearchService.swift in Sources */,
 				A6345F8E249B89710070D2C2 /* AuthenticationService.swift in Sources */,
 				A6345F8A249A98F20070D2C2 /* AuthTokenResponse.swift in Sources */,
 				A61B3856249CE92700286F61 /* RefreshTokenRequest.swift in Sources */,
@@ -458,6 +469,7 @@
 				A6345FA2249C05080070D2C2 /* String+Extension.swift in Sources */,
 				A6345F2424994FDF0070D2C2 /* WebApiProtocol.swift in Sources */,
 				A61B384D249C0E5900286F61 /* RefreshTokenResponse.swift in Sources */,
+				A60F5695249E31D500156178 /* SearchModelController.swift in Sources */,
 				A60F568D249E0DDB00156178 /* Date+Extension.swift in Sources */,
 				A6345F96249BB7830070D2C2 /* SceneDelegate+SpotifyCallback.swift in Sources */,
 				A6345EF7249947250070D2C2 /* AppDelegate.swift in Sources */,

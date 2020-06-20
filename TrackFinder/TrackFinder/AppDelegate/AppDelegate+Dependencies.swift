@@ -10,12 +10,16 @@ import Foundation
 
 extension AppDelegate {
     func registerDependencies() {
-        container.register(AuthenticationService.self) { _ in
+        container.register(AuthenticationServiceProtocol.self) { _ in
             AuthenticationService()
         }.inObjectScope(.container)
         
         container.register(UserPreferencesProtocol.self) { _ in
             UserPreferences()
+        }.inObjectScope(.container)
+        
+        container.register(SearchServiceProtocol.self) { _ in
+            SearchService()
         }.inObjectScope(.container)
     }
 }

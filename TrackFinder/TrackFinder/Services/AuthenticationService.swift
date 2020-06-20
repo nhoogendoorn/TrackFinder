@@ -8,7 +8,9 @@
 
 import Foundation
 
-class AuthenticationService: DependencyResolver {
+protocol AuthenticationServiceProtocol {}
+
+class AuthenticationService: AuthenticationServiceProtocol, DependencyResolver {
     
     let apiManager = ApiManager()
     
@@ -52,7 +54,7 @@ class AuthenticationService: DependencyResolver {
                 completion(data)
             } else {
                 completion(.failure(.fetchingError))
-            }            
+            }
         }
     }
 }
