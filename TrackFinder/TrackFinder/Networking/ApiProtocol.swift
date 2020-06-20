@@ -10,4 +10,5 @@ import Foundation
 
 protocol ApiProtocol {
     var webApi: WebApiProtocol { get }
+    func doRequest(request: SpotifyRequest, addAccessToken: Bool, completion: @escaping (Result<Data, NetworkError>) -> Void)
 }

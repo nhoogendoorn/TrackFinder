@@ -23,7 +23,7 @@ class ApiRequestOperation: Operation {
     }
     
     func addNewAccessToken(token: String) {
-        request.addNewAccessToken(token: token)
+        request.setAccessToken(token: token)
     }
     
     func startRequest() {

@@ -11,6 +11,7 @@ import Foundation
 enum RoutingPath: String {
     case startAuthorization = "authorize"
     case getToken = "api/token"
+    case search = "v1/search"
     
     static func url(for path: RoutingPath) -> URL {
         URL(string: Environment.baseUrl + path.rawValue)!

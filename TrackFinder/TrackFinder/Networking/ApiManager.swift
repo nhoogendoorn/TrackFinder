@@ -8,6 +8,14 @@
 
 import Foundation
 
-struct ApiManager: ApiProtocol {
+struct ApiManager: ApiProtocol, DependencyResolver {
     var webApi: WebApiProtocol = SpotifyApi()
+    
+    func doRequest(request: SpotifyRequest, addAccessToken: Bool, completion: @escaping (Result<Data, NetworkError>) -> Void) {
+        var changeableRequest = request
+        if addAccessToken, let authTokens = getAuthenticationTokens() {
+            changeableRequest.setAccessToken(token: authTokens.accessToken)
+        }
+        webApi.doRequest(request: changeableRequest, completion: completion)
+    }
 }

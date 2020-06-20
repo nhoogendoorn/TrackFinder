@@ -24,7 +24,7 @@ extension SpotifyRequest {
         return request
     }
     
-    mutating func addNewAccessToken(token: String) {
+    mutating func setAccessToken(token: String) {
         headers = .generateBearerHeader(token: token)
     }
 }

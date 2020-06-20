@@ -28,19 +28,14 @@ class ApiOperationQueue: OperationQueue, ApiOperationQueueProtocol, DependencyRe
         let requestOperations = self.operations as? [ApiRequestOperation]
         requestOperations?.forEach {
             guard let newToken = token else { return }
-            $0.request.addNewAccessToken(token: newToken)
+            $0.request.setAccessToken(token: newToken)
             $0.startRequest()
         }
     }
     
     func currentTokenIsExpired() -> Bool {
-        guard
-            let userPrefs = container?.resolve(UserPreferencesProtocol.self),
-            let tokens = userPrefs.getTokens()
-        else { return false }
-        
+        guard let tokens = getAuthenticationTokens() else { return false }
         return tokens.isExpired
-
     }
     
     func addApiOperation(_ operation: ApiRequestOperation) {

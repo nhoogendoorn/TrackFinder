@@ -15,4 +15,8 @@ extension DependencyResolver {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         return appDelegate?.container
     }
+    
+    func getAuthenticationTokens() -> AuthTokens? {
+        container?.resolve(UserPreferencesProtocol.self)?.getTokens()
+    }
 }
