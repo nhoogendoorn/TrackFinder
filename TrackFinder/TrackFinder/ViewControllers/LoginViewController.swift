@@ -21,11 +21,6 @@ class LoginViewController: UIViewController, DependencyResolver, SPTAppRemoteDel
             // Set the playURI to a non-nil value so that Spotify plays music after authenticating and App Remote can connect
             // otherwise another app switch will be required
             configuration.playURI = .empty
-
-            // Set these url's to your backend which contains the secret to exchange for an access token
-            // You can use the provided ruby script spotify_token_swap.rb for testing purposes
-    //        configuration.tokenSwapURL = URL(string: "http://localhost:1234/swap")
-    //        configuration.tokenRefreshURL = URL(string: "http://localhost:1234/refresh")
             return configuration
         }()
     

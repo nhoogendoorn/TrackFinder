@@ -37,7 +37,6 @@
 		A6345F2624994FE70070D2C2 /* SpotifyApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6345F2524994FE70070D2C2 /* SpotifyApi.swift */; };
 		A6345F45249959E00070D2C2 /* SpotifyiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6345F44249959E00070D2C2 /* SpotifyiOS.framework */; };
 		A6345F4D249964AE0070D2C2 /* BaseRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6345F4C249964AE0070D2C2 /* BaseRouter.swift */; };
-		A6345F4F249973C30070D2C2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6345F4E249973C30070D2C2 /* ViewController.swift */; };
 		A6345F86249A72A90070D2C2 /* SwiftyBeaver in Frameworks */ = {isa = PBXBuildFile; productRef = A6345F85249A72A90070D2C2 /* SwiftyBeaver */; };
 		A6345F88249A802A0070D2C2 /* SearchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6345F87249A802A0070D2C2 /* SearchScreenViewController.swift */; };
 		A6345F8A249A98F20070D2C2 /* AuthTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6345F89249A98F20070D2C2 /* AuthTokenResponse.swift */; };
@@ -97,7 +96,6 @@
 		A6345F44249959E00070D2C2 /* SpotifyiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyiOS.framework; sourceTree = "<group>"; };
 		A6345F4624995A5B0070D2C2 /* TrackFinder-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TrackFinder-Bridging-Header.h"; sourceTree = "<group>"; };
 		A6345F4C249964AE0070D2C2 /* BaseRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRouter.swift; sourceTree = "<group>"; };
-		A6345F4E249973C30070D2C2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A6345F87249A802A0070D2C2 /* SearchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchScreenViewController.swift; sourceTree = "<group>"; };
 		A6345F89249A98F20070D2C2 /* AuthTokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTokenResponse.swift; sourceTree = "<group>"; };
 		A6345F8D249B89710070D2C2 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
@@ -218,7 +216,6 @@
 			isa = PBXGroup;
 			children = (
 				A6345F192499481F0070D2C2 /* LoginViewController.swift */,
-				A6345F4E249973C30070D2C2 /* ViewController.swift */,
 				A6345F87249A802A0070D2C2 /* SearchScreenViewController.swift */,
 			);
 			path = ViewControllers;
@@ -457,7 +454,6 @@
 				A60F5687249CF6CF00156178 /* DependencyResolver.swift in Sources */,
 				A60F568F249E1ED300156178 /* ApiRequestOperation.swift in Sources */,
 				A60F5691249E1EE100156178 /* ApiOperationQueue.swift in Sources */,
-				A6345F4F249973C30070D2C2 /* ViewController.swift in Sources */,
 				A6345F2224994FAD0070D2C2 /* ApiManager.swift in Sources */,
 				A6345FA2249C05080070D2C2 /* String+Extension.swift in Sources */,
 				A6345F2424994FDF0070D2C2 /* WebApiProtocol.swift in Sources */,
