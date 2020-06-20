@@ -30,7 +30,10 @@ class SpotifyApi: WebApiProtocol, DependencyResolver {
     }
     
     private func handleRefreshTokenOperation(completion: @escaping (Result<Data, NetworkError>) -> Void) {
-        guard let tokens = getAuthenticationTokens() else { return }
+        guard
+            let userPrefs = container?.resolve(UserPreferencesProtocol.self),
+            let tokens = getAuthenticationTokens()
+        else { return }
         
         // We use a different operation queue here, because the api queue is supsended.
         let standardOperationQueue = OperationQueue.main
