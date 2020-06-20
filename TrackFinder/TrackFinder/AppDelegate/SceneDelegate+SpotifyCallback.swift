@@ -23,9 +23,9 @@ extension SceneDelegate {
         authService?.getAccessToken(code: code, completion: { (result) in
             switch result {
             case .failure:
-                log.debug("FAIL")
+                log.error("Failed to receive access token")
             case .success(let data):
-                log.debug("Success")
+                log.debug("Received access token")
                 log.debug(data)
                 
                 // SAVE TOKEN TO USERDEFAULTS

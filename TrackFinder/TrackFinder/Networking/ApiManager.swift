@@ -9,8 +9,5 @@
 import Foundation
 
 struct ApiManager: ApiProtocol {
-    let webApi: WebApiProtocol = SpotifyApi()
-//    func authenticate(router: BaseRouter, completion: @escaping (Result<Data, NetworkError>) -> Void) {
-//        webApi.doRequest(router: router, with: nil, completion: completion)
-//    }
+    var webApi: WebApiProtocol = SpotifyApi()
 }

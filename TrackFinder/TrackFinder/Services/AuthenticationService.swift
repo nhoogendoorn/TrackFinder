@@ -10,6 +10,8 @@ import Foundation
 
 class AuthenticationService: DependencyResolver {
     
+    let apiManager = ApiManager()
+    
     lazy var userPrefs: UserPreferencesProtocol? = {
         container?.resolve(UserPreferencesProtocol.self)
     }()
@@ -23,30 +25,20 @@ class AuthenticationService: DependencyResolver {
     
     func getAccessToken(code: String?, completion: @escaping (Result<AuthTokenResponse, NetworkError>) -> Void) {
         guard let code = code else { completion(.failure(.postingError)); return }
-        let request = AccessTokenRequest(code: code).generateRequest()
-        
-        URLSession.shared.dataTask(with: request) { (data, _, _) in
-            guard let data = data else {
-                completion(.failure(.postingError))
-                return
-            }
-
-            let result = data.getNetworkResult(AuthTokenResponse.self)
-            
-            switch result {
-            case .failure:
-                completion(.failure(.fetchingError))
-            case .success(let authTokenResponse):
+        let request = AccessTokenRequest(code: code)
+        apiManager.webApi.doRequest(request: request) { result in
+            if let response = try? result.getNetworkResult(AuthTokenResponse.self).get() {
                 DispatchQueue.main.async {
-                    self.userPrefs?.saveTokens(authTokenResponse.authTokens)
+                    self.userPrefs?.saveTokens(response.authTokens)
+                    completion(.success(response))
                 }
-                completion(.success(authTokenResponse))
+            } else {
+                completion(.failure(.fetchingError))
             }
-        }.resume()
+        }
     }
     
     func requestNewToken(completion: @escaping (Result<RefreshTokenResponse, NetworkError>) -> Void) {
-        
         guard
             let refreshToken = userPrefs?.getTokens()?.refreshToken
         else {
@@ -54,27 +46,13 @@ class AuthenticationService: DependencyResolver {
             return
         }
             
-        let request = RefreshTokenRequest(refreshToken: refreshToken).generateRequest()
-        
-        URLSession.shared.dataTask(with: request) { (data, _, _) in
-            guard let data = data else {
-                completion(.failure(.postingError))
-                return
-            }
-            let result = data.getNetworkResult(RefreshTokenResponse.self)
-            
-            switch result {
-            case .failure:
+        let request = RefreshTokenRequest(refreshToken: refreshToken)
+        apiManager.webApi.doRequest(request: request) { result in
+            if let data = try? result.getNetworkResult(RefreshTokenResponse.self) {
+                completion(data)
+            } else {
                 completion(.failure(.fetchingError))
-            case .success(let refreshTokenResponse):
-                let tokens = AuthTokens(accessToken: refreshTokenResponse.accessToken,
-                                        refreshToken: refreshToken,
-                                        expirationDate: Date.now(.second, offset: refreshTokenResponse.expiresIn))
-                DispatchQueue.main.async {
-                    self.userPrefs?.saveTokens(tokens)
-                }
-                completion(.success(refreshTokenResponse))
-            }
-        }.resume()
+            }            
+        }
     }
 }

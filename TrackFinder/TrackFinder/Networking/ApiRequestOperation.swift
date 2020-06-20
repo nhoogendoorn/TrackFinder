@@ -29,6 +29,7 @@ class ApiRequestOperation: Operation {
     func startRequest() {
         let request = self.request.generateRequest()
         self.task = session.dataTask(with: request, completionHandler: { (data, _, _) in
+            data?.logDataResponse(prefix: "Response")
             if let response = data {
                 self.completion(.success(response))
             } else {

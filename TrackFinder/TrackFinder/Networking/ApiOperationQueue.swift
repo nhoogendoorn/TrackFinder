@@ -8,7 +8,20 @@
 
 import Foundation
 
-class ApiOperationQueue: OperationQueue {
+protocol ApiOperationQueueProtocol {
+    func setOperationQueueSuspsension()
+    func applyNewToken(token: String?)
+    func addApiOperation(_ operation: ApiRequestOperation)
+    func currentTokenIsExpired() -> Bool
+}
+
+class ApiOperationQueue: OperationQueue, ApiOperationQueueProtocol, DependencyResolver {
+    var hasInternetConnection = true {
+        didSet {
+            setOperationQueueSuspsension()
+        }
+    }
+    
     static let shared = ApiOperationQueue()
     
     func applyNewToken(token: String?) {
@@ -18,5 +31,29 @@ class ApiOperationQueue: OperationQueue {
             $0.request.addNewAccessToken(token: newToken)
             $0.startRequest()
         }
+    }
+    
+    func currentTokenIsExpired() -> Bool {
+        guard
+            let userPrefs = container?.resolve(UserPreferencesProtocol.self),
+            let tokens = userPrefs.getTokens()
+        else { return false }
+        
+        return tokens.isExpired
+
+    }
+    
+    func addApiOperation(_ operation: ApiRequestOperation) {
+        self.addOperation(operation)
+    }
+    
+    func setOperationQueueSuspsension() {
+        self.isSuspended = suspendOperationQueue()
+    }
+    
+    func suspendOperationQueue() -> Bool {
+        // CHECK HERE IF there is active internet connction
+        
+        return !hasInternetConnection || currentTokenIsExpired()
     }
 }

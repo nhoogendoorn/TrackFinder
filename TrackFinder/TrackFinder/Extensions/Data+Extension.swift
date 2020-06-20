@@ -30,7 +30,7 @@ extension Data {
         }
     }
 
-    func getNetworkResult<T: Decodable>(_ type: T.Type) -> Result<T, NetworkError> {
+    func decodeNetworkResult<T: Decodable>(_ type: T.Type) -> Result<T, NetworkError> {
         if let correctData = self.toObject(T.self) {
             return .success(correctData)
         } else if self.toObject(ErrorResponse.self) != nil {
@@ -38,5 +38,11 @@ extension Data {
         } else {
             return .failure(.decodingError)
         }
+    }
+}
+
+extension Result where Success == Data, Failure == NetworkError {
+    func getNetworkResult<T: Decodable>(_ type: T.Type) throws -> Result<T, NetworkError> {
+        try self.get().decodeNetworkResult(T.self)
     }
 }

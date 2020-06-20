@@ -9,15 +9,9 @@
 import Foundation
 
 class SpotifyApi: WebApiProtocol, DependencyResolver {
-    var hasInternetConnection = true {
-        didSet {
-            setOperationQueueSuspsension()
-        }
-    }
-    
     private var session: URLSession = URLSession.shared
 
-    let operationQueue = ApiOperationQueue.shared
+    let operationQueue: OperationQueue & ApiOperationQueueProtocol = ApiOperationQueue.shared
 
     var dataTask: URLSessionDataTask?
     
@@ -25,34 +19,14 @@ class SpotifyApi: WebApiProtocol, DependencyResolver {
         // First check if the operation queue should be suspended, operations
         // can still be added, but will only resume when there is an active
         // internet connection and the access token is not expired.
-        setOperationQueueSuspsension()
+        operationQueue.setOperationQueueSuspsension()
         
-        if currentTokenIsExpired() {
+        if operationQueue.currentTokenIsExpired() {
             handleRefreshTokenOperation(completion: completion)
         }
         
         let operation = ApiRequestOperation(request: request, completion: completion)
-        operationQueue.addOperation(operation)
-    }
-    
-    func currentTokenIsExpired() -> Bool {
-        guard
-            let userPrefs = container?.resolve(UserPreferencesProtocol.self),
-            let tokens = userPrefs.getTokens()
-        else { return false }
-        
-        return tokens.isExpired
-
-    }
-    
-    func setOperationQueueSuspsension() {
-        self.operationQueue.isSuspended = suspendOperationQueue()
-    }
-    
-    func suspendOperationQueue() -> Bool {
-        // CHECK HERE IF there is active internet connction
-        
-        return !hasInternetConnection || currentTokenIsExpired()
+        operationQueue.addApiOperation(operation)
     }
     
     private func handleRefreshTokenOperation(completion: @escaping (Result<Data, NetworkError>) -> Void) {
@@ -67,13 +41,13 @@ class SpotifyApi: WebApiProtocol, DependencyResolver {
         let refreshRequest = RefreshTokenRequest(refreshToken: tokens.refreshToken)
         let operation = ApiRequestOperation(request: refreshRequest) { [weak self] result in
             guard let `self` = self else { return }
-            if let response = try? result.get().getNetworkResult(RefreshTokenResponse.self).get() {
+            if let response = try? result.getNetworkResult(RefreshTokenResponse.self).get() {
                 DispatchQueue.main.async {
                     userPrefs.saveTokens(AuthTokens(accessToken: response.accessToken,
                                                     refreshToken: tokens.refreshToken,
                                                     expirationDate: Date.now(.second,
                                                                              offset: response.expiresIn)))
-                    self.setOperationQueueSuspsension()
+                    self.operationQueue.setOperationQueueSuspsension()
                 }                                
             } else {
                 completion(.failure(.fetchingError))
