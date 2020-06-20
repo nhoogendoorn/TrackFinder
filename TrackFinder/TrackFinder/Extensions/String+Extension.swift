@@ -10,4 +10,8 @@ import Foundation
 
 extension String {
     static let empty: String = ""
+    
+    func encodeToURLQuery() -> String? {
+        self.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+    }
 }

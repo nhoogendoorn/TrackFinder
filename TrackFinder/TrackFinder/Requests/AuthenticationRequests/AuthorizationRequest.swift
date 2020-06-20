@@ -17,11 +17,11 @@ struct AuthorizationRequest: SpotifyRequest {
     var method: HTTPMethod = .get
     var headers: Headers = [:]
     var queryItems: [URLQueryItem] = [
-        SpotifyQueryItem.clientId.create(),
-        SpotifyQueryItem.responseType(type: Self.responseType).create(),
-        SpotifyQueryItem.redirectUri.create(),
-        SpotifyQueryItem.scope(scope: Self.userScope).create(),
-        SpotifyQueryItem.state(state: Self.state).create()
+        AuthorizationQueryItem.clientId.create(),
+        AuthorizationQueryItem.responseType(type: Self.responseType).create(),
+        AuthorizationQueryItem.redirectUri.create(),
+        AuthorizationQueryItem.scope(scope: Self.userScope).create(),
+        AuthorizationQueryItem.state(state: Self.state).create()
     ]
 
     func getCompleteUrl() -> URL? {

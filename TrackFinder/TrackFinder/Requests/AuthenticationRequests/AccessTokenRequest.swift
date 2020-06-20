@@ -16,9 +16,9 @@ struct AccessTokenRequest: SpotifyRequest {
     
     init(code: String) {
         let query = [
-            SpotifyQueryItem.grantType(type: .authorization).create(),
-            SpotifyQueryItem.authCode(code: code).create(),
-            SpotifyQueryItem.redirectUri.create()            
+            AuthorizationQueryItem.grantType(type: .authorization).create(),
+            AuthorizationQueryItem.authCode(code: code).create(),
+            AuthorizationQueryItem.redirectUri.create()            
         ]
         self.queryItems = query
     }

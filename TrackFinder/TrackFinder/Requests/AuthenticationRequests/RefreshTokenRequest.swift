@@ -16,8 +16,8 @@ struct RefreshTokenRequest: SpotifyRequest {
     
     init(refreshToken: String) {
         let query = [
-            SpotifyQueryItem.grantType(type: .refreshToken).create(),
-            SpotifyQueryItem.refreshToken(token: refreshToken).create()
+            AuthorizationQueryItem.grantType(type: .refreshToken).create(),
+            AuthorizationQueryItem.refreshToken(token: refreshToken).create()
         ]
         self.queryItems = query
     }

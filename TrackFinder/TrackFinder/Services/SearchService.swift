@@ -12,4 +12,6 @@ protocol SearchServiceProtocol { }
 
 class SearchService: SearchServiceProtocol {
     let apiManager = ApiManager()
+    
+    
 }

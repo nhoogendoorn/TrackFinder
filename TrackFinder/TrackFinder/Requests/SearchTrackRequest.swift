@@ -10,14 +10,15 @@ import Foundation
 
 struct SearchTrackRequest: SpotifyRequest {
     var routingPath: RoutingPath = .search
-    var headers: Headers = .generateBasicHeader()
+    var headers: Headers = .generateBearerHeader()
     var queryItems: [URLQueryItem]
     var method: HTTPMethod = .post
     
-    init(refreshToken: String) {
+    init(query: String, type: SearchQueryItem.SearchContentType, limit: Int = SearchQueryItem.defaultLimit) {
         let query = [
-            SpotifyQueryItem.grantType(type: .refreshToken).create(),
-            SpotifyQueryItem.refreshToken(token: refreshToken).create()
+            SearchQueryItem.query(query: query).create(),
+            SearchQueryItem.contentType(type: type).create(),
+            SearchQueryItem.limit(limit).create()
         ]
         self.queryItems = query
     }
