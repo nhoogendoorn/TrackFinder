@@ -24,11 +24,8 @@ extension SceneDelegate {
             switch result {
             case .failure:
                 log.error("Failed to receive access token")
-            case .success(let data):
+            case .success:
                 log.debug("Received access token")
-                log.debug(data)
-                
-                // SAVE TOKEN TO USERDEFAULTS
             }
         })
     }
