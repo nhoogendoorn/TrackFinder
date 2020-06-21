@@ -9,32 +9,34 @@
 import SwiftUI
 
 class SearchModelController: ObservableObject, DependencyResolver {
-    
-    var data: [String] = []
-    @Published var filteredResults: [String] = []
+    @Published var data: [TrackItem] = []
+    var nextPageUrl: String?
     
     private let apiManager: ApiProtocol = ApiManager()
     
-    func loadData() {
-        DispatchQueue.main.async {
-            var newData: [String] {
-                Range(0...50).compactMap { _ in
-                    return UUID().uuidString
-                }
-            }
-            self.data = newData
-            self.filteredResults = newData
-        }
-        self.filterData(searchText: .empty)
+    var searchService: SearchServiceProtocol? {
+        container?.resolve(SearchServiceProtocol.self)
     }
     
-    func filterData(searchText: String) {
-        DispatchQueue.main.async {
-            if searchText.isEmpty {
-                self.filteredResults = self.data
-            } else {
-                self.filteredResults = self.data.filter({ $0.lowercased().contains(searchText.lowercased()) })
+    func loadData(search: String) {
+        searchService?.searchTrack(query: search, completion: { (result) in
+            if let searchResponse = try? result.get() {
+                DispatchQueue.main.async {
+                    self.data = searchResponse.tracks.items
+                    self.nextPageUrl = searchResponse.tracks.next
+                }
             }
-        }
+        })
+    }
+    
+    func loadNextPage() {
+        searchService?.loadNextPage(nextPageUrl: nextPageUrl, completion: { (result) in
+                        if let searchResponse = try? result.get() {
+                DispatchQueue.main.async {
+                    self.data.append(contentsOf: searchResponse.tracks.items)
+                    self.nextPageUrl = searchResponse.tracks.next
+                }
+            }
+        })
     }
 }

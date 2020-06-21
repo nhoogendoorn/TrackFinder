@@ -9,6 +9,7 @@
 import Foundation
 
 class SpotifyApi: WebApiProtocol, DependencyResolver {
+    
     private var session: URLSession = URLSession.shared
 
     let operationQueue: OperationQueue & ApiOperationQueueProtocol = ApiOperationQueue.shared
@@ -27,6 +28,14 @@ class SpotifyApi: WebApiProtocol, DependencyResolver {
         
         let operation = ApiRequestOperation(request: request, completion: completion)
         operationQueue.addApiOperation(operation)
+    }
+    
+    func doRequest(request: URLRequest, completion: @escaping (Result<Data, NetworkError>) -> Void) {
+        operationQueue.setOperationQueueSuspsension()
+        
+        if operationQueue.currentTokenIsExpired() {
+            handleRefreshTokenOperation(completion: completion)
+        }
     }
     
     private func handleRefreshTokenOperation(completion: @escaping (Result<Data, NetworkError>) -> Void) {

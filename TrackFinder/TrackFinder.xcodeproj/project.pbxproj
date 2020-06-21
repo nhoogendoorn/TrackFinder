@@ -175,6 +175,30 @@
 			path = AuthenticationRequests;
 			sourceTree = "<group>";
 		};
+		A60F56AF249F502600156178 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				A6345F89249A98F20070D2C2 /* AuthTokenResponse.swift */,
+				A61B384C249C0E5900286F61 /* RefreshTokenResponse.swift */,
+				A61B3848249C091B00286F61 /* AuthTokens.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		A60F56B0249F503300156178 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				A60F56A1249E488800156178 /* SearchTrackResponse.swift */,
+				A60F56A3249E48AF00156178 /* Tracks.swift */,
+				A60F56A5249E48D500156178 /* TrackItem.swift */,
+				A60F56A7249E48FB00156178 /* Album.swift */,
+				A60F56A9249E490D00156178 /* Artist.swift */,
+				A60F56AB249E492900156178 /* Image.swift */,
+				A60F56AD249F4E8A00156178 /* ExternalUrl.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
 		A61B3850249CE6C700286F61 /* Requests */ = {
 			isa = PBXGroup;
 			children = (
@@ -320,17 +344,9 @@
 		A6345F92249BB7580070D2C2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				A6345F89249A98F20070D2C2 /* AuthTokenResponse.swift */,
-				A61B384C249C0E5900286F61 /* RefreshTokenResponse.swift */,
-				A61B3848249C091B00286F61 /* AuthTokens.swift */,
 				A6345F99249BC23C0070D2C2 /* ErrorResponse.swift */,
-				A60F56A1249E488800156178 /* SearchTrackResponse.swift */,
-				A60F56A3249E48AF00156178 /* Tracks.swift */,
-				A60F56A5249E48D500156178 /* TrackItem.swift */,
-				A60F56A7249E48FB00156178 /* Album.swift */,
-				A60F56A9249E490D00156178 /* Artist.swift */,
-				A60F56AB249E492900156178 /* Image.swift */,
-				A60F56AD249F4E8A00156178 /* ExternalUrl.swift */,
+				A60F56AF249F502600156178 /* Authentication */,
+				A60F56B0249F503300156178 /* Search */,
 			);
 			path = Models;
 			sourceTree = "<group>";

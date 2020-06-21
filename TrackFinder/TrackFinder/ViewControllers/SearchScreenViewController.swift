@@ -28,7 +28,7 @@ class SearchScreenViewController: UIViewController {
         
         searchController.searchBar.placeholder = .search
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchResultsUpdater = self
+//        searchController.searchResultsUpdater = self
         definesPresentationContext = true
         
         view.addSubview(tableView)
@@ -39,7 +39,7 @@ class SearchScreenViewController: UIViewController {
 
         navigationItem.searchController = searchController
         
-        dataSubscriber = modelController.$filteredResults.sink(receiveValue: { [weak self] _ in
+        dataSubscriber = modelController.$data.sink(receiveValue: { [weak self] _ in
             self?.stateChanged()
         })
         
@@ -47,7 +47,7 @@ class SearchScreenViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(SearchItemCell.self, forCellReuseIdentifier: cellId)
         
-        modelController.loadData()
+        modelController.loadData(search: .empty)
         
         refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
     }
@@ -60,31 +60,31 @@ class SearchScreenViewController: UIViewController {
     }
     
     @objc func handleRefresh() {
-        modelController.loadData()
+        modelController.loadData(search: .empty)
     }
 }
 
-extension SearchScreenViewController: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
-        let searchBar = searchController.searchBar
-        modelController.filterData(searchText: searchBar.text ?? .empty)
-    }
-    
-}
+//extension SearchScreenViewController: UISearchResultsUpdating {
+//    func updateSearchResults(for searchController: UISearchController) {
+//        let searchBar = searchController.searchBar
+//        modelController.filterData(searchText: searchBar.text ?? .empty)
+//    }
+//
+//}
 
 extension SearchScreenViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        modelController.filteredResults.count
+        modelController.data.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
         guard
             let searchItemCell = cell as? SearchItemCell,
-            modelController.filteredResults.indices.contains(indexPath.row)
+            modelController.data.indices.contains(indexPath.row)
         else { return cell }
         
-        searchItemCell.setText(text: modelController.filteredResults[indexPath.row])
+        searchItemCell.setText(trackItem: modelController.data[indexPath.row])
         return searchItemCell
     }
 }

@@ -31,8 +31,8 @@ class SearchItemCell: UITableViewCell {
         textLabelView.text = .empty
     }
     
-    func setText(text: String) {
-        textLabelView.text = text
+    func setText(trackItem: TrackItem) {
+        textLabelView.text = trackItem.name
     }
     
     required init?(coder: NSCoder) {

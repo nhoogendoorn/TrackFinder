@@ -13,6 +13,7 @@ struct AuthorizationRequest: SpotifyRequest {
     static let state = "34fFs29kd09"
     static let responseType = "code"
     
+    var customUrl: String?
     var routingPath: RoutingPath = .startAuthorization
     var method: HTTPMethod = .get
     var headers: Headers = [:]

@@ -8,8 +8,36 @@
 
 import Foundation
 
-protocol SearchServiceProtocol { }
+protocol SearchServiceProtocol {
+    func searchTrack(query: String, completion: @escaping (Result<SearchTrackResponse, NetworkError>) -> Void)
+    func loadNextPage(nextPageUrl: String?, completion: @escaping (Result<SearchTrackResponse, NetworkError>) -> Void)
+}
 
 class SearchService: SearchServiceProtocol {
     let apiManager = ApiManager()
+        
+    fileprivate func handleSearchTrackResponse(_ result: Result<Data, NetworkError>, completion: @escaping (Result<SearchTrackResponse, NetworkError>) -> Void) {
+        if let response = try? result.getNetworkResult(SearchTrackResponse.self).get() {
+            completion(.success(response))
+        } else {
+            completion(.failure(.fetchingError))
+        }
+    }
+    
+    func searchTrack(query: String, completion: @escaping (Result<SearchTrackResponse, NetworkError>) -> Void) {
+        let request = SearchTrackRequest(query: query, type: .track)
+        apiManager.webApi.doRequest(request: request) { [weak self] result in
+            self?.handleSearchTrackResponse(result, completion: completion)
+        }
+    }
+    
+    func loadNextPage(nextPageUrl: String?, completion: @escaping (Result<SearchTrackResponse, NetworkError>) -> Void) {
+        // Spotify gives a custom url for loading the next page. So the query can be
+        // empty here as the given url contains the original query.
+        let request = SearchTrackRequest(query: .empty, nextPage: nextPageUrl, type: .track)
+        apiManager.webApi.doRequest(request: request) { [weak self] result in
+            self?.handleSearchTrackResponse(result, completion: completion)
+        }
+
+    }
 }
