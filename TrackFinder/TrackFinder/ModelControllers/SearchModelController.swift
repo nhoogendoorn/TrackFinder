@@ -29,7 +29,7 @@ class SearchModelController: ObservableObject, DependencyResolver {
                 DispatchQueue.main.async {
                     self.data = searchResponse.tracks.items
                     self.nextPageUrl = searchResponse.tracks.next
-                    self.delegate?.searchStateChanged()
+                    self.delegate?.searchStateChanged(state: self)
                 }
             }
         })
@@ -42,7 +42,7 @@ class SearchModelController: ObservableObject, DependencyResolver {
                 DispatchQueue.main.async {
                     self.data.append(contentsOf: searchResponse.tracks.items)
                     self.nextPageUrl = searchResponse.tracks.next
-                    self.delegate?.searchStateChanged()
+                    self.delegate?.searchStateChanged(state: self)
                 }
             }
         })
@@ -52,7 +52,7 @@ class SearchModelController: ObservableObject, DependencyResolver {
         DispatchQueue.main.async {
             self.data = []
             self.nextPageUrl = nil
-            self.delegate?.searchStateChanged()
+            self.delegate?.searchStateChanged(state: self)
         }
     }
 }

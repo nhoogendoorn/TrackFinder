@@ -6,12 +6,10 @@
 //  Copyright © 2020 Nihoo. All rights reserved.
 //
 
-import Foundation
-
 import UIKit
 
 protocol SearchScreenViewControllerProtocol: class {
-    func searchStateChanged()
+    func searchStateChanged(state: SearchModelController)
 }
 
 class SearchScreenViewController: UIViewController, SearchScreenViewControllerProtocol {
@@ -47,22 +45,43 @@ class SearchScreenViewController: UIViewController, SearchScreenViewControllerPr
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(SearchItemCell.self, forCellReuseIdentifier: cellId)
-        
+        tableView.backgroundView = TableViewBackgroundView()
+        tableView.showsVerticalScrollIndicator = false
+        tableView.separatorStyle = .none
+                
         modelController.delegate = self
         modelController.loadData(search: .empty)
         
         refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
     }
     
-    func searchStateChanged() {
+    func searchStateChanged(state: SearchModelController) {
         DispatchQueue.main.async {
             self.tableView.reloadData()
             self.refreshControl.endRefreshing()
+            self.tableView.backgroundView = state.data.isEmpty ? TableViewBackgroundView() : nil
         }
     }
     
     @objc func handleRefresh() {
         modelController.loadData(search: .empty)
+    }
+}
+
+class TableViewBackgroundView: UIView {
+    let label = UILabel()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        addSubview(label)
+        label.snp.makeConstraints {
+            $0.center.equalToSuperview()
+        }
+        label.text = "Find your favorite tracks!"
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
 
@@ -74,6 +93,7 @@ extension SearchScreenViewController: UISearchResultsUpdating {
     }
     
     func throttledSearchTask(text: String) {
+        let throttleTime: Double = 0.75
         self.searchTask?.cancel()
 
         let task = DispatchWorkItem { [weak self] in
@@ -82,7 +102,7 @@ extension SearchScreenViewController: UISearchResultsUpdating {
         self.searchTask = task
 
         // Execute task in 0.75 seconds (if not cancelled !)
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.75, execute: task)
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + throttleTime, execute: task)
 
     }
 
