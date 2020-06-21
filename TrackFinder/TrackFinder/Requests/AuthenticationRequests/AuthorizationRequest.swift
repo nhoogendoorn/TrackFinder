@@ -9,7 +9,7 @@
 import Foundation
 
 struct AuthorizationRequest: SpotifyRequest {
-    static let userScope = "user-read-private%20user-read-email"
+    static let userScope = "user-read-private"
     static let state = "34fFs29kd09"
     static let responseType = "code"
     
