@@ -56,7 +56,7 @@ extension Album {
         externalUrls: ExternalUrls? = nil,
         href: String? = nil,
         id: String? = nil,
-        images: [Image]? = nil,
+        images: [CoverImage]? = nil,
         name: String? = nil,
         releaseDate: String? = nil,
         releaseDatePrecision: String? = nil,

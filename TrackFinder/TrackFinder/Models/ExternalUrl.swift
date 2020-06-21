@@ -1,25 +1,23 @@
 //
-//  Image.swift
+//  ExternalUrl.swift
 //  TrackFinder
 //
-//  Created by Niels Hoogendoorn on 20/06/2020.
+//  Created by Niels Hoogendoorn on 21/06/2020.
 //  Copyright © 2020 Nihoo. All rights reserved.
 //
 
 import Foundation
 
-// MARK: - Image
-struct CoverImage: Codable {
-    let height: Int
-    let url: String
-    let width: Int
+// MARK: - ExternalUrls
+struct ExternalUrls: Codable {
+    let spotify: String
 }
 
-// MARK: Image convenience initializers and mutators
+// MARK: ExternalUrls convenience initializers and mutators
 
-extension CoverImage {
+extension ExternalUrls {
     init(data: Data) throws {
-        self = try newJSONDecoder().decode(CoverImage.self, from: data)
+        self = try newJSONDecoder().decode(ExternalUrls.self, from: data)
     }
 
     init(_ json: String, using encoding: String.Encoding = .utf8) throws {
@@ -34,14 +32,10 @@ extension CoverImage {
     }
 
     func with(
-        height: Int? = nil,
-        url: String? = nil,
-        width: Int? = nil
-    ) -> CoverImage {
-        return CoverImage(
-            height: height ?? self.height,
-            url: url ?? self.url,
-            width: width ?? self.width
+        spotify: String? = nil
+    ) -> ExternalUrls {
+        return ExternalUrls(
+            spotify: spotify ?? self.spotify
         )
     }
 

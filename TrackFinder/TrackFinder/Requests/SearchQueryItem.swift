@@ -13,8 +13,8 @@ enum SearchQueryItem {
     static let maximumLimit = 50
     static let defaultLimit = 20
     
-    enum SearchContentType: String {
-        case artist, track
+    enum SearchContentType: String, Codable {
+        case album, artist, playlist, track, show, episode
     }
     
     case query(query: String), contentType(type: SearchContentType), limit(_ limit: Int)

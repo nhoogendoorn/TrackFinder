@@ -72,7 +72,7 @@ extension TrackItem {
         type: String? = nil,
         uri: String? = nil
     ) -> TrackItem {
-        return Item(
+        return TrackItem(
             album: album ?? self.album,
             artists: artists ?? self.artists,
             discNumber: discNumber ?? self.discNumber,

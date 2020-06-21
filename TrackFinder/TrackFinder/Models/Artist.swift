@@ -13,7 +13,7 @@ struct Artist: Codable {
     let externalUrls: ExternalUrls
     let href: String
     let id, name: String
-    let type: TypeEnum
+    let type: SearchQueryItem.SearchContentType
     let uri: String
 
     enum CodingKeys: String, CodingKey {
@@ -45,7 +45,7 @@ extension Artist {
         href: String? = nil,
         id: String? = nil,
         name: String? = nil,
-        type: TypeEnum? = nil,
+        type: SearchQueryItem.SearchContentType? = nil,
         uri: String? = nil
     ) -> Artist {
         return Artist(

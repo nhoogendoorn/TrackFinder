@@ -13,9 +13,9 @@ struct Tracks: Codable {
     let href: String
     let items: [TrackItem]
     let limit: Int
-    let next: JSONNull?
+    let next: String?
     let offset: Int
-    let previous: JSONNull?
+    let previous: String?
     let total: Int
 }
 
@@ -39,11 +39,11 @@ extension Tracks {
 
     func with(
         href: String? = nil,
-        items: [Item]? = nil,
+        items: [TrackItem]? = nil,
         limit: Int? = nil,
-        next: JSONNull?? = nil,
+        next: String? = nil,
         offset: Int? = nil,
-        previous: JSONNull?? = nil,
+        previous: String? = nil,
         total: Int? = nil
     ) -> Tracks {
         return Tracks(
