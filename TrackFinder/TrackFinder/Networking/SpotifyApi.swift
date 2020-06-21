@@ -55,5 +55,6 @@ class SpotifyApi: WebApiProtocol, DependencyResolver {
             }
         }
         standardOperationQueue.addOperation(operation)
+        operation.task.resume()
     }
 }

@@ -17,8 +17,7 @@ class SearchScreenViewController: UIViewController, SearchScreenViewControllerPr
     
     let tableView = UITableView()
     let cellId: String = "SearchItemCell"
-    
-    let refreshControl = UIRefreshControl()
+        
     let searchController = UISearchController(searchResultsController: nil)
     
     var searchTask: DispatchWorkItem?
@@ -38,8 +37,7 @@ class SearchScreenViewController: UIViewController, SearchScreenViewControllerPr
         tableView.snp.makeConstraints {
             $0.leading.trailing.top.bottom.equalToSuperview()
         }
-        tableView.addSubview(refreshControl)
-
+        
         navigationItem.searchController = searchController
                 
         tableView.delegate = self
@@ -51,20 +49,14 @@ class SearchScreenViewController: UIViewController, SearchScreenViewControllerPr
                 
         modelController.delegate = self
         modelController.loadData(search: .empty)
-        
-        refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
     }
     
     func searchStateChanged(state: SearchModelController) {
         DispatchQueue.main.async {
             self.tableView.reloadData()
-            self.refreshControl.endRefreshing()
+            
             self.tableView.backgroundView = state.data.isEmpty ? TableViewBackgroundView() : nil
         }
-    }
-    
-    @objc func handleRefresh() {
-        modelController.loadData(search: .empty)
     }
 }
 
@@ -122,6 +114,16 @@ extension SearchScreenViewController: UITableViewDataSource, UITableViewDelegate
         
         searchItemCell.setText(trackItem: modelController.data[indexPath.row])
         return searchItemCell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard modelController.data.indices.contains(indexPath.row) else { return }
+        let item = modelController.data[indexPath.row]
+        let detailVC = TrackItemViewController(item: item)
+        detailVC.setData()
+        DispatchQueue.main.async {
+            self.navigationController?.pushViewController(detailVC, animated: true)
+        }        
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

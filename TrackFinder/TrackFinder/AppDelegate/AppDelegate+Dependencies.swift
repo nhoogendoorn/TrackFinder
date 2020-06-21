@@ -21,5 +21,9 @@ extension AppDelegate {
         container.register(SearchServiceProtocol.self) { _ in
             SearchService()
         }.inObjectScope(.container)
+        
+        container.register(TrackItemServiceProtocol.self) { _ in
+            TrackItemService()
+        }.inObjectScope(.container)
     }
 }

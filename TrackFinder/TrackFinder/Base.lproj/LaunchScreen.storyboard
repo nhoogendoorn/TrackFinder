@@ -16,20 +16,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="821-kf-Lzz">
-                                <rect key="frame" x="47" y="288" width="320" height="320"/>
+                                <rect key="frame" x="132" y="373" width="150" height="150"/>
+                                <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="320" id="QFd-PG-GjR"/>
-                                    <constraint firstAttribute="width" constant="320" id="eeD-fW-4VA"/>
+                                    <constraint firstAttribute="height" constant="150" id="QFd-PG-GjR"/>
+                                    <constraint firstAttribute="width" constant="150" id="eeD-fW-4VA"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Easily find your favourite new tracks!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0dJ-zv-Qpx">
-                                <rect key="frame" x="67.5" y="624" width="279" height="21"/>
+                                <rect key="frame" x="67.5" y="539" width="279" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="0dJ-zv-Qpx" firstAttribute="top" secondItem="821-kf-Lzz" secondAttribute="bottom" constant="16" id="0eC-l5-fAJ"/>
                             <constraint firstItem="821-kf-Lzz" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="71o-H5-yi8"/>
@@ -45,6 +46,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="logo" width="720" height="720"/>
+        <image name="logo" width="512" height="512"/>
     </resources>
 </document>

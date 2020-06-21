@@ -8,17 +8,24 @@
 
 import Foundation
 
-enum RoutingPath: String {
-    case startAuthorization = "authorize"
-    case getToken = "api/token"
-    case search = "v1/search"
+enum RoutingPath {
+    case startAuthorization, getToken, search, getTrack(id: String)
+    
+    var path: String {
+        switch self {
+        case .getToken: return "api/token"
+        case .getTrack(let id): return "v1/tracks/\(id)"
+        case .search: return "v1/search"
+        case .startAuthorization: return "authorize"
+        }
+    }
     
     var url: URL {
         switch self {
         case .getToken, .startAuthorization:
-            return URL(string: Environment.baseAccountUrl + self.rawValue)!
+            return URL(string: Environment.baseAccountUrl + self.path)!
         default:
-            return URL(string: Environment.baseApiUrl + self.rawValue)!
+            return URL(string: Environment.baseApiUrl + self.path)!
         }
     }
 }

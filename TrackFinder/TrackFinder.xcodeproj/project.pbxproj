@@ -63,6 +63,12 @@
 		A6345FA2249C05080070D2C2 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6345FA1249C05080070D2C2 /* String+Extension.swift */; };
 		A6345FA4249C053C0070D2C2 /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6345FA3249C053C0070D2C2 /* String+Localization.swift */; };
 		A6345FA6249C06F70070D2C2 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6345FA5249C06F70070D2C2 /* UserPreferences.swift */; };
+		A6FA1EA3249FFE2100BAC327 /* TrackItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FA1EA2249FFE2100BAC327 /* TrackItemViewController.swift */; };
+		A6FA1EA6249FFEE000BAC327 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = A6FA1EA5249FFEE000BAC327 /* Kingfisher */; };
+		A6FA1EA824A0032800BAC327 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FA1EA724A0032800BAC327 /* UIColor+Extension.swift */; };
+		A6FA1EAA24A0080F00BAC327 /* TrackItemModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FA1EA924A0080F00BAC327 /* TrackItemModelController.swift */; };
+		A6FA1EAC24A0089000BAC327 /* TrackItemService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FA1EAB24A0089000BAC327 /* TrackItemService.swift */; };
+		A6FA1EB024A009CC00BAC327 /* TrackItemRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FA1EAF24A009CC00BAC327 /* TrackItemRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -134,6 +140,11 @@
 		A6345FA1249C05080070D2C2 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		A6345FA3249C053C0070D2C2 /* String+Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localization.swift"; sourceTree = "<group>"; };
 		A6345FA5249C06F70070D2C2 /* UserPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
+		A6FA1EA2249FFE2100BAC327 /* TrackItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackItemViewController.swift; sourceTree = "<group>"; };
+		A6FA1EA724A0032800BAC327 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		A6FA1EA924A0080F00BAC327 /* TrackItemModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackItemModelController.swift; sourceTree = "<group>"; };
+		A6FA1EAB24A0089000BAC327 /* TrackItemService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackItemService.swift; sourceTree = "<group>"; };
+		A6FA1EAF24A009CC00BAC327 /* TrackItemRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackItemRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +156,7 @@
 				A6345F45249959E00070D2C2 /* SpotifyiOS.framework in Frameworks */,
 				A6345F86249A72A90070D2C2 /* SwiftyBeaver in Frameworks */,
 				A6345F91249BB7410070D2C2 /* Swinject in Frameworks */,
+				A6FA1EA6249FFEE000BAC327 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -209,8 +221,8 @@
 				A61B385B249CF27400286F61 /* RequestUtils */,
 				A61B3851249CE6E200286F61 /* SpotifyRequest.swift */,
 				A60F569E249E3C0900156178 /* AuthenticationRequests */,
-				A60F569C249E3C0000156178 /* SearchTrackRequest.swift */,
-				A60F569F249E422F00156178 /* SearchQueryItem.swift */,
+				A6FA1EAD24A009A900BAC327 /* SearchRequests */,
+				A6FA1EAE24A009B300BAC327 /* TrackItemRequests */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -280,6 +292,7 @@
 			children = (
 				A6345F192499481F0070D2C2 /* LoginViewController.swift */,
 				A6345F87249A802A0070D2C2 /* SearchScreenViewController.swift */,
+				A6FA1EA2249FFE2100BAC327 /* TrackItemViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -305,6 +318,7 @@
 				A61B3853249CE89C00286F61 /* URLRequest+Extension.swift */,
 				A60F5688249CF74900156178 /* Data+Extension.swift */,
 				A60F568C249E0DDB00156178 /* Date+Extension.swift */,
+				A6FA1EA724A0032800BAC327 /* UIColor+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -314,6 +328,7 @@
 			children = (
 				A6345F8D249B89710070D2C2 /* AuthenticationService.swift */,
 				A60F5698249E38EF00156178 /* SearchService.swift */,
+				A6FA1EAB24A0089000BAC327 /* TrackItemService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -322,6 +337,7 @@
 			isa = PBXGroup;
 			children = (
 				A60F5694249E31D500156178 /* SearchModelController.swift */,
+				A6FA1EA924A0080F00BAC327 /* TrackItemModelController.swift */,
 			);
 			path = ModelControllers;
 			sourceTree = "<group>";
@@ -366,6 +382,23 @@
 			path = General;
 			sourceTree = "<group>";
 		};
+		A6FA1EAD24A009A900BAC327 /* SearchRequests */ = {
+			isa = PBXGroup;
+			children = (
+				A60F569C249E3C0000156178 /* SearchTrackRequest.swift */,
+				A60F569F249E422F00156178 /* SearchQueryItem.swift */,
+			);
+			path = SearchRequests;
+			sourceTree = "<group>";
+		};
+		A6FA1EAE24A009B300BAC327 /* TrackItemRequests */ = {
+			isa = PBXGroup;
+			children = (
+				A6FA1EAF24A009CC00BAC327 /* TrackItemRequest.swift */,
+			);
+			path = TrackItemRequests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -387,6 +420,7 @@
 				A6345F1C249948840070D2C2 /* SnapKit */,
 				A6345F85249A72A90070D2C2 /* SwiftyBeaver */,
 				A6345F90249BB7400070D2C2 /* Swinject */,
+				A6FA1EA5249FFEE000BAC327 /* Kingfisher */,
 			);
 			productName = TrackFinder;
 			productReference = A6345EF3249947250070D2C2 /* TrackFinder.app */;
@@ -443,6 +477,7 @@
 				A6345F1B249948840070D2C2 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				A6345F84249A72A90070D2C2 /* XCRemoteSwiftPackageReference "SwiftyBeaver" */,
 				A6345F8F249BB7400070D2C2 /* XCRemoteSwiftPackageReference "Swinject" */,
+				A6FA1EA4249FFEE000BAC327 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = A6345EF4249947250070D2C2 /* Products */;
 			projectDirPath = "";
@@ -513,20 +548,25 @@
 				A60F5689249CF74900156178 /* Data+Extension.swift in Sources */,
 				A6345F88249A802A0070D2C2 /* SearchScreenViewController.swift in Sources */,
 				A61B385D249CF28400286F61 /* RoutingPath.swift in Sources */,
+				A6FA1EB024A009CC00BAC327 /* TrackItemRequest.swift in Sources */,
 				A60F5693249E233A00156178 /* StandardDateFormatter.swift in Sources */,
 				A60F56A0249E422F00156178 /* SearchQueryItem.swift in Sources */,
 				A61B3858249CE93700286F61 /* AuthorizationRequest.swift in Sources */,
 				A61B3849249C091B00286F61 /* AuthTokens.swift in Sources */,
 				A60F5699249E38EF00156178 /* SearchService.swift in Sources */,
+				A6FA1EAC24A0089000BAC327 /* TrackItemService.swift in Sources */,
 				A6345F8E249B89710070D2C2 /* AuthenticationService.swift in Sources */,
 				A60F56B2249FD22500156178 /* SearchErrorResponse.swift in Sources */,
+				A6FA1EA824A0032800BAC327 /* UIColor+Extension.swift in Sources */,
 				A6345F8A249A98F20070D2C2 /* AuthTokenResponse.swift in Sources */,
 				A61B3856249CE92700286F61 /* RefreshTokenRequest.swift in Sources */,
 				A60F56A8249E48FB00156178 /* Album.swift in Sources */,
 				A6345F1A2499481F0070D2C2 /* LoginViewController.swift in Sources */,
+				A6FA1EA3249FFE2100BAC327 /* TrackItemViewController.swift in Sources */,
 				A60F56A2249E488800156178 /* SearchTrackResponse.swift in Sources */,
 				A60F569D249E3C0000156178 /* SearchTrackRequest.swift in Sources */,
 				A6345FA6249C06F70070D2C2 /* UserPreferences.swift in Sources */,
+				A6FA1EAA24A0080F00BAC327 /* TrackItemModelController.swift in Sources */,
 				A60F56AC249E492900156178 /* Image.swift in Sources */,
 				A6345F9A249BC23C0070D2C2 /* ErrorResponse.swift in Sources */,
 				A60F5687249CF6CF00156178 /* DependencyResolver.swift in Sources */,
@@ -847,6 +887,14 @@
 				minimumVersion = 2.7.1;
 			};
 		};
+		A6FA1EA4249FFEE000BAC327 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.14.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -864,6 +912,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A6345F8F249BB7400070D2C2 /* XCRemoteSwiftPackageReference "Swinject" */;
 			productName = Swinject;
+		};
+		A6FA1EA5249FFEE000BAC327 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A6FA1EA4249FFEE000BAC327 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

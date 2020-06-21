@@ -12,8 +12,6 @@ class SearchModelController: ObservableObject, DependencyResolver {
     var data: [TrackItem] = []
     var nextPageUrl: String?
     
-    private let apiManager: ApiProtocol = ApiManager()
-    
     var searchService: SearchServiceProtocol? {
         container?.resolve(SearchServiceProtocol.self)
     }
