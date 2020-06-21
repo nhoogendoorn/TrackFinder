@@ -28,6 +28,7 @@ class SpotifyApi: WebApiProtocol, DependencyResolver {
         
         let operation = ApiRequestOperation(request: request, completion: completion)
         operationQueue.addApiOperation(operation)
+        
     }
     
     private func handleRefreshTokenOperation(completion: @escaping (Result<Data, NetworkError>) -> Void) {
@@ -45,8 +46,8 @@ class SpotifyApi: WebApiProtocol, DependencyResolver {
                 DispatchQueue.main.async {
                     userPrefs.saveTokens(AuthTokens(accessToken: response.accessToken,
                                                     refreshToken: tokens.refreshToken,
-                                                    expirationDate: Date.now(.second,
-                                                                             offset: response.expiresIn)))
+                                                    expirationDate: Date.now(.second, offset: response.expiresIn)))
+                    self.operationQueue.applyNewToken(token: response.accessToken)
                     self.operationQueue.setOperationQueueSuspsension()
                 }                                
             } else {

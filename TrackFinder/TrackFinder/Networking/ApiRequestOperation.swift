@@ -11,7 +11,7 @@ import Foundation
 class ApiRequestOperation: Operation {
     var task: URLSessionDataTask!
     private var session: URLSession = URLSession.shared
-
+    
     var request: SpotifyRequest
     let completion: (Result<Data, NetworkError>) -> Void
     
@@ -19,14 +19,14 @@ class ApiRequestOperation: Operation {
         self.request = request
         self.completion = completion
         super.init()
-        startRequest()
+        setTask()
     }
     
     func addNewAccessToken(token: String) {
         request.setAccessToken(token: token)
     }
     
-    func startRequest() {
+    func setTask() {
         let request = self.request.generateRequest()
         log.info("Add urlRequest: \(request.url?.absoluteString ?? .empty)")
         self.task = session.dataTask(with: request, completionHandler: { (data, _, _) in
@@ -36,7 +36,6 @@ class ApiRequestOperation: Operation {
             } else {
                 self.completion(.failure(.fetchingError))
             }
-            })
-        self.task.resume()
+        })
     }
 }

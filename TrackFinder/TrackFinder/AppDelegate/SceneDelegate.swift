@@ -39,7 +39,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, DependencyResolver {
         // Called when the scene has moved from an inactive state to an active state.
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.        
         let hasTokens = getAuthenticationTokens() != nil
-        if hasTokens {
+        let rootViewControllerIsBeingPresented = !(rootViewController.navigationController?.viewControllers.contains(where: { $0 is SearchScreenViewController}) == true)
+        if hasTokens, rootViewControllerIsBeingPresented {
             rootViewController.navigationController?.pushViewController(SearchScreenViewController(),
                                                                         animated: false)
         }

@@ -9,7 +9,7 @@
 import Foundation
 
 struct AuthorizationRequest: SpotifyRequest {
-    static let userScope = "user-read-private"
+    static let userScope = "user-read-private%20user-read-email"
     static let state = "34fFs29kd09"
     static let responseType = "code"
     
@@ -28,7 +28,7 @@ struct AuthorizationRequest: SpotifyRequest {
     func getCompleteUrl() -> URL? {
         guard let urlString = generateRequest().url?.absoluteString else { return nil }
         var bodyComponents = URLComponents(string: urlString)
-        bodyComponents?.queryItems = queryItems
+        bodyComponents?.queryItems = queryItems        
         return bodyComponents?.url
     }
 }
