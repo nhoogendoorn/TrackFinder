@@ -30,14 +30,6 @@ class SpotifyApi: WebApiProtocol, DependencyResolver {
         operationQueue.addApiOperation(operation)
     }
     
-    func doRequest(request: URLRequest, completion: @escaping (Result<Data, NetworkError>) -> Void) {
-        operationQueue.setOperationQueueSuspsension()
-        
-        if operationQueue.currentTokenIsExpired() {
-            handleRefreshTokenOperation(completion: completion)
-        }
-    }
-    
     private func handleRefreshTokenOperation(completion: @escaping (Result<Data, NetworkError>) -> Void) {
         guard
             let userPrefs = container?.resolve(UserPreferencesProtocol.self),

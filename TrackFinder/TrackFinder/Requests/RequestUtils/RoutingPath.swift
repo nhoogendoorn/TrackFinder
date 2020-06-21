@@ -13,7 +13,12 @@ enum RoutingPath: String {
     case getToken = "api/token"
     case search = "v1/search"
     
-    static func url(for path: RoutingPath) -> URL {
-        URL(string: Environment.baseUrl + path.rawValue)!
+    var url: URL {
+        switch self {
+        case .getToken, .startAuthorization:
+            return URL(string: Environment.baseAccountUrl + self.rawValue)!
+        default:
+            return URL(string: Environment.baseApiUrl + self.rawValue)!
+        }
     }
 }

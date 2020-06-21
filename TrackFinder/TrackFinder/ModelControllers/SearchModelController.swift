@@ -6,10 +6,10 @@
 //  Copyright © 2020 Nihoo. All rights reserved.
 //
 
-import SwiftUI
+import Foundation
 
 class SearchModelController: ObservableObject, DependencyResolver {
-    @Published var data: [TrackItem] = []
+    var data: [TrackItem] = []
     var nextPageUrl: String?
     
     private let apiManager: ApiProtocol = ApiManager()
@@ -18,25 +18,41 @@ class SearchModelController: ObservableObject, DependencyResolver {
         container?.resolve(SearchServiceProtocol.self)
     }
     
-    func loadData(search: String) {
-        searchService?.searchTrack(query: search, completion: { (result) in
+    weak var delegate: SearchScreenViewControllerProtocol?
+        
+    func loadData(search: String?) {
+        guard let search = search, search.isEmpty == false else { resetData(); return }
+        
+        searchService?.searchTrack(query: search, completion: { [weak self] result in
+            guard let `self` = self else { return }
             if let searchResponse = try? result.get() {
                 DispatchQueue.main.async {
                     self.data = searchResponse.tracks.items
                     self.nextPageUrl = searchResponse.tracks.next
+                    self.delegate?.searchStateChanged()
                 }
             }
         })
     }
     
     func loadNextPage() {
-        searchService?.loadNextPage(nextPageUrl: nextPageUrl, completion: { (result) in
-                        if let searchResponse = try? result.get() {
+        searchService?.loadNextPage(nextPageUrl: nextPageUrl, completion: { [weak self] result in
+            guard let `self` = self else { return }
+            if let searchResponse = try? result.get() {
                 DispatchQueue.main.async {
                     self.data.append(contentsOf: searchResponse.tracks.items)
                     self.nextPageUrl = searchResponse.tracks.next
+                    self.delegate?.searchStateChanged()
                 }
             }
         })
+    }
+    
+    func resetData() {
+        DispatchQueue.main.async {
+            self.data = []
+            self.nextPageUrl = nil
+            self.delegate?.searchStateChanged()
+        }
     }
 }

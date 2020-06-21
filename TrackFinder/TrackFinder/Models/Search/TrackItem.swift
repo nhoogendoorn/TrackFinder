@@ -15,10 +15,10 @@ struct TrackItem: Codable {
     let explicit: Bool
     let href: String
     let id: String
-    let isLocal, isPlayable: Bool
+    let isLocal: Bool
     let name: String
     let popularity: Int
-    let previewURL: String
+    let previewURL: String?
     let trackNumber: Int
     let type, uri: String
 
@@ -29,7 +29,7 @@ struct TrackItem: Codable {
         case explicit
         case href, id
         case isLocal = "is_local"
-        case isPlayable = "is_playable"
+//        case isPlayable = "is_playable"
         case name, popularity
         case previewURL = "preview_url"
         case trackNumber = "track_number"
@@ -64,7 +64,7 @@ extension TrackItem {
         href: String? = nil,
         id: String? = nil,
         isLocal: Bool? = nil,
-        isPlayable: Bool? = nil,
+//        isPlayable: Bool? = nil,
         name: String? = nil,
         popularity: Int? = nil,
         previewURL: String? = nil,
@@ -81,7 +81,7 @@ extension TrackItem {
             href: href ?? self.href,
             id: id ?? self.id,
             isLocal: isLocal ?? self.isLocal,
-            isPlayable: isPlayable ?? self.isPlayable,
+//            isPlayable: isPlayable ?? self.isPlayable,
             name: name ?? self.name,
             popularity: popularity ?? self.popularity,
             previewURL: previewURL ?? self.previewURL,

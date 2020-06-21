@@ -10,7 +10,7 @@ import Foundation
 
 typealias Headers = [String: String]
 extension Headers {
-    private static let standardContentType = "application/x-www-form-urlencoded"
+    private static let urlEncoding = "application/x-www-form-urlencoded"
     
     private enum CodingKeys: String, CodingKey {
         case authorization = "Authorization"
@@ -40,7 +40,7 @@ extension Headers {
                 }
             }
         case .contentType:
-            return Self.standardContentType
+            return Self.urlEncoding
         }
     }
     

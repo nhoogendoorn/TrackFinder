@@ -1,23 +1,23 @@
 //
-//  ErrorResponse.swift
+//  SearchErrorResponse.swift
 //  TrackFinder
 //
-//  Created by Niels Hoogendoorn on 18/06/2020.
+//  Created by Niels Hoogendoorn on 21/06/2020.
 //  Copyright © 2020 Nihoo. All rights reserved.
 //
 
 import Foundation
 
-// MARK: - ErrorResponse
-struct ErrorResponse: Codable {
-    let error: String?
+// MARK: - SearchErrorResponse
+struct SearchErrorResponse: Codable {
+    let error: SearchError
 }
 
-// MARK: ErrorResponse convenience initializers and mutators
+// MARK: SearchErrorResponse convenience initializers and mutators
 
-extension ErrorResponse {
+extension SearchErrorResponse {
     init(data: Data) throws {
-        self = try newJSONDecoder().decode(ErrorResponse.self, from: data)
+        self = try newJSONDecoder().decode(SearchErrorResponse.self, from: data)
     }
 
     init(_ json: String, using encoding: String.Encoding = .utf8) throws {
@@ -32,9 +32,9 @@ extension ErrorResponse {
     }
 
     func with(
-        error: String? = nil
-    ) -> ErrorResponse {
-        return ErrorResponse(
+        error: SearchError? = nil
+    ) -> SearchErrorResponse {
+        return SearchErrorResponse(
             error: error ?? self.error
         )
     }

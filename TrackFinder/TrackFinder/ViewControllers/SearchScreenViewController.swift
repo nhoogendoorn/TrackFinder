@@ -9,17 +9,22 @@
 import Foundation
 
 import UIKit
-import Combine
 
-class SearchScreenViewController: UIViewController {
+protocol SearchScreenViewControllerProtocol: class {
+    func searchStateChanged()
+}
+
+class SearchScreenViewController: UIViewController, SearchScreenViewControllerProtocol {
     let modelController = SearchModelController()
     
     let tableView = UITableView()
-    private var dataSubscriber: AnyCancellable?
     let cellId: String = "SearchItemCell"
     
     let refreshControl = UIRefreshControl()
     let searchController = UISearchController(searchResultsController: nil)
+    
+    var searchTask: DispatchWorkItem?
+    var nextPageTask: DispatchWorkItem?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +33,7 @@ class SearchScreenViewController: UIViewController {
         
         searchController.searchBar.placeholder = .search
         searchController.obscuresBackgroundDuringPresentation = false
-//        searchController.searchResultsUpdater = self
+        searchController.searchResultsUpdater = self
         definesPresentationContext = true
         
         view.addSubview(tableView)
@@ -38,21 +43,18 @@ class SearchScreenViewController: UIViewController {
         tableView.addSubview(refreshControl)
 
         navigationItem.searchController = searchController
-        
-        dataSubscriber = modelController.$data.sink(receiveValue: { [weak self] _ in
-            self?.stateChanged()
-        })
-        
+                
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(SearchItemCell.self, forCellReuseIdentifier: cellId)
         
+        modelController.delegate = self
         modelController.loadData(search: .empty)
         
         refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
     }
     
-    func stateChanged() {
+    func searchStateChanged() {
         DispatchQueue.main.async {
             self.tableView.reloadData()
             self.refreshControl.endRefreshing()
@@ -64,13 +66,27 @@ class SearchScreenViewController: UIViewController {
     }
 }
 
-//extension SearchScreenViewController: UISearchResultsUpdating {
-//    func updateSearchResults(for searchController: UISearchController) {
-//        let searchBar = searchController.searchBar
-//        modelController.filterData(searchText: searchBar.text ?? .empty)
-//    }
-//
-//}
+extension SearchScreenViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchBarText = searchController.searchBar.text
+        guard let text = searchBarText, text != .empty else { self.modelController.resetData(); return }
+        throttledSearchTask(text: text)
+    }
+    
+    func throttledSearchTask(text: String) {
+        self.searchTask?.cancel()
+
+        let task = DispatchWorkItem { [weak self] in
+            self?.modelController.loadData(search: text)
+        }
+        self.searchTask = task
+
+        // Execute task in 0.75 seconds (if not cancelled !)
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.75, execute: task)
+
+    }
+
+}
 
 extension SearchScreenViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -86,5 +102,17 @@ extension SearchScreenViewController: UITableViewDataSource, UITableViewDelegate
         
         searchItemCell.setText(trackItem: modelController.data[indexPath.row])
         return searchItemCell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let isLastCell = indexPath.row == modelController.data.count - 1
+        guard isLastCell else { return }
+        self.nextPageTask?.cancel()
+
+        let task = DispatchWorkItem { [weak self] in
+            self?.modelController.loadNextPage()
+        }
+        self.searchTask = task
+        DispatchQueue.main.async(execute: task)
     }
 }

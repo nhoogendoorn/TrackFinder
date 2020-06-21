@@ -16,21 +16,29 @@ protocol SpotifyRequest {
     var customUrl: String? { get }
 }
 
-extension SpotifyRequest {    
+extension SpotifyRequest {
     func generateRequest() -> URLRequest {
-        var request = getUrlRequest(with: customUrl)
+        if let customRequest = generateCustomRequest() {
+            return customRequest
+        } else {
+            return generateSpotifyRequest()
+        }
+    }
+    
+    fileprivate func generateSpotifyRequest() -> URLRequest {
+        var request = URLRequest(routingPath: routingPath)
         request.allHTTPHeaderFields = headers
         request.addQuery(query: queryItems)
         request.httpMethod = method.rawValue
         return request
     }
     
-    private func getUrlRequest(with customURL: String?) -> URLRequest {
-        if let customUrl = customURL, let url = URL(string: customUrl) {
-            return URLRequest(url: url)
-        } else {
-            return URLRequest(routingPath: routingPath)
-        }
+    fileprivate func generateCustomRequest() -> URLRequest? {
+        guard let customUrl = customUrl, let url = URL(string: customUrl) else { return nil }
+        var request = URLRequest(url: url)
+        request.allHTTPHeaderFields = headers
+        request.httpMethod = method.rawValue
+        return request
     }
     
     mutating func setAccessToken(token: String) {

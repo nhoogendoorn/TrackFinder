@@ -13,7 +13,7 @@ struct SearchTrackRequest: SpotifyRequest {
     var routingPath: RoutingPath = .search
     var headers: Headers = .generateBearerHeader()
     var queryItems: [URLQueryItem]
-    var method: HTTPMethod = .post
+    var method: HTTPMethod = .get
     
     init(query: String, nextPage: String? = nil, type: SearchQueryItem.SearchContentType, limit: Int = SearchQueryItem.defaultLimit) {
         self.customUrl = nextPage
@@ -21,7 +21,7 @@ struct SearchTrackRequest: SpotifyRequest {
             SearchQueryItem.query(query: query).create(),
             SearchQueryItem.contentType(type: type).create(),
             SearchQueryItem.limit(limit).create()
-        ]
+        ]        
         self.queryItems = query
     }
 }

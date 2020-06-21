@@ -19,7 +19,7 @@ extension SceneDelegate {
         let code = parameters?["code"]
         
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
-        let authService = appDelegate?.container.resolve(AuthenticationService.self)
+        let authService = appDelegate?.container.resolve(AuthenticationServiceProtocol.self)
         authService?.getAccessToken(code: code, completion: { (result) in
             switch result {
             case .failure:

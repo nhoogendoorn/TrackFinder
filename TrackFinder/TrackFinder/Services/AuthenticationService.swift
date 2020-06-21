@@ -8,7 +8,11 @@
 
 import Foundation
 
-protocol AuthenticationServiceProtocol {}
+protocol AuthenticationServiceProtocol {
+    func startSpotifyAuthorization()
+    func getAccessToken(code: String?, completion: @escaping (Result<AuthTokenResponse, NetworkError>) -> Void)
+    func requestNewToken(completion: @escaping (Result<RefreshTokenResponse, NetworkError>) -> Void)
+}
 
 class AuthenticationService: AuthenticationServiceProtocol, DependencyResolver {
     

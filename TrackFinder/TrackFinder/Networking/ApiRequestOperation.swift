@@ -28,8 +28,9 @@ class ApiRequestOperation: Operation {
     
     func startRequest() {
         let request = self.request.generateRequest()
+        log.info("Add urlRequest: \(request.url?.absoluteString ?? .empty)")
         self.task = session.dataTask(with: request, completionHandler: { (data, _, _) in
-            data?.logDataResponse(prefix: "Response")
+            data?.logDataResponse(prefix: "Data")
             if let response = data {
                 self.completion(.success(response))
             } else {

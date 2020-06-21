@@ -11,8 +11,8 @@ import SnapKit
 
 class LoginViewController: UIViewController, DependencyResolver, SPTAppRemoteDelegate, SPTSessionManagerDelegate {
     
-    lazy var authService: AuthenticationService? = {
-        container?.resolve(AuthenticationService.self)
+    lazy var authService: AuthenticationServiceProtocol? = {
+        container?.resolve(AuthenticationServiceProtocol.self)
     }()
     
         lazy var configuration: SPTConfiguration = {

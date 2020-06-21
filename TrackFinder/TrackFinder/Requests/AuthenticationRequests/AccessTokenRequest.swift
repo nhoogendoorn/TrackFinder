@@ -9,7 +9,7 @@
 import Foundation
 
 struct AccessTokenRequest: SpotifyRequest {
-    var customUrl: String? = nil    
+    var customUrl: String?
     var routingPath: RoutingPath = .getToken
     var headers: Headers = .generateBasicHeader()
     var queryItems: [URLQueryItem]

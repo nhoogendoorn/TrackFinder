@@ -17,5 +17,6 @@ enum Environment {
         return data.base64EncodedString()
     }
     static let spotifyRedirectUri: String = "trackfinder://spotify-login-callback"
-    static let baseUrl: String = "https://accounts.spotify.com/"
+    static let baseApiUrl: String = "https://api.spotify.com/"
+    static let baseAccountUrl: String = "https://accounts.spotify.com/"
 }
