@@ -77,7 +77,7 @@ class TableViewBackgroundView: UIView {
         label.snp.makeConstraints {
             $0.center.equalToSuperview()
         }
-        label.text = "Find your favorite tracks!"
+        label.text = "Start searching :)"
     }
     
     required init?(coder: NSCoder) {
