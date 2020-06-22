@@ -24,19 +24,17 @@ class TrackItemService: TrackItemServiceProtocol {
             } else {
                 completion(.failure(.fetchingError))
             }
-
         }
     }
     
     func getArtist(id: String, completion: @escaping (Result<CompleteArtist, NetworkError>) -> Void) {
         let request = CompleteArtistRequest(id: id)
-        apiManager.webApi.doRequest(request: request) { result in
+        self.apiManager.webApi.doRequest(request: request) { result in
             if let response = try? result.getNetworkResult(CompleteArtist.self).get() {
                 completion(.success(response))
             } else {
                 completion(.failure(.fetchingError))
             }
-
         }
     }
 }

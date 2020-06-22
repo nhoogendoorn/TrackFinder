@@ -45,15 +45,13 @@ class TrackItemModelController: ObservableObject, DependencyResolver {
     func getArtistInformation() {
         guard let artistId = data.artists.first?.id else { return }
         trackItemService?.getArtist(id: artistId, completion: { [weak self] result in
-            guard let `self` = self else { return }
-            DispatchQueue.main.async {
-                switch result {
-                case .failure:
-                    log.error("Failed to get artist")
-                case .success(let artist):
-                    self.artist = artist
-                    self.delegate?.setArtistImage()
-                }
+            guard let `self` = self else { return }            
+            switch result {
+            case .failure:
+                log.error("Failed to get artist")
+            case .success(let artist):
+                self.artist = artist
+                self.delegate?.setArtistImage()
             }
         })
     }

@@ -24,11 +24,9 @@ class SearchModelController: ObservableObject, DependencyResolver {
         searchService?.searchTrack(query: search, completion: { [weak self] result in
             guard let `self` = self else { return }
             if let searchResponse = try? result.get() {
-                DispatchQueue.main.async {
-                    self.data = searchResponse.tracks.items
-                    self.nextPageUrl = searchResponse.tracks.next
-                    self.delegate?.searchStateChanged(state: self)
-                }
+                self.data = searchResponse.tracks.items
+                self.nextPageUrl = searchResponse.tracks.next
+                self.delegate?.searchStateChanged(state: self)
             }
         })
     }
@@ -39,20 +37,16 @@ class SearchModelController: ObservableObject, DependencyResolver {
             guard let `self` = self else { return }
             self.delegate?.isLoadingNextPage = false
             if let searchResponse = try? result.get() {
-                DispatchQueue.main.async {
-                    self.data.append(contentsOf: searchResponse.tracks.items)
-                    self.nextPageUrl = searchResponse.tracks.next
-                    self.delegate?.searchStateChanged(state: self)
-                }
+                self.data.append(contentsOf: searchResponse.tracks.items)
+                self.nextPageUrl = searchResponse.tracks.next
+                self.delegate?.searchStateChanged(state: self)
             }
         })
     }
     
-    func resetData() {
-        DispatchQueue.main.async {
-            self.data = []
-            self.nextPageUrl = nil
-            self.delegate?.searchStateChanged(state: self)
-        }
+    func resetData() {        
+        self.data = []
+        self.nextPageUrl = nil
+        self.delegate?.searchStateChanged(state: self)
     }
 }

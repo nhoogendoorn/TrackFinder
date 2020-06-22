@@ -13,6 +13,6 @@ struct AuthTokens {
     let expirationDate: Date
     
     var isExpired: Bool {
-        Date() > expirationDate
+        Date.now(.minute, offset: 10) >= expirationDate
     }
 }

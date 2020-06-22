@@ -11,8 +11,8 @@ import Network
 
 protocol ApiOperationQueueProtocol {
     var hasInternetConnection: Bool { get }
-    func setOperationQueueSuspsension()
-    func applyNewToken(token: String?)
+    func setSuspensionState()
+    func applyNewToken(tokens: AuthTokens?)
     func addApiOperation(_ operation: ApiRequestOperation)
     func currentTokenIsExpired() -> Bool
 }
@@ -22,6 +22,7 @@ class ApiOperationQueue: OperationQueue, ApiOperationQueueProtocol, DependencyRe
     let queue = DispatchQueue(label: "InternetConnectionMonitor")
     
     var hasInternetConnection = true
+    var currentAccessToken: AuthTokens?
     
     static let shared = ApiOperationQueue()
     
@@ -29,6 +30,7 @@ class ApiOperationQueue: OperationQueue, ApiOperationQueueProtocol, DependencyRe
         super.init()
         
         addInternetConnectionObserver()
+        currentAccessToken = getAuthenticationTokens()
     }
     
     fileprivate func addInternetConnectionObserver() {
@@ -36,16 +38,19 @@ class ApiOperationQueue: OperationQueue, ApiOperationQueueProtocol, DependencyRe
             guard let `self` = self else { return }
             DispatchQueue.main.async {
                 self.hasInternetConnection = pathUpdateHandler.status == .satisfied
-                self.setOperationQueueSuspsension()
             }
+            self.setSuspensionState()
+                        
         }
         monitor.start(queue: self.queue)
     }
     
-    func applyNewToken(token: String?) {
+    func applyNewToken(tokens: AuthTokens?) {
+        Self.shared.currentAccessToken = tokens
+        
         let requestOperations = self.operations as? [ApiRequestOperation]
         requestOperations?.forEach {
-            guard let newToken = token else { return }
+            guard let newToken = tokens?.accessToken else { return }
             $0.request.setAccessToken(token: newToken)
             $0.setTask()
         }
@@ -53,33 +58,34 @@ class ApiOperationQueue: OperationQueue, ApiOperationQueueProtocol, DependencyRe
     }
     
     func currentTokenIsExpired() -> Bool {
-        guard let tokens = getAuthenticationTokens() else { return false }
+        guard let tokens = currentAccessToken else { return false }
         return tokens.isExpired
     }
     
     func addApiOperation(_ operation: ApiRequestOperation) {
         self.addOperation(operation)
-        if suspendOperationQueue() == false {
+        
+        if shouldSuspendQueue() == false {
             operation.task.resume()
         }
     }
     
-    func setOperationQueueSuspsension() {
-        DispatchQueue.main.async {
-            let shouldBeSuspended = self.suspendOperationQueue()
-            let currentlySupsended = self.isSuspended
-            self.isSuspended = shouldBeSuspended
-            
-            if currentlySupsended && shouldBeSuspended == false {
-                self.operations.forEach {
-                    guard let operation = $0 as? ApiRequestOperation else { return }
-                    operation.task.resume()
-                }
+    func setSuspensionState() {
+        let newSuspensionState = self.shouldSuspendQueue()
+        let currentlySupsended = self.isSuspended
+        self.isSuspended = newSuspensionState
+        
+        // Only resume the tasks if the queue is currently suspended and the
+        // new state is false.
+        if currentlySupsended && newSuspensionState == false {
+            self.operations.forEach {
+                guard let operation = $0 as? ApiRequestOperation else { return }
+                operation.task.resume()
             }
-        }        
+        }
     }
     
-    func suspendOperationQueue() -> Bool {
+    func shouldSuspendQueue() -> Bool {
         return !hasInternetConnection || currentTokenIsExpired()
     }
 }

@@ -16,10 +16,12 @@ class NetworkImageView: UIImageView {
             let url = URL(string: urlString)
         else { return }
         
-        let resource = ImageResource(downloadURL: url, cacheKey: cacheKey)
-        self.kf.indicatorType = .activity
-        self.kf.setImage(with: resource, placeholder: UIImage.placeholderImage) { _ in
-            self.superview?.layoutIfNeeded()
+        // This has to be on the main thread because otherwise we will get a
+        // threading issue when setting the activitiy indicator.
+        DispatchQueue.main.async {
+            let resource = ImageResource(downloadURL: url, cacheKey: cacheKey)
+            self.kf.indicatorType = .activity
+            self.kf.setImage(with: resource, placeholder: UIImage.placeholderImage)
         }
     }
     

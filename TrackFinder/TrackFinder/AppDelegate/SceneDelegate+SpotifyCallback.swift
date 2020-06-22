@@ -20,7 +20,9 @@ extension SceneDelegate {
         
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         let authService = appDelegate?.container.resolve(AuthenticationServiceProtocol.self)
-        authService?.getAccessToken(code: code, completion: { (result) in
+        authService?.getAccessToken(code: code, completion: { [weak self] result in
+            guard let `self` = self else { return }
+            self.loadSearchViewControllerIfNotPresented()
             switch result {
             case .failure:
                 log.error("Failed to receive access token")

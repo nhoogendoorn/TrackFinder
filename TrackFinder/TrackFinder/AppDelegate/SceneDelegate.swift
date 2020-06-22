@@ -41,12 +41,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, DependencyResolver {
         loadSearchViewControllerIfNotPresented()
     }
     
-    fileprivate func loadSearchViewControllerIfNotPresented() {
+    func loadSearchViewControllerIfNotPresented() {
         let hasTokens = getAuthenticationTokens() != nil
         let rootViewControllerIsBeingPresented = !(rootViewController.navigationController?.viewControllers.contains(where: { $0 is SearchScreenViewController}) == true)
         if hasTokens, rootViewControllerIsBeingPresented {
-            rootViewController.navigationController?.pushViewController(SearchScreenViewController(),
-                                                                        animated: false)
+            DispatchQueue.main.async {
+                self.rootViewController.navigationController?.pushViewController(SearchScreenViewController(),
+                                                                            animated: false)
+            }
         }
     }
     
