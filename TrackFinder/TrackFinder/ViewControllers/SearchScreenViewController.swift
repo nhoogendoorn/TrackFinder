@@ -61,7 +61,9 @@ class SearchScreenViewController: UIViewController, SearchScreenViewControllerPr
         loader.stopAnimating()
         
         modelController.delegate = self
+        navigationController?.setNavigationBarHidden(false, animated: false)
         
+        modelController.loadData(search: "Flume")
     }
     
     func searchStateChanged(state: SearchModelController) {

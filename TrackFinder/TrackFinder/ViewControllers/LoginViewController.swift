@@ -35,50 +35,57 @@ class LoginViewController: UIViewController, DependencyResolver, SPTAppRemoteDel
         return manager
     }()
     
+    let contentStack = UIStackView()
+    let logo = UIImageView(image: UIImage(named: "logo"))
+    let buttonContainer = UIView()
     let button = UIButton()
-    let refreshButton = UIButton()
+    let label = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setButton()
-    }
-    
-    fileprivate func setButton() {
-        view.addSubview(button)
-        button.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(16)
-            $0.centerX.equalToSuperview()
+        navigationController?.setNavigationBarHidden(true, animated: false)
+        contentStack.axis = .vertical
+        contentStack.spacing = 24
+        view.addSubview(contentStack)
+        contentStack.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.leading.equalToSuperview().offset(24)
+            $0.trailing.equalToSuperview().offset(-24)
         }
+        
+        logo.snp.makeConstraints {
+            $0.width.height.equalTo(150)
+        }
+        logo.contentMode = .scaleAspectFit
+               
+        button.backgroundColor = .mainColor
+        button.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        button.titleEdgeInsets = UIEdgeInsets(top: 32, left: 32, bottom: 32, right: 32)
         
         button.setTitle(.loginAction, for: .normal)
+        button.setTitleColor(.white, for: .normal)
         button.addTarget(self, action: #selector(loginButtonPressed), for: .touchUpInside)
         
-        view.addSubview(refreshButton)
-        refreshButton.snp.makeConstraints {
-            $0.top.equalTo(button.snp.bottom).offset(16)
-            $0.centerX.equalToSuperview()
-        }
+        label.text = .loginExplanation
+        label.textColor = .gray
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
+        label.textAlignment = .center
         
-        refreshButton.setTitle("Refresh", for: .normal)
-        refreshButton.addTarget(self, action: #selector(refreshButtonPressed), for: .touchUpInside)
-
+        contentStack.addArrangedSubview(logo)
+        contentStack.addArrangedSubview(button)
+        contentStack.addArrangedSubview(label)
     }
     
     @objc func loginButtonPressed() {
         authService?.startSpotifyAuthorization()
     }
     
-    @objc func refreshButtonPressed() {
-        authService?.requestNewToken(completion: { (result) in
-            switch result {
-            case .failure:
-                log.error("Failed to refresh Tokens")
-            case .success(let response):
-                log.debug("New token: \(response.accessToken)")
-            }
-        })
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        button.layer.cornerRadius = 8
     }
-    
+        
     func sessionManager(manager: SPTSessionManager, didInitiate session: SPTSession) {
         log.debug("didInitiate")
     }

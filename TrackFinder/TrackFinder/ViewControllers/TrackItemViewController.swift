@@ -17,7 +17,16 @@ protocol TrackItemViewControllerDelegate: class {
 class TrackItemViewController: UIViewController, TrackItemViewControllerDelegate {
     let scrollView = UIScrollView()
     let coverImage = UIImageView()
-        
+    
+    let trackInfoView = UIView()
+    let trackInfoStackView = UIStackView()
+    let trackTitle = UILabel()
+    let trackArtistStackView = UIStackView()
+    let trackArtistImageView = UIImageView()
+    let trackArtistNameLabel = UILabel()
+    
+    let trackAlbumTitle = UILabel()
+    
     let refreshControl = UIRefreshControl()
     let modelController: TrackItemModelController
     
@@ -33,7 +42,7 @@ class TrackItemViewController: UIViewController, TrackItemViewControllerDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        
+        title = modelController.data.name
         view.addSubview(scrollView)
         scrollView.snp.makeConstraints {
             $0.leading.centerX.trailing.bottom.equalToSuperview()
@@ -43,7 +52,7 @@ class TrackItemViewController: UIViewController, TrackItemViewControllerDelegate
         scrollView.addSubview(coverImage)
         coverImage.snp.makeConstraints {
             $0.leading.trailing.top.equalToSuperview()
-            $0.height.equalTo(280)
+            $0.height.equalTo(304)
             $0.width.equalTo(view)
         }        
         scrollView.refreshControl = refreshControl
@@ -51,9 +60,29 @@ class TrackItemViewController: UIViewController, TrackItemViewControllerDelegate
         coverImage.clipsToBounds = true
         setData()
         refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        
+        coverImage.addSubview(trackInfoView)
+        trackInfoView.snp.makeConstraints {
+            $0.leading.trailing.top.bottom.equalToSuperview()
+        }
+        trackInfoView.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+        
+        trackInfoStackView.snp.makeConstraints {
+            $0.leading.equalToSuperview().offset(24)
+            $0.bottom.equalToSuperview().offset(-24)
+        }
+        
+        trackTitle.font = UIFont.systemFont(ofSize: 20)
+        trackTitle.textColor = .white
+        
+        trackArtistImageView.kf.setImage(with: <#T##Resource?#>)
+        
+        
     }
     
     func setData() {
+        trackTitle.text = modelController.data.name
+        
         guard let urlString = modelController.data.album.images.randomElement()?.url, let url = URL(string: urlString) else { return }
         
         let resource = ImageResource(downloadURL: url, cacheKey: modelController.data.id)
