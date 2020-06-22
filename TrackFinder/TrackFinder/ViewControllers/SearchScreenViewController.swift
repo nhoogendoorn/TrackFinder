@@ -80,7 +80,15 @@ class TableViewBackgroundView: UIView {
 extension SearchScreenViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         let searchBarText = searchController.searchBar.text
-        guard let text = searchBarText, text != .empty else { self.modelController.resetData(); return }
+        guard
+            let text = searchBarText,
+            text != .empty
+        else {
+            self.modelController.resetData()
+            self.searchTask?.cancel()
+            return
+        }
+        
         throttledSearchTask(text: text)
     }
     

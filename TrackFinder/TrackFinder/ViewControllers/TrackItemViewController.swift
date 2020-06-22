@@ -47,6 +47,7 @@ class TrackItemViewController: UIViewController, TrackItemViewControllerDelegate
         }        
         scrollView.refreshControl = refreshControl
         coverImage.contentMode = .scaleAspectFill
+        coverImage.clipsToBounds = true
         setData()
         refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
     }

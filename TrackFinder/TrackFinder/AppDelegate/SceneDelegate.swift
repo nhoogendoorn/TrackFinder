@@ -25,7 +25,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, DependencyResolver {
         window?.rootViewController = UINavigationController(rootViewController: rootViewController)
         window?.makeKeyAndVisible()
         
-        //        appRemote.authorizeAndPlayURI("spotify:track:20I6sIOMTCkB6w7ryavxtO")
+        let hasTokens = getAuthenticationTokens() != nil
+        let rootViewControllerIsBeingPresented = !(rootViewController.navigationController?.viewControllers.contains(where: { $0 is SearchScreenViewController}) == true)
+        if hasTokens, rootViewControllerIsBeingPresented {
+            rootViewController.navigationController?.pushViewController(SearchScreenViewController(),
+                                                                        animated: false)
+        }
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -38,24 +43,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, DependencyResolver {
     func sceneDidBecomeActive(_ scene: UIScene) {
         // Called when the scene has moved from an inactive state to an active state.
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.        
-        let hasTokens = getAuthenticationTokens() != nil
-        let rootViewControllerIsBeingPresented = !(rootViewController.navigationController?.viewControllers.contains(where: { $0 is SearchScreenViewController}) == true)
-        if hasTokens, rootViewControllerIsBeingPresented {
-            rootViewController.navigationController?.pushViewController(SearchScreenViewController(),
-                                                                        animated: false)
-        }
-        
-//        if let _ = rootViewController.appRemote.connectionParameters.accessToken {
-//            rootViewController.appRemote.connect()
-//        }
     }
     
     func sceneWillResignActive(_ scene: UIScene) {
         // Called when the scene will move from an active state to an inactive state.
         // This may occur due to temporary interruptions (ex. an incoming phone call).
-//        if rootViewController.appRemote.isConnected {
-//            rootViewController.appRemote.disconnect()
-//        }
     }
     
     func sceneWillEnterForeground(_ scene: UIScene) {
