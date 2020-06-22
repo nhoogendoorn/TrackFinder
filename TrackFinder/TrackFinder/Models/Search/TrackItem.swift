@@ -10,7 +10,7 @@ import Foundation
 // MARK: - Item
 struct TrackItem: Codable {
     let album: Album
-    let artists: [Artist]
+    let artists: [TrackArtist]
     let discNumber, durationMS: Int
     let explicit: Bool
     let href: String
@@ -57,7 +57,7 @@ extension TrackItem {
 
     func with(
         album: Album? = nil,
-        artists: [Artist]? = nil,
+        artists: [TrackArtist]? = nil,
         discNumber: Int? = nil,
         durationMS: Int? = nil,
         explicit: Bool? = nil,

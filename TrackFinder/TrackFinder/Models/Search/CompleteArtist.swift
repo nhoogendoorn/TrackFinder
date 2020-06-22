@@ -1,32 +1,36 @@
 //
-//  Artist.swift
+//  CompleteArtist.swift
 //  TrackFinder
 //
-//  Created by Niels Hoogendoorn on 20/06/2020.
+//  Created by Niels Hoogendoorn on 22/06/2020.
 //  Copyright © 2020 Nihoo. All rights reserved.
 //
 
 import Foundation
 
-// MARK: - Artist
-struct Artist: Codable {
+// MARK: - CompleteArtist
+struct CompleteArtist: Codable {
     let externalUrls: ExternalUrls
+    let followers: Followers
+    let genres: [String]
     let href: String
-    let id, name: String
-    let type: SearchQueryItem.SearchContentType
-    let uri: String
+    let id: String
+    let images: [CoverImage]
+    let name: String
+    let popularity: Int
+    let type, uri: String
 
     enum CodingKeys: String, CodingKey {
         case externalUrls = "external_urls"
-        case href, id, name, type, uri
+        case followers, genres, href, id, images, name, popularity, type, uri
     }
 }
 
-// MARK: Artist convenience initializers and mutators
+// MARK: CompleteArtist convenience initializers and mutators
 
-extension Artist {
+extension CompleteArtist {
     init(data: Data) throws {
-        self = try newJSONDecoder().decode(Artist.self, from: data)
+        self = try newJSONDecoder().decode(CompleteArtist.self, from: data)
     }
 
     init(_ json: String, using encoding: String.Encoding = .utf8) throws {
@@ -42,17 +46,25 @@ extension Artist {
 
     func with(
         externalUrls: ExternalUrls? = nil,
+        followers: Followers? = nil,
+        genres: [String]? = nil,
         href: String? = nil,
         id: String? = nil,
+        images: [CoverImage]? = nil,
         name: String? = nil,
-        type: SearchQueryItem.SearchContentType? = nil,
+        popularity: Int? = nil,
+        type: String? = nil,
         uri: String? = nil
-    ) -> Artist {
-        return Artist(
+    ) -> CompleteArtist {
+        return CompleteArtist(
             externalUrls: externalUrls ?? self.externalUrls,
+            followers: followers ?? self.followers,
+            genres: genres ?? self.genres,
             href: href ?? self.href,
             id: id ?? self.id,
+            images: images ?? self.images,
             name: name ?? self.name,
+            popularity: popularity ?? self.popularity,
             type: type ?? self.type,
             uri: uri ?? self.uri
         )

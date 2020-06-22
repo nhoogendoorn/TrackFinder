@@ -30,6 +30,11 @@ class TrackItemViewController: UIViewController, TrackItemViewControllerDelegate
     let refreshControl = UIRefreshControl()
     let modelController: TrackItemModelController
     
+    let playTrackStackView = UIStackView()
+    let playImage = UIImageView(image: UIImage(systemName: "play.circle.fill"))
+    let playTextLabel = UILabel()
+    let durationText = UILabel()
+    
     init(item: TrackItem) {
         self.modelController = TrackItemModelController(item: item)
         super.init(nibName: nil, bundle: nil)
@@ -67,25 +72,72 @@ class TrackItemViewController: UIViewController, TrackItemViewControllerDelegate
         }
         trackInfoView.backgroundColor = UIColor.black.withAlphaComponent(0.3)
         
+        trackInfoView.addSubview(trackInfoStackView)
         trackInfoStackView.snp.makeConstraints {
-            $0.leading.equalToSuperview().offset(24)
-            $0.bottom.equalToSuperview().offset(-24)
+            $0.leading.equalToSuperview().offset(32)
+            $0.trailing.bottom.equalToSuperview().offset(-32)
         }
+        trackInfoStackView.spacing = 4
+        trackInfoStackView.axis = .vertical
         
-        trackTitle.font = UIFont.systemFont(ofSize: 20)
+        trackTitle.font = UIFont.systemFont(ofSize: 40)
         trackTitle.textColor = .white
+        trackTitle.numberOfLines = 0
+        trackTitle.lineBreakMode = .byWordWrapping
         
-        trackArtistImageView.kf.setImage(with: <#T##Resource?#>)
+        trackArtistNameLabel.font = UIFont.systemFont(ofSize: 18)
+        trackArtistNameLabel.textColor = .white
+        trackAlbumTitle.font = UIFont.systemFont(ofSize: 18)
+        trackAlbumTitle.textColor = .white
         
+        trackInfoStackView.addArrangedSubview(trackTitle)
+        trackInfoStackView.addArrangedSubview(trackArtistNameLabel)
+        trackInfoStackView.addArrangedSubview(trackAlbumTitle)
         
+        scrollView.addSubview(playTrackStackView)
+        playTrackStackView.snp.makeConstraints {
+            $0.top.equalTo(coverImage.snp.bottom).offset(24)
+            $0.leading.equalToSuperview().offset(24)
+            $0.trailing.equalToSuperview().offset(-24)
+            $0.bottom.equalToSuperview()
+        }
+        playTrackStackView.distribution = .fill
+        playTrackStackView.spacing = 8
+        
+        playImage.snp.makeConstraints {
+            $0.width.height.equalTo(24)
+        }
+//        playImage.contentMode = .scaleAspectFit
+        playImage.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
+        
+        playTextLabel.text = .playTrack
+        durationText.text = "3:03"
+//        durationText.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        
+        playTrackStackView.addArrangedSubview(playImage)
+        playTrackStackView.addArrangedSubview(playTextLabel)
+        playTrackStackView.addArrangedSubview(durationText)
     }
     
     func setData() {
         trackTitle.text = modelController.data.name
-        
+        trackArtistNameLabel.text = modelController.data.artists.first?.name
+        trackAlbumTitle.text = modelController.data.album.name
+        setCoverImage()
+    }
+    
+//    func setArtistImage() {
+//        guard let urlString = modelController.data.artists.first.co.images.randomElement()?.url, let url = URL(string: urlString) else { return }
+//
+//        let resource = ImageResource(downloadURL: url, cacheKey: modelController.data.id)
+//        trackArtistImageView.kf.setImage(with: resource)
+//    }
+    
+    func setCoverImage() {
         guard let urlString = modelController.data.album.images.randomElement()?.url, let url = URL(string: urlString) else { return }
         
         let resource = ImageResource(downloadURL: url, cacheKey: modelController.data.id)
+        coverImage.kf.indicatorType = .activity
         coverImage.kf.setImage(with: resource)
     }
     

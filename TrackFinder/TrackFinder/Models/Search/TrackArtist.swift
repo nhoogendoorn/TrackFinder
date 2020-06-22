@@ -1,5 +1,5 @@
 //
-//  Album.swift
+//  TrackArtist.swift
 //  TrackFinder
 //
 //  Created by Niels Hoogendoorn on 20/06/2020.
@@ -8,35 +8,25 @@
 
 import Foundation
 
-// MARK: - Album
-struct Album: Codable {
-    let albumType: String
-    let artists: [TrackArtist]
+// MARK: - Artist
+struct TrackArtist: Codable {
     let externalUrls: ExternalUrls
     let href: String
-    let id: String
-    let images: [CoverImage]
-    let name, releaseDate, releaseDatePrecision: String
-    let totalTracks: Int
-    let type, uri: String
+    let id, name: String
+    let type: SearchQueryItem.SearchContentType
+    let uri: String
 
     enum CodingKeys: String, CodingKey {
-        case albumType = "album_type"
-        case artists
         case externalUrls = "external_urls"
-        case href, id, images, name
-        case releaseDate = "release_date"
-        case releaseDatePrecision = "release_date_precision"
-        case totalTracks = "total_tracks"
-        case type, uri
+        case href, id, name, type, uri
     }
 }
 
-// MARK: Album convenience initializers and mutators
+// MARK: Artist convenience initializers and mutators
 
-extension Album {
+extension TrackArtist {
     init(data: Data) throws {
-        self = try newJSONDecoder().decode(Album.self, from: data)
+        self = try newJSONDecoder().decode(TrackArtist.self, from: data)
     }
 
     init(_ json: String, using encoding: String.Encoding = .utf8) throws {
@@ -51,30 +41,18 @@ extension Album {
     }
 
     func with(
-        albumType: String? = nil,
-        artists: [TrackArtist]? = nil,
         externalUrls: ExternalUrls? = nil,
         href: String? = nil,
         id: String? = nil,
-        images: [CoverImage]? = nil,
         name: String? = nil,
-        releaseDate: String? = nil,
-        releaseDatePrecision: String? = nil,
-        totalTracks: Int? = nil,
-        type: String? = nil,
+        type: SearchQueryItem.SearchContentType? = nil,
         uri: String? = nil
-    ) -> Album {
-        return Album(
-            albumType: albumType ?? self.albumType,
-            artists: artists ?? self.artists,
+    ) -> TrackArtist {
+        return TrackArtist(
             externalUrls: externalUrls ?? self.externalUrls,
             href: href ?? self.href,
             id: id ?? self.id,
-            images: images ?? self.images,
             name: name ?? self.name,
-            releaseDate: releaseDate ?? self.releaseDate,
-            releaseDatePrecision: releaseDatePrecision ?? self.releaseDatePrecision,
-            totalTracks: totalTracks ?? self.totalTracks,
             type: type ?? self.type,
             uri: uri ?? self.uri
         )
