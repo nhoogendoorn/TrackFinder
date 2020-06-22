@@ -9,12 +9,14 @@
 import Foundation
 
 enum RoutingPath {
-    case startAuthorization, getToken, search, getTrack(id: String)
+    case startAuthorization, getToken, search
+    case getTrack(id: String), getArtist(id: String)
     
     var path: String {
         switch self {
         case .getToken: return "api/token"
         case .getTrack(let id): return "v1/tracks/\(id)"
+        case .getArtist(let id): return "v1/artists/\(id)"
         case .search: return "v1/search"
         case .startAuthorization: return "authorize"
         }

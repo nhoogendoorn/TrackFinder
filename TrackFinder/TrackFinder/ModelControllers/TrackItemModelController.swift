@@ -10,7 +10,8 @@ import Foundation
 
 class TrackItemModelController: ObservableObject, DependencyResolver {
     var data: TrackItem    
-        
+    var artist: CompleteArtist?
+    
     weak var delegate: TrackItemViewControllerDelegate?
     
     var trackItemService: TrackItemServiceProtocol? {
@@ -35,6 +36,22 @@ class TrackItemModelController: ObservableObject, DependencyResolver {
                 
                 self.delegate?.refreshControl.endRefreshing()
             }            
+        })
+    }
+    
+    func getArtistInformation() {
+        guard let artistId = data.artists.first?.id else { return }
+        trackItemService?.getArtist(id: artistId, completion: { [weak self] result in
+            guard let `self` = self else { return }
+            DispatchQueue.main.async {
+                switch result {
+                case .failure:
+                    log.error("Failed to get artist")
+                case .success(let artist):
+                    self.artist = artist
+                    self.delegate?.setArtistImage()
+                }
+            }
         })
     }
 }

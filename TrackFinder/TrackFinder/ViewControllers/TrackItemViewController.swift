@@ -12,17 +12,18 @@ import Kingfisher
 protocol TrackItemViewControllerDelegate: class {
     var refreshControl: UIRefreshControl { get }
     func setData()
+    func setArtistImage()
 }
 
 class TrackItemViewController: UIViewController, TrackItemViewControllerDelegate {
     let scrollView = UIScrollView()
-    let coverImage = UIImageView()
+    let coverImage = NetworkImageView()
     
     let trackInfoView = UIView()
     let trackInfoStackView = UIStackView()
     let trackTitle = UILabel()
     let trackArtistStackView = UIStackView()
-    let trackArtistImageView = UIImageView()
+    let trackArtistImageView = NetworkImageView()
     let trackArtistNameLabel = UILabel()
     
     let trackAlbumTitle = UILabel()
@@ -63,7 +64,7 @@ class TrackItemViewController: UIViewController, TrackItemViewControllerDelegate
         scrollView.refreshControl = refreshControl
         coverImage.contentMode = .scaleAspectFill
         coverImage.clipsToBounds = true
-        setData()
+        
         refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
         
         coverImage.addSubview(trackInfoView)
@@ -107,41 +108,67 @@ class TrackItemViewController: UIViewController, TrackItemViewControllerDelegate
         playImage.snp.makeConstraints {
             $0.width.height.equalTo(24)
         }
-//        playImage.contentMode = .scaleAspectFit
+        //        playImage.contentMode = .scaleAspectFit
         playImage.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
         
         playTextLabel.text = .playTrack
         durationText.text = "3:03"
-//        durationText.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        //        durationText.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         
         playTrackStackView.addArrangedSubview(playImage)
         playTrackStackView.addArrangedSubview(playTextLabel)
         playTrackStackView.addArrangedSubview(durationText)
+        
+        setData()
+        modelController.getArtistInformation()
     }
     
     func setData() {
         trackTitle.text = modelController.data.name
         trackArtistNameLabel.text = modelController.data.artists.first?.name
         trackAlbumTitle.text = modelController.data.album.name
-        setCoverImage()
+        coverImage.loadImage(with: modelController.data.album.images.randomElement()?.url,
+                             cacheKey: modelController.data.album.id)
     }
     
-//    func setArtistImage() {
-//        guard let urlString = modelController.data.artists.first.co.images.randomElement()?.url, let url = URL(string: urlString) else { return }
-//
-//        let resource = ImageResource(downloadURL: url, cacheKey: modelController.data.id)
-//        trackArtistImageView.kf.setImage(with: resource)
-//    }
-    
-    func setCoverImage() {
-        guard let urlString = modelController.data.album.images.randomElement()?.url, let url = URL(string: urlString) else { return }
-        
-        let resource = ImageResource(downloadURL: url, cacheKey: modelController.data.id)
-        coverImage.kf.indicatorType = .activity
-        coverImage.kf.setImage(with: resource)
+    func setArtistImage() {
+        trackArtistImageView.loadImage(with: modelController.artist?.images.first?.url,
+                                       cacheKey: modelController.artist?.id)
     }
     
     @objc func handleRefresh() {
         modelController.refreshData()
+    }
+}
+
+class NetworkImageView: UIImageView {
+    let urlString: String? = nil
+    
+    func loadImage(with url: String?, cacheKey: String?) {
+        guard
+            let urlString = urlString,
+            let url = URL(string: urlString)
+        else { return }
+
+        let resource = ImageResource(downloadURL: url, cacheKey: cacheKey)
+        self.kf.indicatorType = .activity
+        self.kf.setImage(with: resource, placeholder: UIImage.placeholderImage)
+    }
+    
+}
+
+extension UIImage {
+    static let placeholderImage = UIImage(color: .gray, size: CGSize(width: 1024, height: 1024))
+    
+    public convenience init?(color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) {
+        let rect = CGRect(origin: .zero, size: size)
+        UIGraphicsBeginImageContextWithOptions(rect.size, false, 0.0)
+        color.setFill()
+        UIRectFill(rect)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        guard let cgImage = image?.cgImage else { return nil }
+        self.init(cgImage: cgImage)
     }
 }

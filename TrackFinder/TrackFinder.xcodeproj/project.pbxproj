@@ -71,6 +71,7 @@
 		A6FA1EB024A009CC00BAC327 /* TrackItemRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FA1EAF24A009CC00BAC327 /* TrackItemRequest.swift */; };
 		A6FA1EB224A0C49900BAC327 /* CompleteArtist.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FA1EB124A0C49900BAC327 /* CompleteArtist.swift */; };
 		A6FA1EB424A0C4BF00BAC327 /* Followers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FA1EB324A0C4BF00BAC327 /* Followers.swift */; };
+		A6FA1EB624A0E14000BAC327 /* CompleteArtistRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FA1EB524A0E14000BAC327 /* CompleteArtistRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -149,6 +150,7 @@
 		A6FA1EAF24A009CC00BAC327 /* TrackItemRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackItemRequest.swift; sourceTree = "<group>"; };
 		A6FA1EB124A0C49900BAC327 /* CompleteArtist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteArtist.swift; sourceTree = "<group>"; };
 		A6FA1EB324A0C4BF00BAC327 /* Followers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Followers.swift; sourceTree = "<group>"; };
+		A6FA1EB524A0E14000BAC327 /* CompleteArtistRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteArtistRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -401,6 +403,7 @@
 			isa = PBXGroup;
 			children = (
 				A6FA1EAF24A009CC00BAC327 /* TrackItemRequest.swift */,
+				A6FA1EB524A0E14000BAC327 /* CompleteArtistRequest.swift */,
 			);
 			path = TrackItemRequests;
 			sourceTree = "<group>";
@@ -589,6 +592,7 @@
 				A60F568D249E0DDB00156178 /* Date+Extension.swift in Sources */,
 				A6345F96249BB7830070D2C2 /* SceneDelegate+SpotifyCallback.swift in Sources */,
 				A6345EF7249947250070D2C2 /* AppDelegate.swift in Sources */,
+				A6FA1EB624A0E14000BAC327 /* CompleteArtistRequest.swift in Sources */,
 				A61B385F249CF28D00286F61 /* AuthorizationQueryItem.swift in Sources */,
 				A6345EF9249947250070D2C2 /* SceneDelegate.swift in Sources */,
 				A6345F94249BB7760070D2C2 /* AppDelegate+Dependencies.swift in Sources */,
