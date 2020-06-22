@@ -11,6 +11,8 @@ import Foundation
 extension String {
     // MARK: - General Texts
     static let search = NSLocalizedString("Search", comment: "")
+    static let appTitle = NSLocalizedString("TrackFinder", comment: "")
+    static let startSearching = NSLocalizedString("Start searching \u{1F9D0}", comment: "")
     
     // MARK: - Button Texts
     static let loginAction = NSLocalizedString("Connect to Spotify", comment: "")

@@ -25,12 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, DependencyResolver {
         window?.rootViewController = UINavigationController(rootViewController: rootViewController)
         window?.makeKeyAndVisible()
         
-        let hasTokens = getAuthenticationTokens() != nil
-        let rootViewControllerIsBeingPresented = !(rootViewController.navigationController?.viewControllers.contains(where: { $0 is SearchScreenViewController}) == true)
-        if hasTokens, rootViewControllerIsBeingPresented {
-            rootViewController.navigationController?.pushViewController(SearchScreenViewController(),
-                                                                        animated: false)
-        }
+        loadSearchViewControllerIfNotPresented()
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -42,7 +37,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, DependencyResolver {
     
     func sceneDidBecomeActive(_ scene: UIScene) {
         // Called when the scene has moved from an inactive state to an active state.
-        // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.        
+        // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
+        loadSearchViewControllerIfNotPresented()
+    }
+    
+    fileprivate func loadSearchViewControllerIfNotPresented() {
+        let hasTokens = getAuthenticationTokens() != nil
+        let rootViewControllerIsBeingPresented = !(rootViewController.navigationController?.viewControllers.contains(where: { $0 is SearchScreenViewController}) == true)
+        if hasTokens, rootViewControllerIsBeingPresented {
+            rootViewController.navigationController?.pushViewController(SearchScreenViewController(),
+                                                                        animated: false)
+        }
     }
     
     func sceneWillResignActive(_ scene: UIScene) {

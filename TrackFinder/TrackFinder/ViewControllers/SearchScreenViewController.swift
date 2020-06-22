@@ -9,6 +9,7 @@
 import UIKit
 
 protocol SearchScreenViewControllerProtocol: class {
+    var isLoadingNextPage: Bool { get set }
     func searchStateChanged(state: SearchModelController)
 }
 
@@ -16,12 +17,13 @@ class SearchScreenViewController: UIViewController, SearchScreenViewControllerPr
     let modelController = SearchModelController()
     
     let tableView = UITableView()
+    let loader = UIActivityIndicatorView(style: .medium)
     let cellId: String = "SearchItemCell"
         
     let searchController = UISearchController(searchResultsController: nil)
     
     var searchTask: DispatchWorkItem?
-    var nextPageTask: DispatchWorkItem?
+    var isLoadingNextPage: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,23 +41,34 @@ class SearchScreenViewController: UIViewController, SearchScreenViewControllerPr
         }
         
         navigationItem.searchController = searchController
-                
+        navigationItem.hidesSearchBarWhenScrolling = false
+        self.title = .appTitle
+        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(SearchItemCell.self, forCellReuseIdentifier: cellId)
         tableView.backgroundView = TableViewBackgroundView()
         tableView.showsVerticalScrollIndicator = false
         tableView.separatorStyle = .none
-                
+        tableView.keyboardDismissMode = .onDrag
+        tableView.addSubview(loader)
+        
+        loader.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalToSuperview().offset(16)
+        }
+        loader.hidesWhenStopped = true
+        loader.stopAnimating()
+        
         modelController.delegate = self
-        modelController.loadData(search: .empty)
+        
     }
     
     func searchStateChanged(state: SearchModelController) {
         DispatchQueue.main.async {
             self.tableView.reloadData()
-            
             self.tableView.backgroundView = state.data.isEmpty ? TableViewBackgroundView() : nil
+            self.loader.stopAnimating()
         }
     }
 }
@@ -69,7 +82,8 @@ class TableViewBackgroundView: UIView {
         label.snp.makeConstraints {
             $0.center.equalToSuperview()
         }
-        label.text = "Start searching :)"
+        label.text = .startSearching
+        label.textColor = .gray
     }
     
     required init?(coder: NSCoder) {
@@ -89,11 +103,15 @@ extension SearchScreenViewController: UISearchResultsUpdating {
             return
         }
         
+        if modelController.data.isEmpty {
+            loader.startAnimating()
+        }        
         throttledSearchTask(text: text)
     }
     
     func throttledSearchTask(text: String) {
-        let throttleTime: Double = 0.75
+        let throttleTime: Double = 0.5
+        let deadline: DispatchTime = DispatchTime.now() + throttleTime
         self.searchTask?.cancel()
 
         let task = DispatchWorkItem { [weak self] in
@@ -101,8 +119,7 @@ extension SearchScreenViewController: UISearchResultsUpdating {
         }
         self.searchTask = task
 
-        // Execute task in 0.75 seconds (if not cancelled !)
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + throttleTime, execute: task)
+        DispatchQueue.main.asyncAfter(deadline: deadline, execute: task)
 
     }
 
@@ -136,13 +153,9 @@ extension SearchScreenViewController: UITableViewDataSource, UITableViewDelegate
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let isLastCell = indexPath.row == modelController.data.count - 1
-        guard isLastCell else { return }
-        self.nextPageTask?.cancel()
-
-        let task = DispatchWorkItem { [weak self] in
-            self?.modelController.loadNextPage()
-        }
-        self.searchTask = task
-        DispatchQueue.main.async(execute: task)
+        // Only continue when there is no active task to load the next page.
+        // This to insure that 
+        guard isLastCell, isLoadingNextPage == false else { return }
+        self.modelController.loadNextPage()
     }
 }

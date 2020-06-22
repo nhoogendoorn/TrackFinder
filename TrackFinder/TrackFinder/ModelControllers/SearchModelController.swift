@@ -34,8 +34,10 @@ class SearchModelController: ObservableObject, DependencyResolver {
     }
     
     func loadNextPage() {
+        delegate?.isLoadingNextPage = true
         searchService?.loadNextPage(nextPageUrl: nextPageUrl, completion: { [weak self] result in
             guard let `self` = self else { return }
+            self.delegate?.isLoadingNextPage = false
             if let searchResponse = try? result.get() {
                 DispatchQueue.main.async {
                     self.data.append(contentsOf: searchResponse.tracks.items)

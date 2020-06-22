@@ -32,7 +32,8 @@ class TrackItemViewController: UIViewController, TrackItemViewControllerDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
+        
         view.addSubview(scrollView)
         scrollView.snp.makeConstraints {
             $0.leading.centerX.trailing.bottom.equalToSuperview()
@@ -42,7 +43,7 @@ class TrackItemViewController: UIViewController, TrackItemViewControllerDelegate
         scrollView.addSubview(coverImage)
         coverImage.snp.makeConstraints {
             $0.leading.trailing.top.equalToSuperview()
-            $0.height.equalTo(300)
+            $0.height.equalTo(280)
             $0.width.equalTo(view)
         }        
         scrollView.refreshControl = refreshControl

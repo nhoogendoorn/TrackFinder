@@ -7,32 +7,73 @@
 //
 
 import UIKit
+import Kingfisher
 
 class SearchItemCell: UITableViewCell {
-    let containerView = UIView()
-    let textLabelView = UILabel()
+    let contentStack = UIStackView()
+    let titleStack = UIStackView()
+    let trackNameLabel = UILabel()
+    let artistNameLabel = UILabel()
+    let albumImage = UIImageView()
+    let arrowRightImage = UIImageView(image: UIImage(systemName: "chevron.right"))
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        contentView.addSubview(containerView)
-        containerView.snp.makeConstraints {
-            $0.leading.trailing.top.bottom.equalToSuperview()
+        contentView.addSubview(contentStack)
+        contentStack.axis = .horizontal
+        contentStack.snp.makeConstraints {
+            $0.leading.equalToSuperview().offset(16)
+            $0.trailing.equalToSuperview().offset(-16)
+            $0.top.equalToSuperview().offset(8)
+            $0.bottom.equalToSuperview().offset(-8)
         }
+                
+        contentStack.addArrangedSubview(albumImage)
+        contentStack.distribution = .fill
+        contentStack.spacing = 16
+        albumImage.snp.makeConstraints {
+            $0.width.height.equalTo(48)
+        }
+        albumImage.contentMode = .scaleAspectFill
+        albumImage.clipsToBounds = true
+        albumImage.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
         
-        containerView.addSubview(textLabelView)
-        textLabelView.snp.makeConstraints {
-            $0.leading.top.equalToSuperview().offset(16)
-            $0.trailing.bottom.equalToSuperview().offset(-16)
-        }
+        contentStack.addArrangedSubview(titleStack)
+        titleStack.axis = .vertical
+        titleStack.distribution = .fillEqually
+        titleStack.addArrangedSubview(trackNameLabel)
+        titleStack.addArrangedSubview(artistNameLabel)
+        trackNameLabel.font = UIFont.systemFont(ofSize: 16)
+        artistNameLabel.font = UIFont.systemFont(ofSize: 12)
+        artistNameLabel.textColor = .gray
+        
+        contentStack.addArrangedSubview(arrowRightImage)
+        arrowRightImage.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        arrowRightImage.contentMode = .scaleAspectFit
+        arrowRightImage.tintColor = .gray
+        
+        self.selectionStyle = .none
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()        
-        textLabelView.text = .empty
+        trackNameLabel.text = .empty
+        artistNameLabel.text = .empty
+        albumImage.image = nil
     }
     
     func setText(trackItem: TrackItem) {
-        textLabelView.text = trackItem.name
+        trackNameLabel.text = trackItem.name
+        artistNameLabel.text = trackItem.artists.first?.name
+        
+        guard let urlString = trackItem.album.images.randomElement()?.url, let url = URL(string: urlString) else { return }
+        let resource = ImageResource(downloadURL: url, cacheKey: trackItem.id)
+        albumImage.kf.setImage(with: resource)
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        albumImage.layer.cornerRadius = 4
     }
     
     required init?(coder: NSCoder) {
