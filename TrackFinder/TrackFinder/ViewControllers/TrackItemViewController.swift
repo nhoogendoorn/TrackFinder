@@ -86,13 +86,22 @@ class TrackItemViewController: UIViewController, TrackItemViewControllerDelegate
         trackTitle.numberOfLines = 0
         trackTitle.lineBreakMode = .byWordWrapping
         
+        trackArtistImageView.snp.makeConstraints {
+            $0.width.height.equalTo(32)
+        }
+        trackArtistImageView.clipsToBounds = true
+        
         trackArtistNameLabel.font = UIFont.systemFont(ofSize: 18)
         trackArtistNameLabel.textColor = .white
         trackAlbumTitle.font = UIFont.systemFont(ofSize: 18)
         trackAlbumTitle.textColor = .white
         
+        trackArtistStackView.addArrangedSubview(trackArtistImageView)
+        trackArtistStackView.addArrangedSubview(trackArtistNameLabel)
+        
+        
         trackInfoStackView.addArrangedSubview(trackTitle)
-        trackInfoStackView.addArrangedSubview(trackArtistNameLabel)
+        trackInfoStackView.addArrangedSubview(trackArtistStackView)
         trackInfoStackView.addArrangedSubview(trackAlbumTitle)
         
         scrollView.addSubview(playTrackStackView)
@@ -138,6 +147,11 @@ class TrackItemViewController: UIViewController, TrackItemViewControllerDelegate
     
     @objc func handleRefresh() {
         modelController.refreshData()
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        trackArtistImageView.layer.cornerRadius = 32 / 2
     }
 }
 
