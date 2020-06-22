@@ -30,6 +30,7 @@ extension SpotifyRequest {
         request.allHTTPHeaderFields = headers
         request.addQuery(query: queryItems)
         request.httpMethod = method.rawValue
+        request.cachePolicy = .returnCacheDataElseLoad
         return request
     }
     

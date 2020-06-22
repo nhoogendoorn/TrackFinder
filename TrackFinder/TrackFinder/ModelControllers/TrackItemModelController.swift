@@ -37,7 +37,6 @@ class TrackItemModelController: ObservableObject, DependencyResolver {
                     self.data = item
                     self.delegate?.setData()
                 }
-                
                 self.delegate?.refreshControl.endRefreshing()
             }            
         })
