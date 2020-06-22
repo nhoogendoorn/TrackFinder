@@ -27,7 +27,8 @@ class SearchService: SearchServiceProtocol {
     func searchTrack(query: String, completion: @escaping (Result<SearchTrackResponse, NetworkError>) -> Void) {
         let request = SearchTrackRequest(query: query, type: .track)
         apiManager.webApi.doRequest(request: request) { [weak self] result in
-            self?.handleSearchTrackResponse(result, completion: completion)
+            guard let `self` = self else { return }
+            self.handleSearchTrackResponse(result, completion: completion)
         }
     }
     
@@ -36,7 +37,8 @@ class SearchService: SearchServiceProtocol {
         // empty here as the given url contains the original query.
         let request = SearchTrackRequest(query: .empty, nextPage: nextPageUrl, type: .track)
         apiManager.webApi.doRequest(request: request) { [weak self] result in
-            self?.handleSearchTrackResponse(result, completion: completion)
+            guard let `self` = self else { return }
+            self.handleSearchTrackResponse(result, completion: completion)
         }
 
     }

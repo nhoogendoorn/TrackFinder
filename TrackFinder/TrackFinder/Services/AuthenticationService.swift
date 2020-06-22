@@ -32,7 +32,8 @@ class AuthenticationService: AuthenticationServiceProtocol, DependencyResolver {
     func getAccessToken(code: String?, completion: @escaping (Result<AuthTokenResponse, NetworkError>) -> Void) {
         guard let code = code else { completion(.failure(.postingError)); return }
         let request = AccessTokenRequest(code: code)
-        apiManager.webApi.doRequest(request: request) { result in
+        apiManager.webApi.doRequest(request: request) { [weak self] result in
+            guard let `self` = self else { return }
             if let response = try? result.getNetworkResult(AuthTokenResponse.self).get() {
                 DispatchQueue.main.async {
                     self.userPrefs?.saveTokens(response.authTokens)
@@ -51,7 +52,8 @@ class AuthenticationService: AuthenticationServiceProtocol, DependencyResolver {
         }
             
         let request = RefreshTokenRequest(refreshToken: tokens.refreshToken)
-        apiManager.webApi.doRequest(request: request) { result in
+        apiManager.webApi.doRequest(request: request) { [weak self] result in
+            guard let `self` = self else { return }
             if let data = try? result.getNetworkResult(RefreshTokenResponse.self) {
                 completion(data)
             } else {
