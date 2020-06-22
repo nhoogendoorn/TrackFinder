@@ -34,8 +34,10 @@ extension Data {
         if let correctData = self.toObject(T.self) {
             return .success(correctData)
         } else if self.toObject(ErrorResponse.self) != nil || self.toObject(SearchError.self) != nil {
+            log.error("Failed to fetch data")
             return .failure(.fetchingError)
         } else {
+            log.error("Failed to decode data")
             return .failure(.decodingError)
         }
     }

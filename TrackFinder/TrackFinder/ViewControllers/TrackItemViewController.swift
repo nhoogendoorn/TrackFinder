@@ -34,7 +34,9 @@ class TrackItemViewController: UIViewController, TrackItemViewControllerDelegate
     let playTrackStackView = UIStackView()
     let playImage = UIImageView(image: UIImage(systemName: "play.circle.fill"))
     let playTextLabel = UILabel()
-    let durationText = UILabel()
+//    let durationText = UILabel()
+    
+    let coverImageHeight: CGFloat = 304
     
     init(item: TrackItem) {
         self.modelController = TrackItemModelController(item: item)
@@ -58,7 +60,7 @@ class TrackItemViewController: UIViewController, TrackItemViewControllerDelegate
         scrollView.addSubview(coverImage)
         coverImage.snp.makeConstraints {
             $0.leading.trailing.top.equalToSuperview()
-            $0.height.equalTo(304)
+            $0.height.equalTo(coverImageHeight)
             $0.width.equalTo(view)
         }        
         scrollView.refreshControl = refreshControl
@@ -75,67 +77,76 @@ class TrackItemViewController: UIViewController, TrackItemViewControllerDelegate
         
         trackInfoView.addSubview(trackInfoStackView)
         trackInfoStackView.snp.makeConstraints {
-            $0.leading.equalToSuperview().offset(32)
-            $0.trailing.bottom.equalToSuperview().offset(-32)
+            $0.leading.equalToSuperview().offset(Spacing.large.rawValue)
+            $0.trailing.bottom.equalToSuperview().offset(-Spacing.large.rawValue)
         }
-        trackInfoStackView.spacing = 4
+        trackInfoStackView.spacing = Spacing.extraSmall.rawValue
         trackInfoStackView.axis = .vertical
         
-        trackTitle.font = UIFont.systemFont(ofSize: 40)
+        trackTitle.font = UIFont.systemFont(ofSize: FontSize.extraLargeTitle.value)
         trackTitle.textColor = .white
-        trackTitle.numberOfLines = 0
+        trackTitle.numberOfLines = .zero
         trackTitle.lineBreakMode = .byWordWrapping
         
         trackArtistImageView.snp.makeConstraints {
-            $0.width.height.equalTo(32)
+            $0.width.height.equalTo(Size.large.rawValue)
         }
         trackArtistImageView.clipsToBounds = true
         
-        trackArtistNameLabel.font = UIFont.systemFont(ofSize: 18)
+        trackArtistNameLabel.font = UIFont.systemFont(ofSize: FontSize.subTitle.value)
         trackArtistNameLabel.textColor = .white
-        trackAlbumTitle.font = UIFont.systemFont(ofSize: 18)
+        trackAlbumTitle.font = UIFont.systemFont(ofSize: FontSize.body.value)
         trackAlbumTitle.textColor = .white
         
+        trackArtistStackView.spacing = Spacing.small.rawValue
         trackArtistStackView.addArrangedSubview(trackArtistImageView)
         trackArtistStackView.addArrangedSubview(trackArtistNameLabel)
-        
-        
+             
         trackInfoStackView.addArrangedSubview(trackTitle)
         trackInfoStackView.addArrangedSubview(trackArtistStackView)
         trackInfoStackView.addArrangedSubview(trackAlbumTitle)
         
         scrollView.addSubview(playTrackStackView)
         playTrackStackView.snp.makeConstraints {
-            $0.top.equalTo(coverImage.snp.bottom).offset(24)
-            $0.leading.equalToSuperview().offset(24)
-            $0.trailing.equalToSuperview().offset(-24)
+            $0.top.equalTo(coverImage.snp.bottom).offset(Spacing.mediumLarge.rawValue)
+            $0.leading.equalToSuperview().offset(Spacing.mediumLarge.rawValue)
+            $0.trailing.equalToSuperview().offset(-Spacing.mediumLarge.rawValue)
             $0.bottom.equalToSuperview()
         }
         playTrackStackView.distribution = .fill
-        playTrackStackView.spacing = 8
+        playTrackStackView.spacing = Spacing.small.rawValue
         
         playImage.snp.makeConstraints {
-            $0.width.height.equalTo(24)
+            $0.width.height.equalTo(Size.huge.rawValue)
         }
         //        playImage.contentMode = .scaleAspectFit
         playImage.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
+        playImage.isUserInteractionEnabled = true
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(playButtonPressed))
+        playImage.addGestureRecognizer(tapGesture)
+        playImage.tintColor = .mainColor
         
         playTextLabel.text = .playTrack
-        durationText.text = "3:03"
+//        durationText.text = "3:03"
         //        durationText.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         
         playTrackStackView.addArrangedSubview(playImage)
         playTrackStackView.addArrangedSubview(playTextLabel)
-        playTrackStackView.addArrangedSubview(durationText)
+//        playTrackStackView.addArrangedSubview(durationText)
         
         setData()
         modelController.getArtistInformation()
     }
     
+    @objc func playButtonPressed() {
+        guard let url = URL(string: modelController.data.uri) else { return }
+        UIApplication.shared.open(url)
+    }
+    
     func setData() {
         trackTitle.text = modelController.data.name
         trackArtistNameLabel.text = modelController.data.artists.first?.name
-        trackAlbumTitle.text = modelController.data.album.name
+        trackAlbumTitle.text = modelController.albumTitle
         coverImage.loadImage(with: modelController.data.album.images.randomElement()?.url,
                              cacheKey: modelController.data.album.id)
     }
@@ -151,38 +162,6 @@ class TrackItemViewController: UIViewController, TrackItemViewControllerDelegate
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        trackArtistImageView.layer.cornerRadius = 32 / 2
-    }
-}
-
-class NetworkImageView: UIImageView {
-    let urlString: String? = nil
-    
-    func loadImage(with url: String?, cacheKey: String?) {
-        guard
-            let urlString = urlString,
-            let url = URL(string: urlString)
-        else { return }
-
-        let resource = ImageResource(downloadURL: url, cacheKey: cacheKey)
-        self.kf.indicatorType = .activity
-        self.kf.setImage(with: resource, placeholder: UIImage.placeholderImage)
-    }
-    
-}
-
-extension UIImage {
-    static let placeholderImage = UIImage(color: .gray, size: CGSize(width: 1024, height: 1024))
-    
-    public convenience init?(color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) {
-        let rect = CGRect(origin: .zero, size: size)
-        UIGraphicsBeginImageContextWithOptions(rect.size, false, 0.0)
-        color.setFill()
-        UIRectFill(rect)
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        guard let cgImage = image?.cgImage else { return nil }
-        self.init(cgImage: cgImage)
+        trackArtistImageView.layer.cornerRadius = Size.large.rawValue / 2
     }
 }

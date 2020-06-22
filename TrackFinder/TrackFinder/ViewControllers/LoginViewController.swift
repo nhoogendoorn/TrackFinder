@@ -45,12 +45,12 @@ class LoginViewController: UIViewController, DependencyResolver, SPTAppRemoteDel
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(true, animated: false)
         contentStack.axis = .vertical
-        contentStack.spacing = 24
+        contentStack.spacing = Spacing.mediumLarge.rawValue
         view.addSubview(contentStack)
         contentStack.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.leading.equalToSuperview().offset(24)
-            $0.trailing.equalToSuperview().offset(-24)
+            $0.leading.equalToSuperview().offset(Spacing.mediumLarge.rawValue)
+            $0.trailing.equalToSuperview().offset(-Spacing.mediumLarge.rawValue)
         }
         
         logo.snp.makeConstraints {
@@ -60,7 +60,10 @@ class LoginViewController: UIViewController, DependencyResolver, SPTAppRemoteDel
                
         button.backgroundColor = .mainColor
         button.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-        button.titleEdgeInsets = UIEdgeInsets(top: 32, left: 32, bottom: 32, right: 32)
+        button.titleEdgeInsets = UIEdgeInsets(top: Spacing.large.rawValue,
+                                              left: Spacing.large.rawValue,
+                                              bottom: Spacing.large.rawValue,
+                                              right: Spacing.large.rawValue)
         
         button.setTitle(.loginAction, for: .normal)
         button.setTitleColor(.white, for: .normal)
@@ -68,7 +71,7 @@ class LoginViewController: UIViewController, DependencyResolver, SPTAppRemoteDel
         
         label.text = .loginExplanation
         label.textColor = .gray
-        label.numberOfLines = 0
+        label.numberOfLines = .zero
         label.lineBreakMode = .byWordWrapping
         label.textAlignment = .center
         
@@ -83,7 +86,7 @@ class LoginViewController: UIViewController, DependencyResolver, SPTAppRemoteDel
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        button.layer.cornerRadius = 8
+        button.layer.cornerRadius = Spacing.small.rawValue
     }
         
     func sessionManager(manager: SPTSessionManager, didInitiate session: SPTSession) {

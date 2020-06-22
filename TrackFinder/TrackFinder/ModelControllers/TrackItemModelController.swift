@@ -12,6 +12,10 @@ class TrackItemModelController: ObservableObject, DependencyResolver {
     var data: TrackItem    
     var artist: CompleteArtist?
     
+    var albumTitle: String {
+        "\(String.album) \(String.bullet) \(data.album.name)"
+    }
+    
     weak var delegate: TrackItemViewControllerDelegate?
     
     var trackItemService: TrackItemServiceProtocol? {

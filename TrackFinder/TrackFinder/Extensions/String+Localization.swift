@@ -15,6 +15,7 @@ extension String {
     static let startSearching = NSLocalizedString("Start searching \u{1F9D0}", comment: "")
     static let loginExplanation = NSLocalizedString("This app requires access to Spotify in order to final your favorite tracks", comment: "")
     static let playTrack = NSLocalizedString("Play track", comment: "")
+    static let album = NSLocalizedString("Album", comment: "")
 
     // MARK: - Button Texts
     static let loginAction = NSLocalizedString("Connect to Spotify", comment: "")

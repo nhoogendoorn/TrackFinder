@@ -14,7 +14,7 @@ class SearchItemCell: UITableViewCell {
     let titleStack = UIStackView()
     let trackNameLabel = UILabel()
     let artistNameLabel = UILabel()
-    let albumImage = UIImageView()
+    let albumImage = NetworkImageView()
     let arrowRightImage = UIImageView(image: UIImage(systemName: "chevron.right"))
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -65,10 +65,8 @@ class SearchItemCell: UITableViewCell {
     func setText(trackItem: TrackItem) {
         trackNameLabel.text = trackItem.name
         artistNameLabel.text = trackItem.artists.first?.name
-        
-        guard let urlString = trackItem.album.images.randomElement()?.url, let url = URL(string: urlString) else { return }
-        let resource = ImageResource(downloadURL: url, cacheKey: trackItem.id)
-        albumImage.kf.setImage(with: resource)
+        albumImage.loadImage(with: trackItem.album.images.first?.url,
+                             cacheKey: trackItem.album.id)        
     }
     
     override func layoutSubviews() {

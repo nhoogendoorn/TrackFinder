@@ -55,7 +55,7 @@ class SearchScreenViewController: UIViewController, SearchScreenViewControllerPr
         
         loader.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalToSuperview().offset(16)
+            $0.top.equalToSuperview().offset(Spacing.medium.rawValue)
         }
         loader.hidesWhenStopped = true
         loader.stopAnimating()
