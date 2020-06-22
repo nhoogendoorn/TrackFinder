@@ -76,6 +76,7 @@
 		A6FA1EBE24A1128500BAC327 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FA1EBD24A1128500BAC327 /* UIImage+Extension.swift */; };
 		A6FA1EC024A1129E00BAC327 /* Spacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FA1EBF24A1129E00BAC327 /* Spacing.swift */; };
 		A6FA1EC224A1131D00BAC327 /* Font+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FA1EC124A1131D00BAC327 /* Font+Extension.swift */; };
+		A6FA1EC924A15ED000BAC327 /* LoginViewController+Views.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FA1EC824A15ED000BAC327 /* LoginViewController+Views.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -159,6 +160,7 @@
 		A6FA1EBD24A1128500BAC327 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		A6FA1EBF24A1129E00BAC327 /* Spacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacing.swift; sourceTree = "<group>"; };
 		A6FA1EC124A1131D00BAC327 /* Font+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Extension.swift"; sourceTree = "<group>"; };
+		A6FA1EC824A15ED000BAC327 /* LoginViewController+Views.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginViewController+Views.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -308,6 +310,7 @@
 			isa = PBXGroup;
 			children = (
 				A6345F192499481F0070D2C2 /* LoginViewController.swift */,
+				A6FA1EC824A15ED000BAC327 /* LoginViewController+Views.swift */,
 				A6345F87249A802A0070D2C2 /* SearchScreenViewController.swift */,
 				A6FA1EA2249FFE2100BAC327 /* TrackItemViewController.swift */,
 			);
@@ -364,7 +367,8 @@
 		A6345F2A2499500A0070D2C2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				A60F5696249E36BD00156178 /* SearchItemCell.swift */,
+				A6FA1EC524A15D5400BAC327 /* TrackItemViews */,
+				A6FA1EC424A15D4B00BAC327 /* SearchScreenViews */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -450,6 +454,21 @@
 				A60F5692249E233A00156178 /* StandardDateFormatter.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		A6FA1EC424A15D4B00BAC327 /* SearchScreenViews */ = {
+			isa = PBXGroup;
+			children = (
+				A60F5696249E36BD00156178 /* SearchItemCell.swift */,
+			);
+			path = SearchScreenViews;
+			sourceTree = "<group>";
+		};
+		A6FA1EC524A15D5400BAC327 /* TrackItemViews */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = TrackItemViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -596,6 +615,7 @@
 				A60F56AE249F4E8A00156178 /* ExternalUrl.swift in Sources */,
 				A60F56A6249E48D500156178 /* TrackItem.swift in Sources */,
 				A61B3861249CF2A200286F61 /* Headers.swift in Sources */,
+				A6FA1EC924A15ED000BAC327 /* LoginViewController+Views.swift in Sources */,
 				A61B3852249CE6E200286F61 /* SpotifyRequest.swift in Sources */,
 				A60F5697249E36BD00156178 /* SearchItemCell.swift in Sources */,
 				A60F5689249CF74900156178 /* Data+Extension.swift in Sources */,
