@@ -22,7 +22,7 @@ class SpotifyApi: WebApiProtocol, DependencyResolver {
         // internet connection and the access token is not expired.
         operationQueue.setSuspensionState()
         
-        if operationQueue.currentTokenIsExpired() {
+        if operationQueue.currentTokenIsExpired {
             handleRefreshTokenOperation(completion: completion)
         }
         

@@ -11,10 +11,10 @@ import Network
 
 protocol ApiOperationQueueProtocol {
     var hasInternetConnection: Bool { get }
+    var currentTokenIsExpired: Bool { get }
     func setSuspensionState()
     func applyNewToken(tokens: AuthTokens?)
     func addApiOperation(_ operation: ApiRequestOperation)
-    func currentTokenIsExpired() -> Bool
 }
 
 class ApiOperationQueue: OperationQueue, ApiOperationQueueProtocol, DependencyResolver {
@@ -23,26 +23,17 @@ class ApiOperationQueue: OperationQueue, ApiOperationQueueProtocol, DependencyRe
     
     var hasInternetConnection = true
     var currentAccessToken: AuthTokens?
+    var currentTokenIsExpired: Bool {
+        guard let tokens = currentAccessToken else { return false }
+        return tokens.isExpired
+    }
     
     static let shared = ApiOperationQueue()
     
     override init() {
         super.init()
-        
         addInternetConnectionObserver()
         currentAccessToken = getAuthenticationTokens()
-    }
-    
-    fileprivate func addInternetConnectionObserver() {
-        monitor.pathUpdateHandler = { [weak self] pathUpdateHandler in
-            guard let `self` = self else { return }
-            DispatchQueue.main.async {
-                self.hasInternetConnection = pathUpdateHandler.status == .satisfied
-            }
-            self.setSuspensionState()
-                        
-        }
-        monitor.start(queue: self.queue)
     }
     
     func applyNewToken(tokens: AuthTokens?) {
@@ -57,35 +48,38 @@ class ApiOperationQueue: OperationQueue, ApiOperationQueueProtocol, DependencyRe
         
     }
     
-    func currentTokenIsExpired() -> Bool {
-        guard let tokens = currentAccessToken else { return false }
-        return tokens.isExpired
-    }
-    
     func addApiOperation(_ operation: ApiRequestOperation) {
         self.addOperation(operation)
         
-        if shouldSuspendQueue() == false {
+        if QueueHelper.shouldSuspendQueue(self) == false {
             operation.task.resume()
         }
     }
     
     func setSuspensionState() {
-        let newSuspensionState = self.shouldSuspendQueue()
-        let currentlySupsended = self.isSuspended
+        let newSuspensionState = QueueHelper.shouldSuspendQueue(self)
         self.isSuspended = newSuspensionState
         
-        // Only resume the tasks if the queue is currently suspended and the
-        // new state is false.
-        if currentlySupsended && newSuspensionState == false {
+        // Continue tasks when queue is no longer suspended.
+        if newSuspensionState == false {
             self.operations.forEach {
                 guard let operation = $0 as? ApiRequestOperation else { return }
                 operation.task.resume()
             }
         }
     }
-    
-    func shouldSuspendQueue() -> Bool {
-        return !hasInternetConnection || currentTokenIsExpired()
+}
+
+extension ApiOperationQueue {
+    private func addInternetConnectionObserver() {
+        monitor.pathUpdateHandler = { [weak self] pathUpdateHandler in
+            guard let `self` = self else { return }
+            DispatchQueue.main.async {
+                self.hasInternetConnection = pathUpdateHandler.status == .satisfied
+            }
+            self.setSuspensionState()
+            
+        }
+        monitor.start(queue: self.queue)
     }
 }

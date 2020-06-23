@@ -25,6 +25,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, DependencyResolver {
         window?.rootViewController = UINavigationController(rootViewController: rootViewController)
         window?.makeKeyAndVisible()
         
+        // Check and set the suspension state so that the API queue will start
+        // observing the internet connection state.
+        ApiOperationQueue.shared.setSuspensionState()
+        
         loadSearchViewControllerIfNotPresented()
     }
     
@@ -42,9 +46,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, DependencyResolver {
     }
     
     func loadSearchViewControllerIfNotPresented() {
-        let hasTokens = getAuthenticationTokens() != nil
-        let rootViewControllerIsBeingPresented = !(rootViewController.navigationController?.viewControllers.contains(where: { $0 is SearchScreenViewController}) == true)
-        if hasTokens, rootViewControllerIsBeingPresented {
+        let hasTokens = getAuthenticationTokens() != nil        
+        if SceneDelegateHelper.shouldPushSearchViewController(hasTokens, rootVC: rootViewController) {
             DispatchQueue.main.async {
                 self.rootViewController.navigationController?.pushViewController(SearchScreenViewController(),
                                                                             animated: false)

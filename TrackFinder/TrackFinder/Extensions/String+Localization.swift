@@ -22,5 +22,6 @@ extension String {
     
     // MARK: - Errors
     static let noTracksFound = NSLocalizedString("No tracks found", comment: "")
+    static let spotifyConnectionError = NSLocalizedString("Could not connect to Spotify", comment: "")
     static let generalError = NSLocalizedString("Something went wrong..", comment: "")
 }

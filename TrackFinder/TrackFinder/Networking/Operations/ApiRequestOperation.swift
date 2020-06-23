@@ -33,8 +33,8 @@ class ApiRequestOperation: Operation {
         self.task = session.dataTask(with: request, completionHandler: { (data, response, _) in
             self.saveResponseToCache(data: data, response: response, request: request)
             data?.logDataResponse(prefix: "Data")
-            if let response = data {
-                self.completion(.success(response))
+            if let foundData = data {
+                self.completion(.success(foundData))
             } else {
                 self.completion(.failure(.fetchingError))
             }

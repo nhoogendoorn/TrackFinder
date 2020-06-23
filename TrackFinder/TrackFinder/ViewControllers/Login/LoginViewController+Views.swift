@@ -14,10 +14,12 @@ extension LoginViewController {
         setLogoView()
         setLoginButton()
         setLoginExplanationLabel()
+        setLoginErrorLabel()
         
         contentStack.addArrangedSubview(logoImageView)
         contentStack.addArrangedSubview(loginButton)
         contentStack.addArrangedSubview(loginExplanationLabel)
+        contentStack.addArrangedSubview(loginErrorMessageLabel)
     }
     
     fileprivate func setLoginButton() {
@@ -45,6 +47,12 @@ extension LoginViewController {
         loginExplanationLabel.numberOfLines = .zero
         loginExplanationLabel.lineBreakMode = .byWordWrapping
         loginExplanationLabel.textAlignment = .center
+    }
+    
+    fileprivate func setLoginErrorLabel() {
+        loginErrorMessageLabel.text = .empty
+        loginErrorMessageLabel.textColor = .systemRed
+        loginErrorMessageLabel.textAlignment = .center
     }
     
     fileprivate func setContentStack() {

@@ -39,6 +39,7 @@ class LoginViewController: UIViewController, DependencyResolver, SPTAppRemoteDel
     let logoImageView = UIImageView(image: UIImage(named: "logo"))
     let loginButton = UIButton()
     let loginExplanationLabel = UILabel()
+    let loginErrorMessageLabel = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +49,12 @@ class LoginViewController: UIViewController, DependencyResolver, SPTAppRemoteDel
     
     @objc func loginButtonPressed() {
         authService?.startSpotifyAuthorization()
+    }
+    
+    func showError(_ show: Bool) {
+        DispatchQueue.main.async {
+            self.loginErrorMessageLabel.text = show ? .spotifyConnectionError : .empty
+        }
     }
     
     override func viewWillLayoutSubviews() {
