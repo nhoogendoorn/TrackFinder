@@ -9,8 +9,7 @@
 import UIKit
 import SnapKit
 
-class LoginViewController: UIViewController, DependencyResolver, SPTAppRemoteDelegate, SPTSessionManagerDelegate {
-    
+class LoginViewController: UIViewController, DependencyResolver {    
     lazy var authService: AuthenticationServiceProtocol? = {
         container?.resolve(AuthenticationServiceProtocol.self)
     }()
@@ -29,12 +28,7 @@ class LoginViewController: UIViewController, DependencyResolver, SPTAppRemoteDel
         appRemote.delegate = self
         return appRemote
     }()
-    
-    lazy var sessionManager: SPTSessionManager = {
-        let manager = SPTSessionManager(configuration: configuration, delegate: self)
-        return manager
-    }()
-    
+        
     let contentStack = UIStackView()
     let logoImageView = UIImageView(image: UIImage(named: "logo"))
     let loginButton = UIButton()
@@ -62,14 +56,10 @@ class LoginViewController: UIViewController, DependencyResolver, SPTAppRemoteDel
         loginButton.layer.cornerRadius = Spacing.small.rawValue
     }
     
-    func sessionManager(manager: SPTSessionManager, didInitiate session: SPTSession) {
-        log.debug("didInitiate")
-    }
     
-    func sessionManager(manager: SPTSessionManager, didFailWith error: Error) {
-        log.error("didFailWith: \(error.localizedDescription)")
-    }
-    
+}
+
+extension LoginViewController: SPTAppRemoteDelegate {
     func appRemoteDidEstablishConnection(_ appRemote: SPTAppRemote) {
         log.debug("appRemoteDidEstablishConnection")
     }
