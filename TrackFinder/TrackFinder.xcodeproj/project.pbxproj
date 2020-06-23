@@ -65,6 +65,18 @@
 		A6507CD024A1F33400768DE2 /* QueueHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6507CCF24A1F33400768DE2 /* QueueHelper.swift */; };
 		A696EA6424A1F6380008D132 /* SceneDelegateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A696EA6324A1F6380008D132 /* SceneDelegateHelper.swift */; };
 		A696EA6724A1FC140008D132 /* SearchModelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A696EA6624A1FC140008D132 /* SearchModelHelper.swift */; };
+		A696EA6E24A2065B0008D132 /* SpotifyRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A696EA6C24A206460008D132 /* SpotifyRequestTests.swift */; };
+		A696EA7024A206C70008D132 /* RoutingPathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A696EA6F24A206C70008D132 /* RoutingPathTests.swift */; };
+		A696EA7224A206E60008D132 /* URLRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A696EA7124A206E60008D132 /* URLRequestTests.swift */; };
+		A696EA7424A2072D0008D132 /* AuthenticationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A696EA7324A2072D0008D132 /* AuthenticationServiceTests.swift */; };
+		A696EA7624A207350008D132 /* SearchServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A696EA7524A207350008D132 /* SearchServiceTests.swift */; };
+		A696EA7824A207400008D132 /* TrackItemServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A696EA7724A207400008D132 /* TrackItemServiceTests.swift */; };
+		A696EA7A24A2075B0008D132 /* SearchModelControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A696EA7924A2075B0008D132 /* SearchModelControllerTests.swift */; };
+		A696EA7C24A207690008D132 /* TrackItemModelControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A696EA7B24A207690008D132 /* TrackItemModelControllerTests.swift */; };
+		A696EA7E24A2077C0008D132 /* SearchModelHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A696EA7D24A2077C0008D132 /* SearchModelHelperTests.swift */; };
+		A696EA8024A207840008D132 /* QueueHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A696EA7F24A207840008D132 /* QueueHelperTests.swift */; };
+		A696EA8224A207950008D132 /* SceneDelegateHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A696EA8124A207950008D132 /* SceneDelegateHelperTests.swift */; };
+		A696EA8524A211A70008D132 /* MockSpotifyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A696EA8424A211A70008D132 /* MockSpotifyRequest.swift */; };
 		A6FA1EA3249FFE2100BAC327 /* TrackItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FA1EA2249FFE2100BAC327 /* TrackItemViewController.swift */; };
 		A6FA1EA6249FFEE000BAC327 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = A6FA1EA5249FFEE000BAC327 /* Kingfisher */; };
 		A6FA1EA824A0032800BAC327 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FA1EA724A0032800BAC327 /* UIColor+Extension.swift */; };
@@ -157,6 +169,18 @@
 		A6507CCF24A1F33400768DE2 /* QueueHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueHelper.swift; sourceTree = "<group>"; };
 		A696EA6324A1F6380008D132 /* SceneDelegateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegateHelper.swift; sourceTree = "<group>"; };
 		A696EA6624A1FC140008D132 /* SearchModelHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModelHelper.swift; sourceTree = "<group>"; };
+		A696EA6C24A206460008D132 /* SpotifyRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyRequestTests.swift; sourceTree = "<group>"; };
+		A696EA6F24A206C70008D132 /* RoutingPathTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutingPathTests.swift; sourceTree = "<group>"; };
+		A696EA7124A206E60008D132 /* URLRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestTests.swift; sourceTree = "<group>"; };
+		A696EA7324A2072D0008D132 /* AuthenticationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationServiceTests.swift; sourceTree = "<group>"; };
+		A696EA7524A207350008D132 /* SearchServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchServiceTests.swift; sourceTree = "<group>"; };
+		A696EA7724A207400008D132 /* TrackItemServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackItemServiceTests.swift; sourceTree = "<group>"; };
+		A696EA7924A2075B0008D132 /* SearchModelControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModelControllerTests.swift; sourceTree = "<group>"; };
+		A696EA7B24A207690008D132 /* TrackItemModelControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackItemModelControllerTests.swift; sourceTree = "<group>"; };
+		A696EA7D24A2077C0008D132 /* SearchModelHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModelHelperTests.swift; sourceTree = "<group>"; };
+		A696EA7F24A207840008D132 /* QueueHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueHelperTests.swift; sourceTree = "<group>"; };
+		A696EA8124A207950008D132 /* SceneDelegateHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegateHelperTests.swift; sourceTree = "<group>"; };
+		A696EA8424A211A70008D132 /* MockSpotifyRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSpotifyRequest.swift; sourceTree = "<group>"; };
 		A6FA1EA2249FFE2100BAC327 /* TrackItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackItemViewController.swift; sourceTree = "<group>"; };
 		A6FA1EA724A0032800BAC327 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		A6FA1EA924A0080F00BAC327 /* TrackItemModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackItemModelController.swift; sourceTree = "<group>"; };
@@ -312,6 +336,7 @@
 		A6345F0C249947280070D2C2 /* TrackFinderTests */ = {
 			isa = PBXGroup;
 			children = (
+				A696EA8324A211980008D132 /* Utils */,
 				A696EA6B24A2056E0008D132 /* Networking */,
 				A696EA6A24A2041E0008D132 /* ExtensionTests */,
 				A696EA6924A202FF0008D132 /* ServiceTests */,
@@ -441,6 +466,9 @@
 		A696EA6524A1FBA50008D132 /* HelperTests */ = {
 			isa = PBXGroup;
 			children = (
+				A696EA7D24A2077C0008D132 /* SearchModelHelperTests.swift */,
+				A696EA7F24A207840008D132 /* QueueHelperTests.swift */,
+				A696EA8124A207950008D132 /* SceneDelegateHelperTests.swift */,
 			);
 			path = HelperTests;
 			sourceTree = "<group>";
@@ -448,6 +476,8 @@
 		A696EA6824A202ED0008D132 /* ModelControllerTests */ = {
 			isa = PBXGroup;
 			children = (
+				A696EA7924A2075B0008D132 /* SearchModelControllerTests.swift */,
+				A696EA7B24A207690008D132 /* TrackItemModelControllerTests.swift */,
 			);
 			path = ModelControllerTests;
 			sourceTree = "<group>";
@@ -455,6 +485,9 @@
 		A696EA6924A202FF0008D132 /* ServiceTests */ = {
 			isa = PBXGroup;
 			children = (
+				A696EA7324A2072D0008D132 /* AuthenticationServiceTests.swift */,
+				A696EA7524A207350008D132 /* SearchServiceTests.swift */,
+				A696EA7724A207400008D132 /* TrackItemServiceTests.swift */,
 			);
 			path = ServiceTests;
 			sourceTree = "<group>";
@@ -462,6 +495,7 @@
 		A696EA6A24A2041E0008D132 /* ExtensionTests */ = {
 			isa = PBXGroup;
 			children = (
+				A696EA7124A206E60008D132 /* URLRequestTests.swift */,
 			);
 			path = ExtensionTests;
 			sourceTree = "<group>";
@@ -469,8 +503,18 @@
 		A696EA6B24A2056E0008D132 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				A696EA6C24A206460008D132 /* SpotifyRequestTests.swift */,
+				A696EA6F24A206C70008D132 /* RoutingPathTests.swift */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		A696EA8324A211980008D132 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				A696EA8424A211A70008D132 /* MockSpotifyRequest.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		A6DB5ED824A1F011004DE08F /* Errors */ = {
@@ -792,6 +836,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A696EA8224A207950008D132 /* SceneDelegateHelperTests.swift in Sources */,
+				A696EA7A24A2075B0008D132 /* SearchModelControllerTests.swift in Sources */,
+				A696EA6E24A2065B0008D132 /* SpotifyRequestTests.swift in Sources */,
+				A696EA7C24A207690008D132 /* TrackItemModelControllerTests.swift in Sources */,
+				A696EA8524A211A70008D132 /* MockSpotifyRequest.swift in Sources */,
+				A696EA7024A206C70008D132 /* RoutingPathTests.swift in Sources */,
+				A696EA7824A207400008D132 /* TrackItemServiceTests.swift in Sources */,
+				A696EA7424A2072D0008D132 /* AuthenticationServiceTests.swift in Sources */,
+				A696EA7E24A2077C0008D132 /* SearchModelHelperTests.swift in Sources */,
+				A696EA7624A207350008D132 /* SearchServiceTests.swift in Sources */,
+				A696EA7224A206E60008D132 /* URLRequestTests.swift in Sources */,
+				A696EA8024A207840008D132 /* QueueHelperTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

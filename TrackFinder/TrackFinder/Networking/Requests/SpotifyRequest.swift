@@ -28,8 +28,8 @@ extension SpotifyRequest {
     fileprivate func generateSpotifyRequest() -> URLRequest {
         var request = URLRequest(routingPath: routingPath)
         request.allHTTPHeaderFields = headers
-        request.addQuery(query: queryItems)
         request.httpMethod = method.rawValue
+        request.addQuery(query: queryItems)        
         request.cachePolicy = .returnCacheDataElseLoad
         return request
     }
