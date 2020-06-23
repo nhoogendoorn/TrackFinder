@@ -36,7 +36,7 @@ class SearchScreenViewController: UIViewController, SearchScreenViewControllerPr
     func searchStateChanged(state: SearchModelController) {
         DispatchQueue.main.async {
             self.tableView.reloadData()
-            self.tableView.showBackground(state.data.isEmpty, with: state.errorMessage)
+            self.tableView.showBackground(state.showBackground, with: state.errorMessage)
             self.loader.stopAnimating()
         }
     }

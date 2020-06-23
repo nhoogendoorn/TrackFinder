@@ -32,7 +32,7 @@ extension SearchScreenViewController: UISearchResultsUpdating {
         self.searchTask?.cancel()
 
         let task = DispatchWorkItem { [weak self] in
-            self?.modelController.loadData(search: text)
+            self?.modelController.searchQuery(query: text)
         }
         self.searchTask = task
 

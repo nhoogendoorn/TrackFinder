@@ -55,8 +55,6 @@ class LoginViewController: UIViewController, DependencyResolver {
         super.viewWillLayoutSubviews()
         loginButton.layer.cornerRadius = Spacing.small.rawValue
     }
-    
-    
 }
 
 extension LoginViewController: SPTAppRemoteDelegate {

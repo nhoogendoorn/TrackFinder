@@ -11,8 +11,7 @@ import Kingfisher
 
 protocol TrackItemViewControllerDelegate: class {
     var refreshControl: UIRefreshControl { get }
-    func setData()
-    func setArtistImage()
+    func stateChanged(state: TrackItemModelController)    
 }
 
 class TrackItemViewController: UIViewController, TrackItemViewControllerDelegate {
@@ -54,7 +53,8 @@ class TrackItemViewController: UIViewController, TrackItemViewControllerDelegate
         refreshControl.addTarget(self,
                                  action: #selector(handleRefresh),
                                  for: .valueChanged)
-        setData()        
+        stateChanged(state: modelController)
+        modelController.getArtistInformation()
     }
     
     override func viewWillLayoutSubviews() {
@@ -62,18 +62,17 @@ class TrackItemViewController: UIViewController, TrackItemViewControllerDelegate
         trackArtistImageView.layer.cornerRadius = Size.large.rawValue / 2
     }
     
-    func setData() {
-        trackTitle.text = modelController.data.name
-        trackArtistNameLabel.text = modelController.data.artists.first?.name
-        trackAlbumTitle.text = modelController.albumTitle
-        coverImage.loadImage(with: modelController.data.album.images.randomElement()?.url,
-                             cacheKey: modelController.data.album.id)
-        modelController.getArtistInformation()
-    }
-    
-    func setArtistImage() {
-        trackArtistImageView.loadImage(with: modelController.artist?.images.first?.url,
-                                       cacheKey: modelController.artist?.id)
+    func stateChanged(state: TrackItemModelController) {
+        DispatchQueue.main.async {
+            self.trackTitle.text = state.trackTitle
+            self.trackArtistNameLabel.text = state.artistName
+            self.trackAlbumTitle.text = state.albumTitle
+            self.coverImage.loadImage(with: state.albumCoverUrl,
+                                      cacheKey: state.albumId)
+            self.trackArtistImageView.loadImage(with: state.artistImageUrl,
+                                           cacheKey: state.artistId)
+            
+        }
     }
     
     @objc func playButtonPressed() {

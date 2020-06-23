@@ -12,18 +12,21 @@ class TrackItemModelController: ObservableObject, DependencyResolver {
     var data: TrackItem    
     var artist: CompleteArtist?
     
-    var albumTitle: String {
-        "\(String.album) \(String.bullet) \(data.album.name)"
-    }
+    var trackTitle: String { data.name }
+    var artistName: String? { data.artists.first?.name }
+    var albumTitle: String { "\(String.album) \(String.bullet) \(data.album.name)" }
+    var albumId: String { data.album.id }
+    var albumCoverUrl: String? { data.album.images.first?.url }
+    var artistImageUrl: String? { artist?.images.first?.url }
+    var artistId: String? { artist?.id }
     
     weak var delegate: TrackItemViewControllerDelegate?
     
-    var trackItemService: TrackItemServiceProtocol? {
-        container?.resolve(TrackItemServiceProtocol.self)
-    }
+    var trackItemService: TrackItemServiceProtocol?
     
     init(item: TrackItem) {
         data = item
+        trackItemService = container?.resolve(TrackItemServiceProtocol.self)
     }
     
     func refreshData() {
@@ -35,7 +38,7 @@ class TrackItemModelController: ObservableObject, DependencyResolver {
                     log.error("Error refreshing data")
                 case .success(let item):
                     self.data = item
-                    self.delegate?.setData()
+                    self.delegate?.stateChanged(state: self)
                 }
                 self.delegate?.refreshControl.endRefreshing()
             }            
@@ -51,7 +54,7 @@ class TrackItemModelController: ObservableObject, DependencyResolver {
                 log.error("Failed to get artist")
             case .success(let artist):
                 self.artist = artist
-                self.delegate?.setArtistImage()
+                self.delegate?.stateChanged(state: self)
             }
         })
     }

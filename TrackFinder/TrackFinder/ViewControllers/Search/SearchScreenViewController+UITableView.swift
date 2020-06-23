@@ -28,7 +28,6 @@ extension SearchScreenViewController: UITableViewDataSource, UITableViewDelegate
         guard modelController.data.indices.contains(indexPath.row) else { return }
         let item = modelController.data[indexPath.row]
         let detailVC = TrackItemViewController(item: item)
-        detailVC.setData()
         DispatchQueue.main.async {
             self.navigationController?.pushViewController(detailVC, animated: true)
         }
