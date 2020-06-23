@@ -19,4 +19,8 @@ extension String {
 
     // MARK: - Button Texts
     static let loginAction = NSLocalizedString("Connect to Spotify", comment: "")
+    
+    // MARK: - Errors
+    static let noTracksFound = NSLocalizedString("No tracks found", comment: "")
+    static let generalError = NSLocalizedString("Something went wrong..", comment: "")
 }

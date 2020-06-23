@@ -58,7 +58,7 @@
 		A6345F91249BB7410070D2C2 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = A6345F90249BB7400070D2C2 /* Swinject */; };
 		A6345F94249BB7760070D2C2 /* AppDelegate+Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6345F93249BB7760070D2C2 /* AppDelegate+Dependencies.swift */; };
 		A6345F96249BB7830070D2C2 /* SceneDelegate+SpotifyCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6345F95249BB7830070D2C2 /* SceneDelegate+SpotifyCallback.swift */; };
-		A6345F9A249BC23C0070D2C2 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6345F99249BC23C0070D2C2 /* ErrorResponse.swift */; };
+		A6345F9A249BC23C0070D2C2 /* AuthenticationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6345F99249BC23C0070D2C2 /* AuthenticationError.swift */; };
 		A6345FA0249C04030070D2C2 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6345F9F249C04030070D2C2 /* Environment.swift */; };
 		A6345FA2249C05080070D2C2 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6345FA1249C05080070D2C2 /* String+Extension.swift */; };
 		A6345FA4249C053C0070D2C2 /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6345FA3249C053C0070D2C2 /* String+Localization.swift */; };
@@ -148,7 +148,7 @@
 		A6345F8D249B89710070D2C2 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		A6345F93249BB7760070D2C2 /* AppDelegate+Dependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Dependencies.swift"; sourceTree = "<group>"; };
 		A6345F95249BB7830070D2C2 /* SceneDelegate+SpotifyCallback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SceneDelegate+SpotifyCallback.swift"; sourceTree = "<group>"; };
-		A6345F99249BC23C0070D2C2 /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
+		A6345F99249BC23C0070D2C2 /* AuthenticationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationError.swift; sourceTree = "<group>"; };
 		A6345F9F249C04030070D2C2 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		A6345FA1249C05080070D2C2 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		A6345FA3249C053C0070D2C2 /* String+Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localization.swift"; sourceTree = "<group>"; };
@@ -199,6 +199,7 @@
 		A60F5685249CF6B900156178 /* Controls */ = {
 			isa = PBXGroup;
 			children = (
+				A6345F9E249C03F80070D2C2 /* General */,
 				A6FA1EBA24A1124F00BAC327 /* Utils */,
 				A6FA1EB924A1124800BAC327 /* Enums */,
 				A6FA1EB824A1124100BAC327 /* Views */,
@@ -236,7 +237,6 @@
 				A60F56A5249E48D500156178 /* TrackItem.swift */,
 				A60F56A7249E48FB00156178 /* Album.swift */,
 				A60F56A9249E490D00156178 /* TrackArtist.swift */,
-				A6FA1EB124A0C49900BAC327 /* CompleteArtist.swift */,
 				A6FA1EB324A0C4BF00BAC327 /* Followers.swift */,
 				A60F56AB249E492900156178 /* CoverImage.swift */,
 				A60F56AD249F4E8A00156178 /* ExternalUrl.swift */,
@@ -289,16 +289,14 @@
 		A6345EF5249947250070D2C2 /* TrackFinder */ = {
 			isa = PBXGroup;
 			children = (
-				A60F5685249CF6B900156178 /* Controls */,
-				A61B3850249CE6C700286F61 /* Requests */,
-				A6345F9E249C03F80070D2C2 /* General */,
-				A6345F92249BB7580070D2C2 /* Models */,
-				A6345F2824994FF50070D2C2 /* Services */,
-				A6345F2724994FEB0070D2C2 /* Extensions */,
 				A6345F1E24994F990070D2C2 /* Networking */,
+				A6345F92249BB7580070D2C2 /* Models */,
 				A6345F182499480F0070D2C2 /* ViewControllers */,
 				A6345F29249950000070D2C2 /* ModelControllers */,
+				A6345F2824994FF50070D2C2 /* Services */,
 				A6345F2A2499500A0070D2C2 /* Views */,
+				A6345F2724994FEB0070D2C2 /* Extensions */,
+				A60F5685249CF6B900156178 /* Controls */,
 				A6345F2B249950520070D2C2 /* AppDelegate */,
 				A6345EFF249947280070D2C2 /* Assets.xcassets */,
 				A6345F01249947280070D2C2 /* LaunchScreen.storyboard */,
@@ -329,6 +327,7 @@
 		A6345F1E24994F990070D2C2 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				A61B3850249CE6C700286F61 /* Requests */,
 				A6345F1F24994FA60070D2C2 /* ApiProtocol.swift */,
 				A6345F2124994FAD0070D2C2 /* ApiManager.swift */,
 				A6345F2324994FDF0070D2C2 /* WebApiProtocol.swift */,
@@ -395,11 +394,10 @@
 		A6345F92249BB7580070D2C2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				A6345F99249BC23C0070D2C2 /* ErrorResponse.swift */,
-				A60F56B1249FD22500156178 /* SearchErrorResponse.swift */,
-				A60F56B3249FD23B00156178 /* SearchError.swift */,
+				A6DB5ED824A1F011004DE08F /* Errors */,
 				A60F56AF249F502600156178 /* Authentication */,
 				A60F56B0249F503300156178 /* Search */,
+				A6DB5ED924A1F036004DE08F /* Artist */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -411,6 +409,24 @@
 				A6345FA5249C06F70070D2C2 /* UserPreferences.swift */,
 			);
 			path = General;
+			sourceTree = "<group>";
+		};
+		A6DB5ED824A1F011004DE08F /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				A6345F99249BC23C0070D2C2 /* AuthenticationError.swift */,
+				A60F56B1249FD22500156178 /* SearchErrorResponse.swift */,
+				A60F56B3249FD23B00156178 /* SearchError.swift */,
+			);
+			path = Errors;
+			sourceTree = "<group>";
+		};
+		A6DB5ED924A1F036004DE08F /* Artist */ = {
+			isa = PBXGroup;
+			children = (
+				A6FA1EB124A0C49900BAC327 /* CompleteArtist.swift */,
+			);
+			path = Artist;
 			sourceTree = "<group>";
 		};
 		A6FA1EAD24A009A900BAC327 /* SearchRequests */ = {
@@ -678,7 +694,7 @@
 				A6345FA6249C06F70070D2C2 /* UserPreferences.swift in Sources */,
 				A6FA1EAA24A0080F00BAC327 /* TrackItemModelController.swift in Sources */,
 				A60F56AC249E492900156178 /* CoverImage.swift in Sources */,
-				A6345F9A249BC23C0070D2C2 /* ErrorResponse.swift in Sources */,
+				A6345F9A249BC23C0070D2C2 /* AuthenticationError.swift in Sources */,
 				A60F5687249CF6CF00156178 /* DependencyResolver.swift in Sources */,
 				A60F568F249E1ED300156178 /* ApiRequestOperation.swift in Sources */,
 				A6FA1ED124A1E83500BAC327 /* SearchScreenViewController+Search.swift in Sources */,

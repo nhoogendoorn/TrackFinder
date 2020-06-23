@@ -1,5 +1,5 @@
 //
-//  ErrorResponse.swift
+//  AuthenticationError.swift
 //  TrackFinder
 //
 //  Created by Niels Hoogendoorn on 18/06/2020.
@@ -9,15 +9,15 @@
 import Foundation
 
 // MARK: - ErrorResponse
-struct ErrorResponse: Codable {
+struct AuthenticationError: Codable {
     let error: String?
 }
 
-// MARK: ErrorResponse convenience initializers and mutators
+// MARK: AuthenticationError convenience initializers and mutators
 
-extension ErrorResponse {
+extension AuthenticationError {
     init(data: Data) throws {
-        self = try newJSONDecoder().decode(ErrorResponse.self, from: data)
+        self = try newJSONDecoder().decode(AuthenticationError.self, from: data)
     }
 
     init(_ json: String, using encoding: String.Encoding = .utf8) throws {
@@ -33,8 +33,8 @@ extension ErrorResponse {
 
     func with(
         error: String? = nil
-    ) -> ErrorResponse {
-        return ErrorResponse(
+    ) -> AuthenticationError {
+        return AuthenticationError(
             error: error ?? self.error
         )
     }

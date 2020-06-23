@@ -18,7 +18,11 @@ class SearchService: SearchServiceProtocol {
         
     fileprivate func handleSearchTrackResponse(_ result: Result<Data, NetworkError>, completion: @escaping (Result<SearchTrackResponse, NetworkError>) -> Void) {
         if let response = try? result.getNetworkResult(SearchTrackResponse.self).get() {
-            completion(.success(response))
+            if response.tracks.items.isEmpty {
+                completion(.failure(.noResults))
+            } else {
+                completion(.success(response))
+            }            
         } else {
             completion(.failure(.fetchingError))
         }

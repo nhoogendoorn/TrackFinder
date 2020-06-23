@@ -10,7 +10,7 @@ import UIKit
 
 protocol SearchScreenViewControllerProtocol: class {
     var isLoadingNextPage: Bool { get set }
-    func searchStateChanged(state: SearchModelController)
+    func searchStateChanged(state: SearchModelController)    
 }
 
 class SearchScreenViewController: UIViewController, SearchScreenViewControllerProtocol {
@@ -36,7 +36,7 @@ class SearchScreenViewController: UIViewController, SearchScreenViewControllerPr
     func searchStateChanged(state: SearchModelController) {
         DispatchQueue.main.async {
             self.tableView.reloadData()
-            self.tableView.showBackground(!state.data.isEmpty)
+            self.tableView.showBackground(state.data.isEmpty, with: state.errorMessage)
             self.loader.stopAnimating()
         }
     }

@@ -9,5 +9,5 @@
 import Foundation
 
 enum NetworkError: Error {
-    case fetchingError, postingError, decodingError, noActiveConnection
+    case fetchingError, postingError, decodingError, noActiveConnection, noResults
 }

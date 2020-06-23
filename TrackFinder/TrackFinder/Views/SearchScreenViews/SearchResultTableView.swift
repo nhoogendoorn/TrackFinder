@@ -26,7 +26,15 @@ class SearchResultTableView: UITableView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func showBackground(_ show: Bool) {
+    func showBackground(_ show: Bool, with error: String? = nil) {
+        if let error = error {
+            customBackgroundView.searchTextLabel.text = error
+            customBackgroundView.searchTextLabel.textColor = .systemRed
+        } else {
+            customBackgroundView.searchTextLabel.text = .startSearching
+            customBackgroundView.searchTextLabel.textColor = .gray
+        }
+        
         backgroundView = show ? customBackgroundView : nil
     }
     
