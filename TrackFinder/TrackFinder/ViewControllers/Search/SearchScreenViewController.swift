@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Network
 
 protocol SearchScreenViewControllerProtocol: class {
     var isLoadingNextPage: Bool { get set }
@@ -15,6 +16,9 @@ protocol SearchScreenViewControllerProtocol: class {
 
 class SearchScreenViewController: UIViewController, SearchScreenViewControllerProtocol {
     let modelController = SearchModelController()
+    let monitor = NWPathMonitor()
+    let queue = DispatchQueue(label: "InternetConnectionMonitor")
+    var hasInternetConnection = true
     
     let tableView = SearchResultTableView()
     let loader = UIActivityIndicatorView(style: .medium)
@@ -31,6 +35,7 @@ class SearchScreenViewController: UIViewController, SearchScreenViewControllerPr
         title = .appTitle
         setView()
         modelController.delegate = self
+        addInternetConnectionObserver()
     }
     
     func searchStateChanged(state: SearchModelController) {

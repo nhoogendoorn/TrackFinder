@@ -21,4 +21,8 @@ enum SearchModelHelper {
     static func getErrorMessage(_ error: NetworkError) -> String {
         error == .noResults ? .noTracksFound : .generalError
     }
+    
+    static func showNoConnectionAlert(_ currentConnectionState: Bool, _ newState: Bool) -> Bool {
+        currentConnectionState && newState == false
+    }
 }

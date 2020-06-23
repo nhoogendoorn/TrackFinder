@@ -45,4 +45,24 @@ class SearchModelHelperTests: XCTestCase {
         let result = SearchModelHelper.getErrorMessage(.fetchingError)
         XCTAssertEqual(result, .generalError)
     }
+    
+    func test_showNoConnectionAlert_currentStateTrueNewStateTrue_returnFalse() {
+        let result = SearchModelHelper.showNoConnectionAlert(true, true)
+        XCTAssertFalse(result)
+    }
+    
+    func test_showNoConnectionAlert_currentStateTrueNewStateFalse_returnTrue() {
+        let result = SearchModelHelper.showNoConnectionAlert(true, false)
+        XCTAssertTrue(result)
+    }
+    
+    func test_showNoConnectionAlert_currentStateFalseNewStateTrue_returnFalse() {
+        let result = SearchModelHelper.showNoConnectionAlert(false, true)
+        XCTAssertFalse(result)
+    }
+    
+    func test_showNoConnectionAlert_currentStateFalseNewStateFalse_returnFalse() {
+        let result = SearchModelHelper.showNoConnectionAlert(false, false)
+        XCTAssertFalse(result)
+    }
 }

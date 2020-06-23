@@ -81,6 +81,7 @@
 		A696EA8D24A22EBC0008D132 /* MockServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A696EA8C24A22EBC0008D132 /* MockServiceProtocol.swift */; };
 		A696EA8F24A22EE90008D132 /* MockSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A696EA8E24A22EE90008D132 /* MockSearchService.swift */; };
 		A696EA9124A22EFE0008D132 /* MockTrackItemService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A696EA9024A22EFE0008D132 /* MockTrackItemService.swift */; };
+		A696EA9424A246BC0008D132 /* SearchScreenViewController+ConnectionObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A696EA9324A246BB0008D132 /* SearchScreenViewController+ConnectionObserver.swift */; };
 		A6FA1EA3249FFE2100BAC327 /* TrackItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FA1EA2249FFE2100BAC327 /* TrackItemViewController.swift */; };
 		A6FA1EA6249FFEE000BAC327 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = A6FA1EA5249FFEE000BAC327 /* Kingfisher */; };
 		A6FA1EA824A0032800BAC327 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FA1EA724A0032800BAC327 /* UIColor+Extension.swift */; };
@@ -189,6 +190,7 @@
 		A696EA8C24A22EBC0008D132 /* MockServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockServiceProtocol.swift; sourceTree = "<group>"; };
 		A696EA8E24A22EE90008D132 /* MockSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSearchService.swift; sourceTree = "<group>"; };
 		A696EA9024A22EFE0008D132 /* MockTrackItemService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTrackItemService.swift; sourceTree = "<group>"; };
+		A696EA9324A246BB0008D132 /* SearchScreenViewController+ConnectionObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchScreenViewController+ConnectionObserver.swift"; sourceTree = "<group>"; };
 		A6FA1EA2249FFE2100BAC327 /* TrackItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackItemViewController.swift; sourceTree = "<group>"; };
 		A6FA1EA724A0032800BAC327 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		A6FA1EA924A0080F00BAC327 /* TrackItemModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackItemModelController.swift; sourceTree = "<group>"; };
@@ -631,6 +633,7 @@
 				A6FA1ECE24A1E82500BAC327 /* SearchScreenViewController+Views.swift */,
 				A6FA1ED024A1E83500BAC327 /* SearchScreenViewController+Search.swift */,
 				A6FA1ED224A1E84600BAC327 /* SearchScreenViewController+UITableView.swift */,
+				A696EA9324A246BB0008D132 /* SearchScreenViewController+ConnectionObserver.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -809,6 +812,7 @@
 				A696EA6724A1FC140008D132 /* SearchModelHelper.swift in Sources */,
 				A60F56B2249FD22500156178 /* SearchErrorResponse.swift in Sources */,
 				A6FA1ECB24A1E52200BAC327 /* TrackItemViewController+Views.swift in Sources */,
+				A696EA9424A246BC0008D132 /* SearchScreenViewController+ConnectionObserver.swift in Sources */,
 				A6FA1EA824A0032800BAC327 /* UIColor+Extension.swift in Sources */,
 				A6345F8A249A98F20070D2C2 /* AuthTokenResponse.swift in Sources */,
 				A61B3856249CE92700286F61 /* RefreshTokenRequest.swift in Sources */,

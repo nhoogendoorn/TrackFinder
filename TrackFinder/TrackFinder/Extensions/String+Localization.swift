@@ -19,9 +19,13 @@ extension String {
     
     // MARK: - Button Texts
     static let loginAction = NSLocalizedString("Connect to Spotify", comment: "")
+    static let ok = NSLocalizedString("Ok", comment: "")
     
     // MARK: - Errors
     static let noTracksFound = NSLocalizedString("No tracks found", comment: "")
     static let spotifyConnectionError = NSLocalizedString("Could not connect to Spotify", comment: "")
     static let generalError = NSLocalizedString("Something went wrong..", comment: "")
+    
+    static let noInternetConnectionTitle = NSLocalizedString("No internet connection", comment: "")
+    static let noInternetConnectionMessage = NSLocalizedString("Your searches will continue after your reconnect", comment: "")
 }
