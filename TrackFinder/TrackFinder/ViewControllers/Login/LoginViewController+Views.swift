@@ -20,7 +20,7 @@ extension LoginViewController {
         contentStack.addArrangedSubview(loginExplanationLabel)
     }
     
-    func setLoginButton() {
+    fileprivate func setLoginButton() {
         loginButton.backgroundColor = .mainColor
         loginButton.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         loginButton.titleEdgeInsets = UIEdgeInsets(top: Spacing.large.rawValue,
@@ -32,14 +32,14 @@ extension LoginViewController {
         loginButton.addTarget(self, action: #selector(loginButtonPressed), for: .touchUpInside)
     }
     
-    func setLogoView() {
+    fileprivate func setLogoView() {
         logoImageView.snp.makeConstraints {
             $0.width.height.equalTo(150)
         }
         logoImageView.contentMode = .scaleAspectFit
     }
     
-    func setLoginExplanationLabel() {
+    fileprivate func setLoginExplanationLabel() {
         loginExplanationLabel.text = .loginExplanation
         loginExplanationLabel.textColor = .gray
         loginExplanationLabel.numberOfLines = .zero
@@ -47,7 +47,7 @@ extension LoginViewController {
         loginExplanationLabel.textAlignment = .center
     }
     
-    func setContentStack() {
+    fileprivate func setContentStack() {
         view.addSubview(contentStack)
         contentStack.axis = .vertical
         contentStack.spacing = Spacing.mediumLarge.rawValue
