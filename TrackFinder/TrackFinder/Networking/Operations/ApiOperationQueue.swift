@@ -45,12 +45,14 @@ class ApiOperationQueue: OperationQueue, ApiOperationQueueProtocol, DependencyRe
             $0.request.setAccessToken(token: newToken)
             $0.setTask()
         }
-        
     }
     
     func addApiOperation(_ operation: ApiRequestOperation) {
         self.addOperation(operation)
         
+        // Start the task when the queue shouldn't be suspended. As soon as the
+        // queue is no longer suspended, it will continue through the connection
+        // monitor or the completion handler of the refresh access token call.
         if QueueHelper.shouldSuspendQueue(self) == false {
             operation.task.resume()
         }

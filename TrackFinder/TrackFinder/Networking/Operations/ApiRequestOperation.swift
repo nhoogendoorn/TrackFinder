@@ -28,9 +28,12 @@ class ApiRequestOperation: Operation {
     }
     
     func setTask() {
+        // Set the task, but don't resume it yet. This will happen in the
+        // operation queue.
         let request = self.request.generateRequest()
         log.info("Add urlRequest: \(request.url?.absoluteString ?? .empty)")
         self.task = session.dataTask(with: request, completionHandler: { (data, response, _) in
+            // Spotify Requests will use the cache to quickly retrieve previous requests.
             self.saveResponseToCache(data: data, response: response, request: request)
             data?.logDataResponse(prefix: "Data")
             if let foundData = data {

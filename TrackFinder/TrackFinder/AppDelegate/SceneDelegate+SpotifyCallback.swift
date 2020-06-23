@@ -11,6 +11,7 @@ import Foundation
 extension SceneDelegate {
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
         guard let url = URLContexts.first?.url else { return }
+        
         let parameters = rootViewController.appRemote.authorizationParameters(from: url)
         let code = parameters?["code"]
         

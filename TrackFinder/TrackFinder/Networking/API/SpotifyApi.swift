@@ -23,6 +23,8 @@ class SpotifyApi: WebApiProtocol, DependencyResolver {
         operationQueue.setSuspensionState()
         
         if operationQueue.currentTokenIsExpired {
+            // If the current token is expired, refresh the token. Do this on a
+            // different queue than the api operation queue, so it can operate independent.
             handleRefreshTokenOperation(completion: completion)
         }
         

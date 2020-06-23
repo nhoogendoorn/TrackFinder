@@ -21,7 +21,7 @@ enum FontSize {
         switch self {
         case .extraLargeTitle: return 40
         case .largeTitle: return 28
-        case .body: return 14
+        case .body: return 16
         case .buttonText: return 14
         case .label: return 12
         case .subTitle: return 18

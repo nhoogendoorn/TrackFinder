@@ -20,7 +20,7 @@ extension SearchScreenViewController: UITableViewDataSource, UITableViewDelegate
             modelController.data.indices.contains(indexPath.row)
         else { return cell }
         
-        searchItemCell.setText(trackItem: modelController.data[indexPath.row])
+        searchItemCell.setItem(trackItem: modelController.data[indexPath.row])
         return searchItemCell
     }
     
@@ -35,8 +35,8 @@ extension SearchScreenViewController: UITableViewDataSource, UITableViewDelegate
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let isLastCell = indexPath.row == modelController.data.count - 1
-        // Only continue when there is no active task to load the next page.
-        // This to insure that
+        // Only continue when there is no previous load next page request in order
+        // to not get possible duplicate results.
         guard isLastCell, isLoadingNextPage == false else { return }
         self.modelController.loadNextPage()
     }

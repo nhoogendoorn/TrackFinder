@@ -17,9 +17,6 @@ class LoginViewController: UIViewController, DependencyResolver {
     lazy var configuration: SPTConfiguration = {
         let configuration = SPTConfiguration(clientID: Environment.spotifyClientId,
                                              redirectURL: URL(string: Environment.spotifyRedirectUri)!)
-        // Set the playURI to a non-nil value so that Spotify plays music after authenticating and App Remote can connect
-        // otherwise another app switch will be required
-        configuration.playURI = .empty
         return configuration
     }()
     
