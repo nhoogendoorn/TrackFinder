@@ -30,14 +30,14 @@ extension SearchScreenViewController: UISearchResultsUpdating {
         let throttleTime: Double = 0.5
         let deadline: DispatchTime = DispatchTime.now() + throttleTime
         self.searchTask?.cancel()
-
+        
         let task = DispatchWorkItem { [weak self] in
             self?.modelController.searchQuery(query: text)
         }
         self.searchTask = task
-
+        
         DispatchQueue.main.asyncAfter(deadline: deadline, execute: task)
-
+        
     }
-
+    
 }

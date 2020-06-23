@@ -21,7 +21,7 @@ struct TrackItem: Codable {
     let previewURL: String?
     let trackNumber: Int
     let type, uri: String
-
+    
     enum CodingKeys: String, CodingKey {
         case album, artists
         case discNumber = "disc_number"
@@ -29,7 +29,6 @@ struct TrackItem: Codable {
         case explicit
         case href, id
         case isLocal = "is_local"
-//        case isPlayable = "is_playable"
         case name, popularity
         case previewURL = "preview_url"
         case trackNumber = "track_number"
@@ -43,18 +42,18 @@ extension TrackItem {
     init(data: Data) throws {
         self = try newJSONDecoder().decode(TrackItem.self, from: data)
     }
-
+    
     init(_ json: String, using encoding: String.Encoding = .utf8) throws {
         guard let data = json.data(using: encoding) else {
             throw NSError(domain: "JSONDecoding", code: 0, userInfo: nil)
         }
         try self.init(data: data)
     }
-
+    
     init(fromURL url: URL) throws {
         try self.init(data: try Data(contentsOf: url))
     }
-
+    
     func with(
         album: Album? = nil,
         artists: [TrackArtist]? = nil,
@@ -64,7 +63,6 @@ extension TrackItem {
         href: String? = nil,
         id: String? = nil,
         isLocal: Bool? = nil,
-//        isPlayable: Bool? = nil,
         name: String? = nil,
         popularity: Int? = nil,
         previewURL: String? = nil,
@@ -81,7 +79,6 @@ extension TrackItem {
             href: href ?? self.href,
             id: id ?? self.id,
             isLocal: isLocal ?? self.isLocal,
-//            isPlayable: isPlayable ?? self.isPlayable,
             name: name ?? self.name,
             popularity: popularity ?? self.popularity,
             previewURL: previewURL ?? self.previewURL,
@@ -90,11 +87,11 @@ extension TrackItem {
             uri: uri ?? self.uri
         )
     }
-
+    
     func jsonData() throws -> Data {
         return try newJSONEncoder().encode(self)
     }
-
+    
     func jsonString(encoding: String.Encoding = .utf8) throws -> String? {
         return String(data: try self.jsonData(), encoding: encoding)
     }

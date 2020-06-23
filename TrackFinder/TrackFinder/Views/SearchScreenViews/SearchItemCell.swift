@@ -16,7 +16,7 @@ class SearchItemCell: UITableViewCell {
     let artistNameLabel = UILabel()
     let albumImage = NetworkImageView()
     let arrowRightImage = UIImageView(image: UIImage(systemName: "chevron.right"))
-
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .none

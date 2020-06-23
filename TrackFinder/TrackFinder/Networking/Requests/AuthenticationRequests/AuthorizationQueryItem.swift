@@ -12,7 +12,7 @@ enum AuthorizationQueryItem {
     case authCode(code: String), redirectUri, grantType(type: SpotifyGrantType)
     case refreshToken(token: String), responseType(type: String), scope(scope: String)
     case state(state: String), clientId
-        
+    
     enum CodingKeys: String, CodingKey {
         case authCode = "code"
         case redirectUri = "redirect_uri"

@@ -19,7 +19,7 @@ extension Data {
             log.error("Failed to decode as Json")
         }
     }
-
+    
     private func toObject<T: Decodable>(_ type: T.Type) -> T? {
         let decoder = JSONDecoder()
         do {
@@ -29,7 +29,7 @@ extension Data {
             return nil
         }
     }
-
+    
     func decodeNetworkResult<T: Decodable>(_ type: T.Type) -> Result<T, NetworkError> {
         if let correctData = self.toObject(T.self) {
             return .success(correctData)

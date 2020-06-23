@@ -50,7 +50,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, DependencyResolver {
         if SceneDelegateHelper.shouldPushSearchViewController(hasTokens, rootVC: rootViewController) {
             DispatchQueue.main.async {
                 self.rootViewController.navigationController?.pushViewController(SearchScreenViewController(),
-                                                                            animated: false)
+                                                                                 animated: false)
             }
         }
     }

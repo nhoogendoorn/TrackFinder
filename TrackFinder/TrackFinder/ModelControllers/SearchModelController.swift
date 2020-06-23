@@ -18,7 +18,7 @@ class SearchModelController: DependencyResolver {
     var showBackground: Bool { SearchModelHelper.showBackground(data: data) }
     
     weak var delegate: SearchScreenViewControllerProtocol?
-        
+    
     init() {
         searchService = container?.resolve(SearchServiceProtocol.self)
     }
@@ -27,7 +27,10 @@ class SearchModelController: DependencyResolver {
         guard
             SearchModelHelper.allowedToStartSearch(query: query),
             let query = query
-        else { resetData(); return }
+        else {
+            resetData()
+            return
+        }
         
         searchService?.searchTrack(query: query, completion: { [weak self] result in
             guard let `self` = self else { return }

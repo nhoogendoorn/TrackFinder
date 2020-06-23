@@ -14,7 +14,7 @@ struct AuthTokenResponse: Codable {
     let expiresIn: Int
     let refreshToken: String
     let authTokens: AuthTokens
-
+    
     enum CodingKeys: String, CodingKey {
         case accessToken = "access_token"
         case tokenType = "token_type"
@@ -29,37 +29,37 @@ struct AuthTokenResponse: Codable {
 extension AuthTokenResponse {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-    
+        
         let accessTokenResponse = try container.decode(String.self, forKey: .accessToken)
         accessToken = accessTokenResponse
-
+        
         tokenType = try container.decode(String.self, forKey: .tokenType)
         scope = try container.decode(String.self, forKey: .scope)
         expiresIn = try container.decode(Int.self, forKey: .expiresIn)
-
+        
         let refreshTokenResponse = try container.decode(String.self, forKey: .refreshToken)
         self.refreshToken = refreshTokenResponse
-
+        
         authTokens = AuthTokens(accessToken: accessTokenResponse,
                                 refreshToken: refreshTokenResponse,
                                 expirationDate: Date.now(.second, offset: expiresIn))
     }
-
+    
     init(data: Data) throws {
         self = try newJSONDecoder().decode(AuthTokenResponse.self, from: data)
     }
-
+    
     init(_ json: String, using encoding: String.Encoding = .utf8) throws {
         guard let data = json.data(using: encoding) else {
             throw NSError(domain: "JSONDecoding", code: 0, userInfo: nil)
         }
         try self.init(data: data)
     }
-
+    
     init(fromURL url: URL) throws {
         try self.init(data: try Data(contentsOf: url))
     }
-
+    
     func with(
         accessToken: String? = nil,
         tokenType: String? = nil,
@@ -79,11 +79,11 @@ extension AuthTokenResponse {
                                                             offset: expiresIn ?? self.expiresIn))
         )
     }
-
+    
     func jsonData() throws -> Data {
         return try newJSONEncoder().encode(self)
     }
-
+    
     func jsonString(encoding: String.Encoding = .utf8) throws -> String? {
         return String(data: try self.jsonData(), encoding: encoding)
     }

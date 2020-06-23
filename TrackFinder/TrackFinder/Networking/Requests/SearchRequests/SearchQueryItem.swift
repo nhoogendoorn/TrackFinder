@@ -18,7 +18,7 @@ enum SearchQueryItem {
     }
     
     case query(query: String), contentType(type: SearchContentType), limit(_ limit: Int)
-        
+    
     enum CodingKeys: String, CodingKey {
         case query = "q"
         case contentType = "type"

@@ -70,7 +70,7 @@ class TrackItemViewController: UIViewController, TrackItemViewControllerDelegate
             self.coverImage.loadImage(with: state.albumCoverUrl,
                                       cacheKey: state.albumId)
             self.trackArtistImageView.loadImage(with: state.artistImageUrl,
-                                           cacheKey: state.artistId)
+                                                cacheKey: state.artistId)
             
         }
     }

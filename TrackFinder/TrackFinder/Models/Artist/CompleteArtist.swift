@@ -19,7 +19,7 @@ struct CompleteArtist: Codable {
     let name: String
     let popularity: Int
     let type, uri: String
-
+    
     enum CodingKeys: String, CodingKey {
         case externalUrls = "external_urls"
         case followers, genres, href, id, images, name, popularity, type, uri
@@ -32,18 +32,18 @@ extension CompleteArtist {
     init(data: Data) throws {
         self = try newJSONDecoder().decode(CompleteArtist.self, from: data)
     }
-
+    
     init(_ json: String, using encoding: String.Encoding = .utf8) throws {
         guard let data = json.data(using: encoding) else {
             throw NSError(domain: "JSONDecoding", code: 0, userInfo: nil)
         }
         try self.init(data: data)
     }
-
+    
     init(fromURL url: URL) throws {
         try self.init(data: try Data(contentsOf: url))
     }
-
+    
     func with(
         externalUrls: ExternalUrls? = nil,
         followers: Followers? = nil,
@@ -69,11 +69,11 @@ extension CompleteArtist {
             uri: uri ?? self.uri
         )
     }
-
+    
     func jsonData() throws -> Data {
         return try newJSONEncoder().encode(self)
     }
-
+    
     func jsonString(encoding: String.Encoding = .utf8) throws -> String? {
         return String(data: try self.jsonData(), encoding: encoding)
     }

@@ -12,7 +12,7 @@ import Foundation
 struct RefreshTokenResponse: Codable {
     let accessToken, tokenType, scope: String
     let expiresIn: Int
-
+    
     enum CodingKeys: String, CodingKey {
         case accessToken = "access_token"
         case tokenType = "token_type"
@@ -27,18 +27,18 @@ extension RefreshTokenResponse {
     init(data: Data) throws {
         self = try newJSONDecoder().decode(RefreshTokenResponse.self, from: data)
     }
-
+    
     init(_ json: String, using encoding: String.Encoding = .utf8) throws {
         guard let data = json.data(using: encoding) else {
             throw NSError(domain: "JSONDecoding", code: 0, userInfo: nil)
         }
         try self.init(data: data)
     }
-
+    
     init(fromURL url: URL) throws {
         try self.init(data: try Data(contentsOf: url))
     }
-
+    
     func with(
         accessToken: String? = nil,
         tokenType: String? = nil,
@@ -52,11 +52,11 @@ extension RefreshTokenResponse {
             expiresIn: expiresIn ?? self.expiresIn
         )
     }
-
+    
     func jsonData() throws -> Data {
         return try newJSONEncoder().encode(self)
     }
-
+    
     func jsonString(encoding: String.Encoding = .utf8) throws -> String? {
         return String(data: try self.jsonData(), encoding: encoding)
     }

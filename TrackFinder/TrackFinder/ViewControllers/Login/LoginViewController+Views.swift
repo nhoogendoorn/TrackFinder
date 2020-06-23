@@ -26,9 +26,9 @@ extension LoginViewController {
         loginButton.backgroundColor = .mainColor
         loginButton.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         loginButton.titleEdgeInsets = UIEdgeInsets(top: Spacing.large.rawValue,
-                                              left: Spacing.large.rawValue,
-                                              bottom: Spacing.large.rawValue,
-                                              right: Spacing.large.rawValue)
+                                                   left: Spacing.large.rawValue,
+                                                   bottom: Spacing.large.rawValue,
+                                                   right: Spacing.large.rawValue)
         loginButton.setTitle(.loginAction, for: .normal)
         loginButton.setTitleColor(.white, for: .normal)
         loginButton.addTarget(self, action: #selector(loginButtonPressed), for: .touchUpInside)

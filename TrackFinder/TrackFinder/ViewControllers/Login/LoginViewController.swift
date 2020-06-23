@@ -25,7 +25,7 @@ class LoginViewController: UIViewController, DependencyResolver {
         appRemote.delegate = self
         return appRemote
     }()
-        
+    
     let contentStack = UIStackView()
     let logoImageView = UIImageView(image: UIImage(named: "logo"))
     let loginButton = UIButton()

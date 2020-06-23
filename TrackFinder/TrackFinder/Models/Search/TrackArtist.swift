@@ -15,7 +15,7 @@ struct TrackArtist: Codable {
     let id, name: String
     let type: SearchQueryItem.SearchContentType
     let uri: String
-
+    
     enum CodingKeys: String, CodingKey {
         case externalUrls = "external_urls"
         case href, id, name, type, uri
@@ -28,18 +28,18 @@ extension TrackArtist {
     init(data: Data) throws {
         self = try newJSONDecoder().decode(TrackArtist.self, from: data)
     }
-
+    
     init(_ json: String, using encoding: String.Encoding = .utf8) throws {
         guard let data = json.data(using: encoding) else {
             throw NSError(domain: "JSONDecoding", code: 0, userInfo: nil)
         }
         try self.init(data: data)
     }
-
+    
     init(fromURL url: URL) throws {
         try self.init(data: try Data(contentsOf: url))
     }
-
+    
     func with(
         externalUrls: ExternalUrls? = nil,
         href: String? = nil,
@@ -57,11 +57,11 @@ extension TrackArtist {
             uri: uri ?? self.uri
         )
     }
-
+    
     func jsonData() throws -> Data {
         return try newJSONEncoder().encode(self)
     }
-
+    
     func jsonString(encoding: String.Encoding = .utf8) throws -> String? {
         return String(data: try self.jsonData(), encoding: encoding)
     }
