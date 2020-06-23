@@ -9,14 +9,14 @@
 import Foundation
 
 protocol AuthenticationServiceProtocol {
+    var apiManager: ApiProtocol { get set }
     func startSpotifyAuthorization()
     func getAccessToken(code: String?, completion: @escaping (Result<AuthTokenResponse, NetworkError>) -> Void)
-    func requestNewToken(completion: @escaping (Result<RefreshTokenResponse, NetworkError>) -> Void)
 }
 
 class AuthenticationService: AuthenticationServiceProtocol, DependencyResolver {
     
-    let apiManager = ApiManager()
+    var apiManager: ApiProtocol = ApiManager()
     
     lazy var userPrefs: UserPreferencesProtocol? = {
         container?.resolve(UserPreferencesProtocol.self)
@@ -39,22 +39,6 @@ class AuthenticationService: AuthenticationServiceProtocol, DependencyResolver {
                     self.userPrefs?.saveTokens(response.authTokens)
                     completion(.success(response))
                 }
-            } else {
-                completion(.failure(.fetchingError))
-            }
-        }
-    }
-    
-    func requestNewToken(completion: @escaping (Result<RefreshTokenResponse, NetworkError>) -> Void) {
-        guard let tokens = getAuthenticationTokens() else {
-            completion(.failure(.fetchingError))
-            return
-        }
-            
-        let request = RefreshTokenRequest(refreshToken: tokens.refreshToken)
-        apiManager.webApi.doRequest(request: request) { result in
-            if let data = try? result.getNetworkResult(RefreshTokenResponse.self) {
-                completion(data)
             } else {
                 completion(.failure(.fetchingError))
             }

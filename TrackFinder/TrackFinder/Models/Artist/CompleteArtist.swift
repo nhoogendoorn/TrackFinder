@@ -78,3 +78,11 @@ extension CompleteArtist {
         return String(data: try self.jsonData(), encoding: encoding)
     }
 }
+
+extension CompleteArtist {
+    static func getMock() -> Self {
+        Self(externalUrls: ExternalUrls(spotify: ""),
+             followers: Followers(href: nil, total: 1), genres: [], href: "",
+             id: "", images: [], name: "", popularity: 1, type: "", uri: "")
+    }
+}

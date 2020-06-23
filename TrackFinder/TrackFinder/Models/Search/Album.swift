@@ -88,3 +88,11 @@ extension Album {
         return String(data: try self.jsonData(), encoding: encoding)
     }
 }
+
+extension Album {
+    static func getMock() -> Self {
+        Self(albumType: "1", artists: [], externalUrls: ExternalUrls(spotify: ""),
+             href: "", id: "", images: [], name: "", releaseDate: "",
+             releaseDatePrecision: "", totalTracks: 1, type: "", uri: "")
+    }
+}

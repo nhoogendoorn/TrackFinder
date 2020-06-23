@@ -9,13 +9,14 @@
 import Foundation
 
 protocol SearchServiceProtocol {
+    var apiManager: ApiProtocol { get set }
     func searchTrack(query: String, completion: @escaping (Result<SearchTrackResponse, NetworkError>) -> Void)
     func loadNextPage(nextPageUrl: String?, completion: @escaping (Result<SearchTrackResponse, NetworkError>) -> Void)
 }
 
 class SearchService: SearchServiceProtocol {
-    let apiManager = ApiManager()
-        
+    var apiManager: ApiProtocol = ApiManager()
+    
     fileprivate func handleSearchTrackResponse(_ result: Result<Data, NetworkError>, completion: @escaping (Result<SearchTrackResponse, NetworkError>) -> Void) {
         if let response = try? result.getNetworkResult(SearchTrackResponse.self).get() {
             if response.tracks.items.isEmpty {
@@ -23,9 +24,12 @@ class SearchService: SearchServiceProtocol {
             } else {
                 completion(.success(response))
             }            
+        } else if let searchError = try? result.getNetworkResult(SearchErrorResponse.self).get() {
+            log.error(searchError.error.message)
+            completion(.failure(.noResults))
         } else {
             completion(.failure(.fetchingError))
-        }
+        }        
     }
     
     func searchTrack(query: String, completion: @escaping (Result<SearchTrackResponse, NetworkError>) -> Void) {
@@ -44,6 +48,6 @@ class SearchService: SearchServiceProtocol {
             guard let `self` = self else { return }
             self.handleSearchTrackResponse(result, completion: completion)
         }
-
+        
     }
 }

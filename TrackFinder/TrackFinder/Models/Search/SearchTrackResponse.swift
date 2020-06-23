@@ -47,3 +47,11 @@ extension SearchTrackResponse {
         return String(data: try self.jsonData(), encoding: encoding)
     }
 }
+
+extension SearchTrackResponse {
+    static func getMock(items: [TrackItem]) -> Self {
+        let tracks = Tracks(href: .empty, items: items, limit: 1, next: nil,
+                            offset: 1, previous: nil, total: 1)
+        return Self(tracks: tracks)
+    }
+}

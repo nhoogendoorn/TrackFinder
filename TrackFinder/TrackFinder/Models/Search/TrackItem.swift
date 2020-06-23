@@ -99,3 +99,11 @@ extension TrackItem {
         return String(data: try self.jsonData(), encoding: encoding)
     }
 }
+
+extension TrackItem {
+    static func getMock(name: String) -> Self {
+        TrackItem(album: Album.getMock(), artists: [], discNumber: 1, durationMS: 1,
+                  explicit: true, href: "", id: "", isLocal: true, name: name,
+                  popularity: 1, previewURL: nil, trackNumber: 1, type: "", uri: "")
+    }
+}

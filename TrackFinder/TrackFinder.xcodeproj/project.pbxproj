@@ -77,6 +77,11 @@
 		A696EA8024A207840008D132 /* QueueHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A696EA7F24A207840008D132 /* QueueHelperTests.swift */; };
 		A696EA8224A207950008D132 /* SceneDelegateHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A696EA8124A207950008D132 /* SceneDelegateHelperTests.swift */; };
 		A696EA8524A211A70008D132 /* MockSpotifyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A696EA8424A211A70008D132 /* MockSpotifyRequest.swift */; };
+		A696EA8924A2142C0008D132 /* MockApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = A696EA8824A2142C0008D132 /* MockApi.swift */; };
+		A696EA8B24A215810008D132 /* MockApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A696EA8A24A215810008D132 /* MockApiManager.swift */; };
+		A696EA8D24A22EBC0008D132 /* MockServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A696EA8C24A22EBC0008D132 /* MockServiceProtocol.swift */; };
+		A696EA8F24A22EE90008D132 /* MockSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A696EA8E24A22EE90008D132 /* MockSearchService.swift */; };
+		A696EA9124A22EFE0008D132 /* MockTrackItemService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A696EA9024A22EFE0008D132 /* MockTrackItemService.swift */; };
 		A6FA1EA3249FFE2100BAC327 /* TrackItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FA1EA2249FFE2100BAC327 /* TrackItemViewController.swift */; };
 		A6FA1EA6249FFEE000BAC327 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = A6FA1EA5249FFEE000BAC327 /* Kingfisher */; };
 		A6FA1EA824A0032800BAC327 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FA1EA724A0032800BAC327 /* UIColor+Extension.swift */; };
@@ -181,6 +186,11 @@
 		A696EA7F24A207840008D132 /* QueueHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueHelperTests.swift; sourceTree = "<group>"; };
 		A696EA8124A207950008D132 /* SceneDelegateHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegateHelperTests.swift; sourceTree = "<group>"; };
 		A696EA8424A211A70008D132 /* MockSpotifyRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSpotifyRequest.swift; sourceTree = "<group>"; };
+		A696EA8824A2142C0008D132 /* MockApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockApi.swift; sourceTree = "<group>"; };
+		A696EA8A24A215810008D132 /* MockApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockApiManager.swift; sourceTree = "<group>"; };
+		A696EA8C24A22EBC0008D132 /* MockServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockServiceProtocol.swift; sourceTree = "<group>"; };
+		A696EA8E24A22EE90008D132 /* MockSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSearchService.swift; sourceTree = "<group>"; };
+		A696EA9024A22EFE0008D132 /* MockTrackItemService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTrackItemService.swift; sourceTree = "<group>"; };
 		A6FA1EA2249FFE2100BAC327 /* TrackItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackItemViewController.swift; sourceTree = "<group>"; };
 		A6FA1EA724A0032800BAC327 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		A6FA1EA924A0080F00BAC327 /* TrackItemModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackItemModelController.swift; sourceTree = "<group>"; };
@@ -513,8 +523,21 @@
 			isa = PBXGroup;
 			children = (
 				A696EA8424A211A70008D132 /* MockSpotifyRequest.swift */,
+				A696EA9224A230500008D132 /* MockServices */,
+				A696EA8824A2142C0008D132 /* MockApi.swift */,
+				A696EA8A24A215810008D132 /* MockApiManager.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		A696EA9224A230500008D132 /* MockServices */ = {
+			isa = PBXGroup;
+			children = (
+				A696EA8E24A22EE90008D132 /* MockSearchService.swift */,
+				A696EA9024A22EFE0008D132 /* MockTrackItemService.swift */,
+				A696EA8C24A22EBC0008D132 /* MockServiceProtocol.swift */,
+			);
+			path = MockServices;
 			sourceTree = "<group>";
 		};
 		A6DB5ED824A1F011004DE08F /* Errors */ = {
@@ -837,9 +860,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				A696EA8224A207950008D132 /* SceneDelegateHelperTests.swift in Sources */,
+				A696EA8D24A22EBC0008D132 /* MockServiceProtocol.swift in Sources */,
 				A696EA7A24A2075B0008D132 /* SearchModelControllerTests.swift in Sources */,
+				A696EA8924A2142C0008D132 /* MockApi.swift in Sources */,
 				A696EA6E24A2065B0008D132 /* SpotifyRequestTests.swift in Sources */,
 				A696EA7C24A207690008D132 /* TrackItemModelControllerTests.swift in Sources */,
+				A696EA8B24A215810008D132 /* MockApiManager.swift in Sources */,
 				A696EA8524A211A70008D132 /* MockSpotifyRequest.swift in Sources */,
 				A696EA7024A206C70008D132 /* RoutingPathTests.swift in Sources */,
 				A696EA7824A207400008D132 /* TrackItemServiceTests.swift in Sources */,
@@ -847,7 +873,9 @@
 				A696EA7E24A2077C0008D132 /* SearchModelHelperTests.swift in Sources */,
 				A696EA7624A207350008D132 /* SearchServiceTests.swift in Sources */,
 				A696EA7224A206E60008D132 /* URLRequestTests.swift in Sources */,
+				A696EA9124A22EFE0008D132 /* MockTrackItemService.swift in Sources */,
 				A696EA8024A207840008D132 /* QueueHelperTests.swift in Sources */,
+				A696EA8F24A22EE90008D132 /* MockSearchService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,12 +9,13 @@
 import Foundation
 
 protocol TrackItemServiceProtocol {
+    var apiManager: ApiProtocol { get set }
     func getTrackItem(id: String, completion: @escaping (Result<TrackItem, NetworkError>) -> Void)
     func getArtist(id: String, completion: @escaping (Result<CompleteArtist, NetworkError>) -> Void)
 }
 
 class TrackItemService: TrackItemServiceProtocol {
-    let apiManager = ApiManager()
+    var apiManager: ApiProtocol = ApiManager()
     
     func getTrackItem(id: String, completion: @escaping (Result<TrackItem, NetworkError>) -> Void) {
         let request = TrackItemRequest(id: id)

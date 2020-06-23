@@ -89,6 +89,19 @@ extension AuthTokenResponse {
     }
 }
 
+extension AuthTokenResponse {
+    static func getMock() -> Self {
+        let accessToken = "access1234"
+        let refreshToken = "refresh1234"
+        let expiresIn = 3600
+        return Self(accessToken: accessToken, tokenType: "access", scope: "sef",
+                    expiresIn: expiresIn, refreshToken: "2345",
+                    authTokens: AuthTokens(accessToken: accessToken,
+                                           refreshToken: refreshToken,
+                                           expirationDate: Date.now(.second, offset: expiresIn)))
+    }
+}
+
 // MARK: - Helper functions for creating encoders and decoders
 
 func newJSONDecoder() -> JSONDecoder {

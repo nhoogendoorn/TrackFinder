@@ -33,7 +33,8 @@ extension Data {
     func decodeNetworkResult<T: Decodable>(_ type: T.Type) -> Result<T, NetworkError> {
         if let correctData = self.toObject(T.self) {
             return .success(correctData)
-        } else if self.toObject(SearchError.self) != nil {
+        } else if let searchError = self.toObject(SearchErrorResponse.self) {
+            log.error("Search error: \(searchError.error.message)")
             return .failure(.noResults)
         } else if self.toObject(AuthenticationError.self) != nil {
             log.error("Failed to fetch data")
