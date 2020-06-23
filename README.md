@@ -10,6 +10,7 @@ All API requests are being send to a special Operation Queue, which can be suspe
 For this project I didn't use the SwiftUI framework. It was easier to quickly set up a searchbar in UIKit and I didn't want to find out about some surprises while I was building it :). The project I'm currently working on uses SwiftUI from the start, so if you would like to see some of my SwiftUI code, I'm happy to show this to you.
 
 ### Used Packages
+  - Spotify SDK, used for authorization.
   - SnapKit, for programmatic layout.
   - KingFisher, for retrieving and showing images.
   - SwiftyBeaver, for debug logging.
