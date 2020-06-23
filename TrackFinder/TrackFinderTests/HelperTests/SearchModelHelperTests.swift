@@ -11,5 +11,38 @@ import Foundation
 @testable import TrackFinder
 
 class SearchModelHelperTests: XCTestCase {
-
+    func test_allowedToStartSearch_queryIsNil_returnFalse() {
+        let result = SearchModelHelper.allowedToStartSearch(query: nil)
+        XCTAssertFalse(result)
+    }
+    
+    func test_allowedToStartSearch_queryIsEmpty_returnFalse() {
+        let result = SearchModelHelper.allowedToStartSearch(query: .empty)
+        XCTAssertFalse(result)
+    }
+    
+    func test_allowedToStartSearch_queryIsNotEmpty_returnTrue() {
+        let result = SearchModelHelper.allowedToStartSearch(query: "Not empty")
+        XCTAssertTrue(result)
+    }
+    
+    func test_showBackground_dataIsEmpty_returnTrue() {
+        let result = SearchModelHelper.showBackground(data: [])
+        XCTAssertTrue(result)
+    }
+    
+    func test_showBackground_dataIsNotEmpty_returnFalse() {
+        let result = SearchModelHelper.showBackground(data: [TrackItem.getMock(name: "")])
+        XCTAssertFalse(result)
+    }
+    
+    func test_getErrorMessage_errorIsNoResults_returnCorrectMessage() {
+        let result = SearchModelHelper.getErrorMessage(.noResults)
+        XCTAssertEqual(result, .noTracksFound)
+    }
+    
+    func test_getErrorMessage_errorIsNotNoResults_returnCorrectMessage() {
+        let result = SearchModelHelper.getErrorMessage(.fetchingError)
+        XCTAssertEqual(result, .generalError)
+    }
 }

@@ -16,3 +16,14 @@ struct AuthTokens {
         Date.now(.minute, offset: 10) >= expirationDate
     }
 }
+
+extension AuthTokens {
+    static func getMock(expired: Bool) -> Self {
+        let yesterday = Date.now(.day, offset: -1)
+        let tomorrow = Date.now(.day, offset: 1)
+        
+        return Self(accessToken: "1",
+                    refreshToken: "2",
+                    expirationDate: expired ? yesterday : tomorrow)
+    }
+}

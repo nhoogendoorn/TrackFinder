@@ -72,7 +72,6 @@
 		A696EA7624A207350008D132 /* SearchServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A696EA7524A207350008D132 /* SearchServiceTests.swift */; };
 		A696EA7824A207400008D132 /* TrackItemServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A696EA7724A207400008D132 /* TrackItemServiceTests.swift */; };
 		A696EA7A24A2075B0008D132 /* SearchModelControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A696EA7924A2075B0008D132 /* SearchModelControllerTests.swift */; };
-		A696EA7C24A207690008D132 /* TrackItemModelControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A696EA7B24A207690008D132 /* TrackItemModelControllerTests.swift */; };
 		A696EA7E24A2077C0008D132 /* SearchModelHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A696EA7D24A2077C0008D132 /* SearchModelHelperTests.swift */; };
 		A696EA8024A207840008D132 /* QueueHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A696EA7F24A207840008D132 /* QueueHelperTests.swift */; };
 		A696EA8224A207950008D132 /* SceneDelegateHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A696EA8124A207950008D132 /* SceneDelegateHelperTests.swift */; };
@@ -181,7 +180,6 @@
 		A696EA7524A207350008D132 /* SearchServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchServiceTests.swift; sourceTree = "<group>"; };
 		A696EA7724A207400008D132 /* TrackItemServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackItemServiceTests.swift; sourceTree = "<group>"; };
 		A696EA7924A2075B0008D132 /* SearchModelControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModelControllerTests.swift; sourceTree = "<group>"; };
-		A696EA7B24A207690008D132 /* TrackItemModelControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackItemModelControllerTests.swift; sourceTree = "<group>"; };
 		A696EA7D24A2077C0008D132 /* SearchModelHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModelHelperTests.swift; sourceTree = "<group>"; };
 		A696EA7F24A207840008D132 /* QueueHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueHelperTests.swift; sourceTree = "<group>"; };
 		A696EA8124A207950008D132 /* SceneDelegateHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegateHelperTests.swift; sourceTree = "<group>"; };
@@ -487,7 +485,6 @@
 			isa = PBXGroup;
 			children = (
 				A696EA7924A2075B0008D132 /* SearchModelControllerTests.swift */,
-				A696EA7B24A207690008D132 /* TrackItemModelControllerTests.swift */,
 			);
 			path = ModelControllerTests;
 			sourceTree = "<group>";
@@ -864,7 +861,6 @@
 				A696EA7A24A2075B0008D132 /* SearchModelControllerTests.swift in Sources */,
 				A696EA8924A2142C0008D132 /* MockApi.swift in Sources */,
 				A696EA6E24A2065B0008D132 /* SpotifyRequestTests.swift in Sources */,
-				A696EA7C24A207690008D132 /* TrackItemModelControllerTests.swift in Sources */,
 				A696EA8B24A215810008D132 /* MockApiManager.swift in Sources */,
 				A696EA8524A211A70008D132 /* MockSpotifyRequest.swift in Sources */,
 				A696EA7024A206C70008D132 /* RoutingPathTests.swift in Sources */,
