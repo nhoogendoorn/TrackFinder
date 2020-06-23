@@ -332,7 +332,6 @@
 				A6345F182499480F0070D2C2 /* ViewControllers */,
 				A6345F29249950000070D2C2 /* ModelControllers */,
 				A6345F2824994FF50070D2C2 /* Services */,
-				A6345F2A2499500A0070D2C2 /* Views */,
 				A6345F2724994FEB0070D2C2 /* Extensions */,
 				A60F5685249CF6B900156178 /* Controls */,
 				A6345F2B249950520070D2C2 /* AppDelegate */,
@@ -410,14 +409,6 @@
 				A6FA1EA924A0080F00BAC327 /* TrackItemModelController.swift */,
 			);
 			path = ModelControllers;
-			sourceTree = "<group>";
-		};
-		A6345F2A2499500A0070D2C2 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				A6FA1EC424A15D4B00BAC327 /* SearchScreenViews */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		A6345F2B249950520070D2C2 /* AppDelegate */ = {
@@ -629,6 +620,7 @@
 		A6FA1ED524A1E8AF00BAC327 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				A6FA1EC424A15D4B00BAC327 /* SearchScreenViews */,
 				A6345F87249A802A0070D2C2 /* SearchScreenViewController.swift */,
 				A6FA1ECE24A1E82500BAC327 /* SearchScreenViewController+Views.swift */,
 				A6FA1ED024A1E83500BAC327 /* SearchScreenViewController+Search.swift */,
