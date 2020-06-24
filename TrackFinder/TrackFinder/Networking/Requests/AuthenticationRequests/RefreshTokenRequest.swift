@@ -9,11 +9,13 @@
 import Foundation
 
 struct RefreshTokenRequest: SpotifyRequest {
+        
     var customUrl: String?
     var routingPath: RoutingPath = .getToken
     var headers: Headers = .generateBasicHeader()
     var queryItems: [URLQueryItem]
     var method: HTTPMethod = .post
+    var cachePolicy: URLRequest.CachePolicy = .reloadIgnoringLocalCacheData
     
     init(refreshToken: String) {
         let query = [

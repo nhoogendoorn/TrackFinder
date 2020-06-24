@@ -14,6 +14,7 @@ struct TrackItemRequest: SpotifyRequest {
     var headers: Headers = .generateBearerHeader()
     var queryItems: [URLQueryItem] = []
     var method: HTTPMethod = .get
+    var cachePolicy: URLRequest.CachePolicy = .returnCacheDataElseLoad
     
     init(id: String, limit: Int = SearchQueryItem.defaultLimit) {
         routingPath = .getTrack(id: id)
