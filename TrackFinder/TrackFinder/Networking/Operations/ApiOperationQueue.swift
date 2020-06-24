@@ -78,9 +78,8 @@ extension ApiOperationQueue {
             guard let `self` = self else { return }
             DispatchQueue.main.async {
                 self.hasInternetConnection = pathUpdateHandler.status == .satisfied
+                self.setSuspensionState()
             }
-            self.setSuspensionState()
-            
         }
         monitor.start(queue: self.queue)
     }

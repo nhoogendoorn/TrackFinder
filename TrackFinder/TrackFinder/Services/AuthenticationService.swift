@@ -37,6 +37,7 @@ class AuthenticationService: AuthenticationServiceProtocol, DependencyResolver {
             if let response = try? result.getNetworkResult(AuthTokenResponse.self).get() {
                 DispatchQueue.main.async {
                     self.userPrefs?.saveTokens(response.authTokens)
+                    ApiOperationQueue.shared.applyNewToken(tokens: response.authTokens)
                     completion(.success(response))
                 }
             } else {
