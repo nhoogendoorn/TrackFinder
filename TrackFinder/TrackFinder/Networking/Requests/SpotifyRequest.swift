@@ -14,7 +14,6 @@ protocol SpotifyRequest {
     var queryItems: [URLQueryItem] { get }
     var method: HTTPMethod { get }
     var customUrl: String? { get }
-    var cachePolicy: URLRequest.CachePolicy { get }
 }
 
 extension SpotifyRequest {
@@ -31,7 +30,6 @@ extension SpotifyRequest {
         request.allHTTPHeaderFields = headers
         request.httpMethod = method.rawValue
         request.addQuery(query: queryItems)
-        request.cachePolicy = cachePolicy
         return request
     }
     

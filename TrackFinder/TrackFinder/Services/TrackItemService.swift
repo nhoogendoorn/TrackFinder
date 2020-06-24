@@ -19,7 +19,7 @@ class TrackItemService: TrackItemServiceProtocol {
     
     func getTrackItem(id: String, completion: @escaping (Result<TrackItem, NetworkError>) -> Void) {
         let request = TrackItemRequest(id: id)
-        apiManager.webApi.doRequest(request: request) { result in
+        apiManager.webApi.doRequest(request: request, loadCache: true) { result in
             if let response = try? result.getNetworkResult(TrackItem.self).get() {
                 completion(.success(response))
             } else {
@@ -30,7 +30,7 @@ class TrackItemService: TrackItemServiceProtocol {
     
     func getArtist(id: String, completion: @escaping (Result<CompleteArtist, NetworkError>) -> Void) {
         let request = CompleteArtistRequest(id: id)
-        self.apiManager.webApi.doRequest(request: request) { result in
+        self.apiManager.webApi.doRequest(request: request, loadCache: true) { result in
             if let response = try? result.getNetworkResult(CompleteArtist.self).get() {
                 completion(.success(response))
             } else {

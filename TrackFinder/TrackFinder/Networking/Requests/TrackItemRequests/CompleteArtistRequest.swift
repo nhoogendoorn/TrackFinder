@@ -14,7 +14,6 @@ struct CompleteArtistRequest: SpotifyRequest {
     var headers: Headers = .generateBearerHeader()
     var queryItems: [URLQueryItem] = []
     var method: HTTPMethod = .get
-    var cachePolicy: URLRequest.CachePolicy = .returnCacheDataElseLoad
     
     init(id: String) {
         routingPath = .getArtist(id: id)

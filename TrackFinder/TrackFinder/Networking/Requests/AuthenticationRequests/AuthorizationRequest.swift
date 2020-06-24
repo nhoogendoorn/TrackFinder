@@ -24,7 +24,6 @@ struct AuthorizationRequest: SpotifyRequest {
         AuthorizationQueryItem.scope(scope: Self.userScope).create(),
         AuthorizationQueryItem.state(state: Self.state).create()
     ]
-    var cachePolicy: URLRequest.CachePolicy = .reloadIgnoringLocalCacheData
     
     func getCompleteUrl() -> URL? {
         guard let urlString = generateRequest().url?.absoluteString else { return nil }

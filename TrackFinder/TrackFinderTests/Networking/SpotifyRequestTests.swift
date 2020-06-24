@@ -56,12 +56,6 @@ class SpotifyRequestTests: XCTestCase {
         XCTAssertEqual(request.httpMethod, mockSpotifyRequest.method.rawValue)
     }
     
-    func test_generateRequest_hasNoCustomUrl_containsCachePolicy() {
-        let mockSpotifyRequest = MockRequest(customUrl: nil)
-        let request = mockSpotifyRequest.generateRequest()
-        XCTAssertEqual(request.cachePolicy, .returnCacheDataElseLoad)
-    }
-    
     func test_setAccessToken_newHeaderHasNewToken() {
         let oldToken = "OldToken"
         let oldHeaders: Headers = .generateBearerHeader(with: oldToken)

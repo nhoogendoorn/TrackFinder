@@ -14,7 +14,6 @@ struct SearchTrackRequest: SpotifyRequest {
     var headers: Headers = .generateBearerHeader()
     var queryItems: [URLQueryItem]
     var method: HTTPMethod = .get
-    var cachePolicy: URLRequest.CachePolicy = .returnCacheDataElseLoad
     
     init(query: String, nextPage: String? = nil, type: SearchQueryItem.SearchContentType, limit: Int = SearchQueryItem.defaultLimit) {
         self.customUrl = nextPage

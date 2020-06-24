@@ -34,17 +34,17 @@ class SearchService: SearchServiceProtocol {
     
     func searchTrack(query: String, completion: @escaping (Result<SearchTrackResponse, NetworkError>) -> Void) {
         let request = SearchTrackRequest(query: query, type: .track)
-        apiManager.webApi.doRequest(request: request) { [weak self] result in
+        apiManager.webApi.doRequest(request: request, loadCache: true) { [weak self] result in
             guard let `self` = self else { return }
             self.handleSearchTrackResponse(result, completion: completion)
         }
     }
-    
+        
     func loadNextPage(nextPageUrl: String?, completion: @escaping (Result<SearchTrackResponse, NetworkError>) -> Void) {
         // Spotify gives a custom url for loading the next page. So the query can be
         // empty here as the given url contains the original query.
         let request = SearchTrackRequest(query: .empty, nextPage: nextPageUrl, type: .track)
-        apiManager.webApi.doRequest(request: request) { [weak self] result in
+        apiManager.webApi.doRequest(request: request, loadCache: true) { [weak self] result in
             guard let `self` = self else { return }
             self.handleSearchTrackResponse(result, completion: completion)
         }

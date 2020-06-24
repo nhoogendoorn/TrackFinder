@@ -8,17 +8,19 @@
 
 import Foundation
 
-class ApiRequestOperation: Operation {
+class ApiRequestOperation: Operation, CacheRetriever {
     var task: URLSessionDataTask!
     private var session: URLSession = URLSession.shared
     let urlCache = URLCache.shared
     
     var request: SpotifyRequest
     let completion: (Result<Data, NetworkError>) -> Void
+    let loadCache: Bool
     
-    init(request: SpotifyRequest, completion: @escaping (Result<Data, NetworkError>) -> Void) {
+    init(request: SpotifyRequest, loadCache: Bool, completion: @escaping (Result<Data, NetworkError>) -> Void) {
         self.request = request
         self.completion = completion
+        self.loadCache = loadCache
         super.init()
         setTask()
     }
@@ -31,6 +33,11 @@ class ApiRequestOperation: Operation {
         // Set the task, but don't resume it yet. This will happen in the
         // operation queue.
         let request = self.request.generateRequest()
+        
+        if loadCache {
+            getCachedResponse(request: self.request, completion: self.completion)
+        }
+        
         log.info("Add urlRequest: \(request.url?.absoluteString ?? .empty)")
         self.task = session.dataTask(with: request, completionHandler: { (data, response, _) in
             // Spotify Requests will use the cache to quickly retrieve previous requests.

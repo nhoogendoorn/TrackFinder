@@ -16,7 +16,7 @@ class SpotifyApi: WebApiProtocol, DependencyResolver {
     
     var dataTask: URLSessionDataTask?
     
-    func doRequest(request: SpotifyRequest, completion: @escaping (Result<Data, NetworkError>) -> Void) {
+    func doRequest(request: SpotifyRequest, loadCache: Bool, completion: @escaping (Result<Data, NetworkError>) -> Void) {
         // First check if the operation queue should be suspended, operations
         // can still be added, but will only resume when there is an active
         // internet connection and the access token is not expired.
@@ -28,7 +28,7 @@ class SpotifyApi: WebApiProtocol, DependencyResolver {
             handleRefreshTokenOperation(completion: completion)
         }
         
-        let operation = ApiRequestOperation(request: request, completion: completion)
+        let operation = ApiRequestOperation(request: request, loadCache: loadCache, completion: completion)
         operationQueue.addApiOperation(operation)
         
     }
@@ -42,7 +42,7 @@ class SpotifyApi: WebApiProtocol, DependencyResolver {
         // We use a different operation queue here, because the api queue is supsended.
         let standardOperationQueue = OperationQueue.main
         let refreshRequest = RefreshTokenRequest(refreshToken: tokens.refreshToken)
-        let operation = ApiRequestOperation(request: refreshRequest) { [weak self] result in
+        let operation = ApiRequestOperation(request: refreshRequest, loadCache: false) { [weak self] result in
             guard let `self` = self else { return }            
             if let response = try? result.getNetworkResult(RefreshTokenResponse.self).get() {
                 DispatchQueue.main.async {

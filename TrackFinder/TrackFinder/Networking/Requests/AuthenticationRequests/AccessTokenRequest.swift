@@ -14,7 +14,6 @@ struct AccessTokenRequest: SpotifyRequest {
     var headers: Headers = .generateBasicHeader()
     var queryItems: [URLQueryItem]
     var method: HTTPMethod = .post
-    var cachePolicy: URLRequest.CachePolicy = .reloadIgnoringLocalCacheData
     
     init(code: String) {
         let query = [

@@ -9,7 +9,7 @@
 import Foundation
 @testable import TrackFinder
 
-class MockApi<Response: Codable>: WebApiProtocol {
+class MockApi<Response: Codable>: WebApiProtocol {    
     var data: Response?
     var error: NetworkError?
     
@@ -18,7 +18,7 @@ class MockApi<Response: Codable>: WebApiProtocol {
         self.error = error
     }
     
-    func doRequest(request: SpotifyRequest, completion: @escaping (Result<Data, NetworkError>) -> Void) {
+    func doRequest(request: SpotifyRequest, loadCache: Bool, completion: @escaping (Result<Data, NetworkError>) -> Void) {
         if let data = data, let encodedData = try? newJSONEncoder().encode(data) {
             completion(.success(encodedData))
         } else {

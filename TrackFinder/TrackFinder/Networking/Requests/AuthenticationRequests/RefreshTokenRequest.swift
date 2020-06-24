@@ -15,7 +15,6 @@ struct RefreshTokenRequest: SpotifyRequest {
     var headers: Headers = .generateBasicHeader()
     var queryItems: [URLQueryItem]
     var method: HTTPMethod = .post
-    var cachePolicy: URLRequest.CachePolicy = .reloadIgnoringLocalCacheData
     
     init(refreshToken: String) {
         let query = [
