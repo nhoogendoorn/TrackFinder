@@ -13,14 +13,7 @@ protocol CacheRetriever { }
 extension CacheRetriever {
     func getCachedResponse(request: SpotifyRequest, completion: @escaping (Result<Data, NetworkError>) -> Void) {
         let cachedResponseData = URLCache.shared.cachedResponse(for: request.generateRequest())?.data
-        guard
-            let decodeResult = cachedResponseData
-        else {
-            log.error("Failed to get cache")
-            completion(.failure(.decodingError))
-            return
-        }
-        log.debug("Found Cache!")
+        guard let decodeResult = cachedResponseData else { return }        
         completion(.success(decodeResult))
         
     }
