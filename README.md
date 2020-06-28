@@ -17,6 +17,7 @@ For this project I didn't use the SwiftUI framework. It was easier to quickly se
   - Swinject, for dependency injecting for the Services
 
 ### Improvements
+  - Fixing the AuthenticationServiceTest, that currently stores a new access and refresh token, making a new build on the same device will make that build unusable.
   - Storing the tokens in the KeyChain instead of UserDefaults.
   - Higher test coverage, this can always be higher :).
   - Making more generic views, for example: standard textlabels.
