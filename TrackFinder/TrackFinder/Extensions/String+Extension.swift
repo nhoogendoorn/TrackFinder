@@ -11,8 +11,4 @@ import Foundation
 extension String {
     static let empty: String = ""
     static let bullet = "•"
-    
-    func encodeToURLQuery() -> String? {
-        self.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-    }
 }

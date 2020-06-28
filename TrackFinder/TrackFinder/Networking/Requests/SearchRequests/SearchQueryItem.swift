@@ -32,7 +32,7 @@ enum SearchQueryItem {
         case .limit(let limit):
             return URLQueryItem(name: CodingKeys.limit.rawValue, value: getValidLimit(input: limit))
         case .query(let query):
-            return URLQueryItem(name: CodingKeys.query.rawValue, value: query.encodeToURLQuery())
+            return URLQueryItem(name: CodingKeys.query.rawValue, value: query)
         }
     }
     
