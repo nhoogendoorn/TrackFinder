@@ -11,10 +11,14 @@ import Foundation
 @testable import TrackFinder
 
 class RoutingPathTests: XCTestCase {
-    func test_url_caseGetToken_urlContainsBaseAccountUrl() {
-        XCTAssertTrue(RoutingPath.getToken.url.absoluteString.contains(Environment.baseAccountUrl))
+    func test_url_caseGetAccessToken_urlContainsBaseAccountUrl() {
+        XCTAssertTrue(RoutingPath.getAccessToken.url.absoluteString.contains(Environment.baseAuthUrl))
     }
     
+    func test_url_caseGetRefreshToken_urlContainsBaseAccountUrl() {
+        XCTAssertTrue(RoutingPath.getRefreshToken.url.absoluteString.contains(Environment.baseAuthUrl))
+    }
+
     func test_url_caseStartAuthorization_urlContainsBaseAccountUrl() {
         XCTAssertTrue(RoutingPath.startAuthorization.url.absoluteString.contains(Environment.baseAccountUrl))
     }

@@ -12,6 +12,7 @@ protocol AuthenticationServiceProtocol {
     var apiManager: ApiProtocol { get set }
     func startSpotifyAuthorization()
     func getAccessToken(code: String?, completion: @escaping (Result<AuthTokenResponse, NetworkError>) -> Void)
+    func getRefreshedToken(refreshToken: String, completion: @escaping (Result<RefreshTokenResponse, NetworkError>) -> Void)
 }
 
 class AuthenticationService: AuthenticationServiceProtocol, DependencyResolver {
@@ -32,7 +33,7 @@ class AuthenticationService: AuthenticationServiceProtocol, DependencyResolver {
     func getAccessToken(code: String?, completion: @escaping (Result<AuthTokenResponse, NetworkError>) -> Void) {
         guard let code = code else { completion(.failure(.postingError)); return }
         let request = AccessTokenRequest(code: code)
-        apiManager.webApi.doRequest(request: request, loadCache: false) { [weak self] result in
+        apiManager.authApi.doRequest(request: request, loadCache: false) { [weak self] result in
             guard let `self` = self else { return }
             if let response = try? result.getNetworkResult(AuthTokenResponse.self).get() {
                 DispatchQueue.main.async {
@@ -40,6 +41,17 @@ class AuthenticationService: AuthenticationServiceProtocol, DependencyResolver {
                     ApiOperationQueue.shared.applyNewToken(tokens: response.authTokens)
                     completion(.success(response))
                 }
+            } else {
+                completion(.failure(.fetchingError))
+            }
+        }
+    }
+    
+    func getRefreshedToken(refreshToken: String, completion: @escaping (Result<RefreshTokenResponse, NetworkError>) -> Void) {
+        let refreshRequest = RefreshTokenRequest(refreshToken: refreshToken)
+        apiManager.authApi.doRequest(request: refreshRequest, loadCache: false) { result in
+            if let response = try? result.getNetworkResult(RefreshTokenResponse.self).get() {
+                completion(.success(response))
             } else {
                 completion(.failure(.fetchingError))
             }
