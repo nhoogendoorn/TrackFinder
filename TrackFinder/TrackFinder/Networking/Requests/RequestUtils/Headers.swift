@@ -18,7 +18,7 @@ extension Headers {
     }
     
     private enum SpotifyAuthorizationType: DependencyResolver {
-        case basic, bearer(newToken: String?)
+        case bearer(newToken: String?)
     }
     
     private enum SpotifyHeader {
@@ -29,8 +29,6 @@ extension Headers {
         switch type {
         case .authorization(type: let type):
             switch type {
-            case .basic:
-                return "Basic \(Environment.spotifyAuthorizationId)"
             case .bearer(let newToken):
                 if let newToken = newToken {
                     return "Bearer \(newToken)"
@@ -43,14 +41,7 @@ extension Headers {
             return Self.urlEncoding
         }
     }
-    
-    static func generateBasicHeader() -> Headers {
-        [
-            CodingKeys.authorization.rawValue: Self.generateValueForHeader(.authorization(type: .basic)),
-            CodingKeys.contentType.rawValue: Self.generateValueForHeader(.contentType)
-        ]
-    }
-    
+
     static func generateBearerHeader(with newToken: String? = nil) -> Headers {
         [
             CodingKeys.authorization.rawValue: Self.generateValueForHeader(.authorization(type: .bearer(newToken: newToken))),

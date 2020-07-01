@@ -10,4 +10,5 @@ import Foundation
 
 struct ApiManager: ApiProtocol, DependencyResolver {
     var webApi: WebApiProtocol = SpotifyApi()
+    var authApi: WebApiProtocol = HerokuApi()
 }

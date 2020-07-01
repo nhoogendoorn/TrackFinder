@@ -10,4 +10,5 @@ import Foundation
 
 protocol ApiProtocol {
     var webApi: WebApiProtocol { get }
+    var authApi: WebApiProtocol { get }
 }

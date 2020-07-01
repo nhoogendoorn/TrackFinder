@@ -11,16 +11,13 @@ import Foundation
 struct RefreshTokenRequest: SpotifyRequest {
         
     var customUrl: String?
-    var routingPath: RoutingPath = .getToken
-    var headers: Headers = .generateBasicHeader()
+    var routingPath: RoutingPath = .getRefreshToken
+    var headers: Headers = [:]
     var queryItems: [URLQueryItem]
     var method: HTTPMethod = .post
     
     init(refreshToken: String) {
-        let query = [
-            AuthorizationQueryItem.grantType(type: .refreshToken).create(),
-            AuthorizationQueryItem.refreshToken(token: refreshToken).create()
-        ]
+        let query = [AuthorizationQueryItem.refreshToken(token: refreshToken).create()]        
         self.queryItems = query
     }
 }

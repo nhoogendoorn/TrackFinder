@@ -10,13 +10,8 @@ import Foundation
 
 enum Environment {
     static let spotifyClientId: String = "ad5a0ea0dbd042c080662e6cf9444b5a"
-    static let spotifySecretId: String = "e1b079d5f1ee450094926dcda77800c7"
-    static var spotifyAuthorizationId: String {
-        let combinedString = "\(spotifyClientId):\(spotifySecretId)"
-        guard let data = combinedString.data(using: String.Encoding.utf8) else { return "" }
-        return data.base64EncodedString()
-    }
     static let spotifyRedirectUri: String = "trackfinder://spotify-login-callback"
     static let baseApiUrl: String = "https://api.spotify.com/"
     static let baseAccountUrl: String = "https://accounts.spotify.com/"
+    static let baseAuthUrl: String = "https://trackfinder-auth.herokuapp.com/"
 }

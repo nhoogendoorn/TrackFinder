@@ -39,12 +39,10 @@ class SpotifyApi: WebApiProtocol, DependencyResolver {
             let tokens = getAuthenticationTokens()
             else { return }
         
-        // We use a different operation queue here, because the api queue is supsended.
-        let standardOperationQueue = OperationQueue.main
-        let refreshRequest = RefreshTokenRequest(refreshToken: tokens.refreshToken)
-        let operation = ApiRequestOperation(request: refreshRequest, loadCache: false) { [weak self] result in
-            guard let `self` = self else { return }            
-            if let response = try? result.getNetworkResult(RefreshTokenResponse.self).get() {
+        let authService = container?.resolve(AuthenticationServiceProtocol.self)
+        authService?.getRefreshedToken(refreshToken: tokens.refreshToken) { result in
+            switch result {
+            case .success(let response):
                 DispatchQueue.main.async {
                     let newAuthTokens = AuthTokens(accessToken: response.accessToken,
                                                    refreshToken: tokens.refreshToken,
@@ -52,12 +50,11 @@ class SpotifyApi: WebApiProtocol, DependencyResolver {
                     userPrefs.saveTokens(newAuthTokens)
                     self.operationQueue.applyNewToken(tokens: newAuthTokens)
                     self.operationQueue.setSuspensionState()
-                }                
-            } else {
+                }
+            case .failure:
                 completion(.failure(.fetchingError))
             }
+            
         }
-        standardOperationQueue.addOperation(operation)
-        operation.task.resume()
     }
 }
