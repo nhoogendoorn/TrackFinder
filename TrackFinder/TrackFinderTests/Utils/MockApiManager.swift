@@ -11,9 +11,12 @@ import Foundation
 
 struct MockApiManager<Response: Codable>: ApiProtocol {
     var webApi: WebApiProtocol = MockApi<Response>()
+    var authApi: WebApiProtocol = MockApi<Response>()
     
     func injectData(data: Response?, error: NetworkError?) {
-        let mockApi = webApi as? MockApi<Response>
-        mockApi?.inject(data: data, error: error)
+        let mockWebApi = webApi as? MockApi<Response>
+        mockWebApi?.inject(data: data, error: error)
+        let mockAuthApi = authApi as? MockApi<Response>
+        mockAuthApi?.inject(data: data, error: error)
     }
 }

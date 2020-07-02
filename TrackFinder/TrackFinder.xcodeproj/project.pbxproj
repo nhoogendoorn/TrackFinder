@@ -39,6 +39,7 @@
 		A61B385D249CF28400286F61 /* RoutingPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61B385C249CF28400286F61 /* RoutingPath.swift */; };
 		A61B385F249CF28D00286F61 /* AuthorizationQueryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61B385E249CF28D00286F61 /* AuthorizationQueryItem.swift */; };
 		A61B3861249CF2A200286F61 /* Headers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61B3860249CF2A200286F61 /* Headers.swift */; };
+		A62D0DDC24ACC1DE005350AC /* HerokuApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = A62D0DDB24ACC1DE005350AC /* HerokuApi.swift */; };
 		A6345EF7249947250070D2C2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6345EF6249947250070D2C2 /* AppDelegate.swift */; };
 		A6345EF9249947250070D2C2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6345EF8249947250070D2C2 /* SceneDelegate.swift */; };
 		A6345F00249947280070D2C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6345EFF249947280070D2C2 /* Assets.xcassets */; };
@@ -148,6 +149,7 @@
 		A61B385C249CF28400286F61 /* RoutingPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutingPath.swift; sourceTree = "<group>"; };
 		A61B385E249CF28D00286F61 /* AuthorizationQueryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationQueryItem.swift; sourceTree = "<group>"; };
 		A61B3860249CF2A200286F61 /* Headers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Headers.swift; sourceTree = "<group>"; };
+		A62D0DDB24ACC1DE005350AC /* HerokuApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HerokuApi.swift; sourceTree = "<group>"; };
 		A6345EF3249947250070D2C2 /* TrackFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrackFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6345EF6249947250070D2C2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A6345EF8249947250070D2C2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -455,6 +457,7 @@
 				A6345F2124994FAD0070D2C2 /* ApiManager.swift */,
 				A6345F2324994FDF0070D2C2 /* WebApiProtocol.swift */,
 				A6345F2524994FE70070D2C2 /* SpotifyApi.swift */,
+				A62D0DDB24ACC1DE005350AC /* HerokuApi.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -844,6 +847,7 @@
 				A6FA1ED324A1E84600BAC327 /* SearchScreenViewController+UITableView.swift in Sources */,
 				A6345F2424994FDF0070D2C2 /* WebApiProtocol.swift in Sources */,
 				A61B384D249C0E5900286F61 /* RefreshTokenResponse.swift in Sources */,
+				A62D0DDC24ACC1DE005350AC /* HerokuApi.swift in Sources */,
 				A60F5695249E31D500156178 /* SearchModelController.swift in Sources */,
 				A60F568D249E0DDB00156178 /* Date+Extension.swift in Sources */,
 				A696EA6424A1F6380008D132 /* SceneDelegateHelper.swift in Sources */,

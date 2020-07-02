@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol WebApiProtocol {
+protocol WebApiProtocol: class {
     func doRequest(request: SpotifyRequest, loadCache: Bool, completion: @escaping (Result<Data, NetworkError>) -> Void)    
 }

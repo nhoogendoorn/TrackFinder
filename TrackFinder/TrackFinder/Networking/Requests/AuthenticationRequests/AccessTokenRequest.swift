@@ -10,17 +10,13 @@ import Foundation
 
 struct AccessTokenRequest: SpotifyRequest {
     var customUrl: String?
-    var routingPath: RoutingPath = .getToken
-    var headers: Headers = .generateBasicHeader()
+    var routingPath: RoutingPath = .getAccessToken
+    var headers: Headers = [:]
     var queryItems: [URLQueryItem]
     var method: HTTPMethod = .post
     
     init(code: String) {
-        let query = [
-            AuthorizationQueryItem.grantType(type: .authorization).create(),
-            AuthorizationQueryItem.authCode(code: code).create(),
-            AuthorizationQueryItem.redirectUri.create()            
-        ]
+        let query = [AuthorizationQueryItem.authCode(code: code).create()]
         self.queryItems = query
     }
 }
