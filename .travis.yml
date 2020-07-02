@@ -1,0 +1,25 @@
+language: swift
+osx_image: xcode11.4
+
+git:
+  depth: 1
+
+stages:
+  - name: test
+
+branches:
+  only:
+  - development
+
+jobs:
+  include:
+    - stage: test
+      name: Run tests
+      osx_image: xcode11.4
+      script: fastlane test
+
+    - stage: test
+      name: Run Validations (SwiftLint)
+      osx_image: xcode11.4
+      install: Scripts/install_swiftlint.sh
+      script: Scripts/validate.sh
