@@ -16,7 +16,7 @@ jobs:
     - stage: test
       name: Run tests
       osx_image: xcode11.4
-      script: fastlane test
+      script: bundle exec fastlane test
 
     - stage: test
       name: Run Validations (SwiftLint)
