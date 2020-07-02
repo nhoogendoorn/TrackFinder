@@ -21,4 +21,4 @@ For this project I didn't use the SwiftUI framework. It was easier to quickly se
   - Storing the tokens in the KeyChain instead of UserDefaults.
   - Higher test coverage, this can always be higher :).
   - Making more generic views, for example: standard textlabels.
-  - Letting the authentication happen outside of the app environment, so I can remove the secret client id from the project.
+  - ~~Letting the authentication happen outside of the app environment, so I can remove the secret client id from the project.~~
